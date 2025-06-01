@@ -1,0 +1,215 @@
+.cyber-animations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+
+
+
+.network-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.network-node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #00f1e7;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: networkFloat linear infinite;
+    box-shadow: 0 0 6px #00f1e7;
+}
+
+.network-node::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #00f1e7;
+    border-radius: 50%;
+    top: -2.5px;
+    left: -2.5px;
+    opacity: 0.2;
+    animation: networkPulse 3s ease-in-out infinite;
+}
+
+.network-node::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #00f1e7;
+    border-radius: 50%;
+    top: -6.5px;
+    left: -6.5px;
+    opacity: 0.1;
+    animation: networkPulse 3s ease-in-out infinite reverse;
+}
+
+@keyframes networkFloat {
+    0% {
+        transform: translate(0, 100vh) scale(0.5);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    90% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    100% {
+        transform: translate(150px, -100px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+@keyframes networkPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.05;
+    }
+}
+
+
+.glitch-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.glitch-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #00f1e7;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: glitchMove linear infinite;
+    box-shadow: 0 0 4px #00f1e7;
+}
+
+.glitch-particle.large {
+    width: 3px;
+    height: 3px;
+    opacity: 0.5;
+}
+
+.glitch-particle.small {
+    width: 1px;
+    height: 1px;
+    opacity: 0.8;
+}
+
+@keyframes glitchMove {
+    0% {
+        transform: translate(0, 100vh) scale(1) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    25% {
+        transform: translate(30px, 75vh) scale(1.2) rotate(90deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translate(-20px, 50vh) scale(0.8) rotate(180deg);
+        opacity: 0.6;
+    }
+
+    75% {
+        transform: translate(60px, 25vh) scale(1.5) rotate(270deg);
+        opacity: 0.3;
+    }
+
+    90% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(-40px, -50px) scale(0.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .network-node {
+        width: 2px;
+        height: 2px;
+        opacity: 0.4;
+    }
+
+    .network-node::before {
+        width: 6px;
+        height: 6px;
+        top: -2px;
+        left: -2px;
+    }
+
+    .network-node::after {
+        width: 12px;
+        height: 12px;
+        top: -5px;
+        left: -5px;
+    }
+
+    .glitch-particle {
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .network-node {
+        opacity: 0.3;
+    }
+
+    .glitch-particle {
+        opacity: 0.3;
+    }
+}
+
+
+.cyber-animations * {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .cyber-animations {
+        display: none;
+    }
+}
