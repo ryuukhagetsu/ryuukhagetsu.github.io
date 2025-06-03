@@ -1215,7 +1215,7 @@ body {
     color: var(--highlight-color);
     border-radius: 20px;
     font-size: 0.8rem;
-    margin: 8px;
+    margin: 4px;
 }
 
 .project-title {
