@@ -790,6 +790,8 @@ body {
     .modal-title-text {
         font-size: 1.3rem;
     }
+    
+
 }
 
 @media (max-width: 480px) {
@@ -1213,7 +1215,7 @@ body {
     color: var(--highlight-color);
     border-radius: 20px;
     font-size: 0.8rem;
-    margin-right: 8px;
+    margin: 8px;
 }
 
 .project-title {
