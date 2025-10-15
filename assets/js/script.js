@@ -66,14 +66,72 @@ function handleActiveNavScroll() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Mobile Navbar Toggle
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const mobileNavbarOverlay = document.getElementById('mobileNavbarOverlay');
+  const mobileNavbarSidebar = document.getElementById('mobileNavbarSidebar');
+  const mobileNavbarClose = document.getElementById('mobileNavbarClose');
+  const mobileNavLinks = document.querySelectorAll('.mobile-navbar-nav .nav-link');
+
+  function openMobileNavbar() {
+    mobileNavbarOverlay.classList.add('active');
+    mobileNavbarSidebar.classList.add('active');
+    document.body.classList.add('navbar-mobile-open');
+  }
+
+  function closeMobileNavbar() {
+    mobileNavbarOverlay.classList.remove('active');
+    mobileNavbarSidebar.classList.remove('active');
+    document.body.classList.remove('navbar-mobile-open');
+  }
+
+  // Open mobile navbar when hamburger is clicked
+  if (navbarToggler) {
+    navbarToggler.addEventListener('click', function(e) {
+      e.preventDefault();
+      openMobileNavbar();
+    });
+  }
+
+  // Close mobile navbar when close button is clicked
+  if (mobileNavbarClose) {
+    mobileNavbarClose.addEventListener('click', closeMobileNavbar);
+  }
+
+  // Close mobile navbar when overlay is clicked
+  if (mobileNavbarOverlay) {
+    mobileNavbarOverlay.addEventListener('click', closeMobileNavbar);
+  }
+
+  // Close mobile navbar when nav link is clicked
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      closeMobileNavbar();
+    });
+  });
+
+  // Close mobile navbar on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileNavbarSidebar.classList.contains('active')) {
+      closeMobileNavbar();
+    }
+  });
+
   const typingElement = document.getElementById("role-element");
 
   if (typingElement) {
-    const roles = [
+    // Check if device is mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    const roles = isMobile ? [
+      "Ethical Hacker",
+      "Pentester", 
+      "Bug Hunter",
+    ] : [
       "Ethical Hacker",
       "CyberSec Engineer",
       "Penetration Tester",
-      "Young Ordinary Man",
+      "Bug Hunter",
     ];
 
     let roleIndex = 0;
@@ -104,6 +162,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     typeText();
+    
+    // Handle window resize to update roles dynamically
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        const newIsMobile = window.innerWidth <= 768;
+        const newRoles = newIsMobile ? [
+          "Ethical Hacker",
+          "Pentester", 
+          "Bug Hunter",
+        ] : [
+          "Ethical Hacker",
+          "CyberSec Engineer",
+          "Penetration Tester",
+          "Bug Hunter",
+        ];
+        
+        // Only restart if roles array has changed
+        if (JSON.stringify(newRoles) !== JSON.stringify(roles)) {
+          // Reset typing animation
+          roleIndex = 0;
+          charIndex = 0;
+          typingElement.textContent = '';
+          
+          // Update roles array
+          roles.length = 0;
+          roles.push(...newRoles);
+          
+          // Restart typing animation
+          typeText();
+        }
+      }, 250);
+    });
   }
 });
 

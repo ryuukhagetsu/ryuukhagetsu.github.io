@@ -1525,3 +1525,82 @@
         animation: none;
     }
 }
+
+/* Blog padding consistency with main page */
+@media (max-width: 992px) {
+    .articles-header {
+        padding: 120px 16px 80px !important;
+    }
+    
+    .articles-control-bar {
+        padding: 30px 16px !important;
+    }
+    
+    .articles-grid {
+        padding: 60px 16px !important;
+    }
+    
+    .related-articles {
+        padding: 60px 16px !important;
+    }
+    
+    .article-header {
+        padding: 120px 16px 50px !important;
+    }
+    
+    .article-content {
+        padding: 50px 16px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .articles-header {
+        padding: 100px 16px 60px !important;
+    }
+    
+    .articles-control-bar {
+        padding: 25px 16px !important;
+    }
+    
+    .articles-grid {
+        padding: 40px 16px !important;
+    }
+    
+    .related-articles {
+        padding: 40px 16px !important;
+    }
+    
+    .article-header {
+        padding: 100px 16px 40px !important;
+    }
+    
+    .article-content {
+        padding: 40px 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .articles-header {
+        padding: 80px 16px 50px !important;
+    }
+    
+    .articles-control-bar {
+        padding: 20px 16px !important;
+    }
+    
+    .articles-grid {
+        padding: 30px 16px !important;
+    }
+    
+    .related-articles {
+        padding: 30px 16px !important;
+    }
+    
+    .article-header {
+        padding: 80px 16px 30px !important;
+    }
+    
+    .article-content {
+        padding: 30px 16px !important;
+    }
+}

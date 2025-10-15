@@ -739,8 +739,16 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        padding: 7rem 16px !important;
+    }
+    
+    .hero-description {
+        text-align: justify;
+    }
+    
     .achievement-section-wrapper {
-        padding: 80px 0;
+        padding: 60px 16px;
     }
 
     .achievements-main-title {
@@ -889,13 +897,13 @@ body {
 .navbar {
     background-color: rgba(32, 36, 40, 0.9) !important;
     backdrop-filter: blur(10px);
-    padding: 1rem 0;
+    padding: 1rem 16px;
     transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 0.7rem 0;
+    padding: 0.7rem 16px;
 }
 
 .navbar-brand {
@@ -939,6 +947,161 @@ body {
     filter: invert(1);
 }
 
+/* Mobile Navbar Sidebar */
+.mobile-navbar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-navbar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-navbar-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100%;
+    background-color: var(--dark-accent);
+    z-index: 1050;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-navbar-sidebar.active {
+    right: 0;
+}
+
+.mobile-navbar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+.mobile-navbar-close {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-navbar-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--highlight-color);
+}
+
+.mobile-navbar-nav {
+    flex: 1;
+    padding: 20px 0;
+    list-style: none;
+    margin: 0;
+}
+
+.mobile-navbar-nav .nav-item {
+    margin: 0;
+}
+
+.mobile-navbar-nav .nav-link {
+    display: block;
+    padding: 15px 30px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+}
+
+.mobile-navbar-nav .nav-link:hover,
+.mobile-navbar-nav .nav-link.active {
+    color: var(--highlight-color);
+    background-color: rgba(0, 241, 231, 0.1);
+    border-left-color: var(--highlight-color);
+}
+
+.mobile-navbar-nav .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--highlight-color);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.mobile-navbar-nav .nav-link:hover::before,
+.mobile-navbar-nav .nav-link.active::before {
+    width: 100%;
+    opacity: 0.1;
+}
+
+/* Blur effect for content behind mobile navbar */
+body.navbar-mobile-open {
+    overflow: hidden;
+}
+
+body.navbar-mobile-open .hero,
+body.navbar-mobile-open .section-padding,
+body.navbar-mobile-open .achievement-section-wrapper,
+body.navbar-mobile-open .experience-section {
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    transition: filter 0.3s ease;
+    transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Ensure navbar itself is not blurred */
+.mobile-navbar-sidebar,
+.mobile-navbar-overlay {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(8px)) {
+    .mobile-navbar-overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* Enhanced blur effect for better visual separation */
+.mobile-navbar-overlay.active {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
 .ncs-circles-bg {
     position: absolute;
     top: 0;
@@ -962,7 +1125,7 @@ body {
 }
 
 .hero {
-    padding: 10rem 0 6rem;
+    padding: 10rem 16px;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -1838,16 +2001,28 @@ body {
 }
 
 @media (max-width: 992px) {
-    .navbar-collapse {
-        background-color: var(--dark-accent);
-        padding: 1rem;
-        border-radius: 5px;
-        margin-top: 1rem;
+    .navbar {
+        padding: 0.9rem 16px;
     }
-
-    .nav-link {
-        margin-left: 0;
-        padding: 0.5rem 0;
+    
+    .navbar.scrolled {
+        padding: 0.65rem 16px;
+    }
+    
+    .hero {
+        padding: 8rem 16px !important;
+    }
+    
+    .hero-description {
+        text-align: justify;
+    }
+    
+    .navbar-collapse {
+        display: none !important;
+    }
+    
+    .navbar-toggler {
+        display: block !important;
     }
 
     .name-heading {
@@ -1859,31 +2034,138 @@ body {
     }
 
     .section-padding {
-        padding: 80px 0;
+        padding: 60px 16px;
+    }
+    
+    /* Add horizontal padding for sections on tablet */
+    .achievement-section-wrapper {
+        padding: 60px 16px;
+    }
+    
+    .experience-section {
+        padding: 60px 16px;
     }
 
     .about-content {
         padding-left: 0;
         margin-top: 30px;
     }
+    
+    .about-content p {
+        text-align: justify;
+    }
 
     .experience-badge {
         bottom: 20px;
         right: 20px;
+        padding: 24px 24px;
+        transform: scale(0.8);
+    }
+    
+    .experience-badge .years {
+        font-size: 1.8rem;
+    }
+    
+    .experience-badge .text {
+        font-size: 0.9rem;
+    }
+    
+    .about-image {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    /* Footer adjustments for tablet */
+    .footer {
+        padding: 48px 16px 24px;
+    }
+    
+    
+    .footer-logo h3 {
+        font-size: 1.6rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.95rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .footer-text {
+        font-size: 0.9rem;
+    }
+    
+    .security-note {
+        font-size: 0.9rem;
+    }
+    
+    .heart-icon {
+        font-size: 14px;
+    }
+    
+    .footer .section-subtitle {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 576px) {
+    .navbar {
+        padding: 0.8rem 16px;
+    }
+    
+    .navbar.scrolled {
+        padding: 0.6rem 16px;
+    }
+    
+    .hero {
+        padding: 10rem 16px !important;
+        min-height: auto !important;
+    }
+    
     .name-heading {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .line {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .welcome-text {
+        font-size: 1.1rem;
+    }
+    
+    .hero-description {
         font-size: 1rem;
+        line-height: 1.6;
+        text-align: justify;
+    }
+    
+    .about-content p {
+        text-align: justify;
+    }
+    
+    .about-image {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .experience-badge {
+        padding: 24px 24px;
+        transform: scale(0.7);
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .experience-badge .years {
+        font-size: 1.6rem;
+    }
+    
+    .experience-badge .text {
+        font-size: 0.85rem;
     }
 
     .section-title {
@@ -1891,7 +2173,22 @@ body {
     }
 
     .section-padding {
-        padding: 60px 0;
+        padding: 40px 16px;
+    }
+    
+    /* Add horizontal padding for all sections on mobile */
+    .achievement-section-wrapper {
+        padding: 50px 16px;
+    }
+    
+    .experience-section {
+        padding: 40px 16px;
+    }
+    
+    /* Ensure containers have proper padding */
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .contact-method {
@@ -2088,7 +2385,11 @@ body {
     .experience-container {
         grid-template-columns: 1fr;
         row-gap: 3rem;
-        padding: 0 1rem;
+        padding: 0 16px;
+    }
+    
+    .experience-section {
+        padding: 60px 16px;
     }
 
     .experience-timeline {
@@ -2105,6 +2406,10 @@ body {
 }
 
 @media screen and (max-width: 576px) {
+    .experience-container {
+        padding: 0 16px;
+    }
+    
     .experience-timeline {
         padding-left: 2rem;
     }
@@ -2132,5 +2437,150 @@ body {
 @media screen and (max-width: 350px) {
     .experience-container {
         grid-template-columns: 1fr;
+    }
+    
+    /* Footer adjustments for mobile */
+    .footer {
+        padding: 48px 16px 24px;
+    }
+    
+    
+    .footer-logo h3 {
+        font-size: 1.4rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.9rem;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .footer-text {
+        font-size: 0.85rem;
+    }
+    
+    .security-note {
+        font-size: 0.85rem;
+    }
+    
+    .heart-icon {
+        font-size: 13px;
+    }
+    
+    .footer .section-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* Additional mobile font adjustments for very small screens */
+@media (max-width: 480px) {
+    .hero {
+        padding: 10rem 16px !important;
+        min-height: auto !important;
+    }
+    
+    .name-heading {
+        font-size: 1.8rem;
+    }
+
+    .line {
+        font-size: 1.8rem;
+    }
+
+    .welcome-text {
+        font-size: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        text-align: justify;
+    }
+    
+    .about-content p {
+        text-align: justify;
+    }
+    
+    .about-image {
+        max-width: 220px;
+        margin: 0 auto;
+    }
+    
+    .experience-badge {
+        padding: 24px 24px;
+        transform: scale(0.6);
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .experience-badge .years {
+        font-size: 1.4rem;
+    }
+    
+    .experience-badge .text {
+        font-size: 0.8rem;
+    }
+    
+    /* Footer adjustments for very small mobile */
+    .footer {
+        padding: 48px 16px 24px;
+    }
+    
+    
+    .footer-logo h3 {
+        font-size: 1.2rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.85rem;
+    }
+    
+    .social-link {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .footer-text {
+        font-size: 0.8rem;
+    }
+    
+    .security-note {
+        font-size: 0.8rem;
+    }
+    
+    .heart-icon {
+        font-size: 12px;
+    }
+    
+    .footer .section-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* Specific adjustment for iPhone 11 Pro Max and similar devices (414px) */
+@media (max-width: 414px) {
+    .hero {
+        padding: 10rem 16px !important;
+        min-height: auto !important;
+    }
+}
+
+/* Additional mobile breakpoints for better coverage */
+@media (max-width: 428px) {
+    .hero {
+        padding: 10rem 16px !important;
+        min-height: auto !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero {
+        padding: 10rem 16px !important;
+        min-height: auto !important;
     }
 }
