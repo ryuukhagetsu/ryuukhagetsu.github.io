@@ -4,16 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ryuukhagetsu@smileforyou - Portfolio</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery | RyuuKhagetsu</title>
+    <meta name="title" content="Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery | RyuuKhagetsu">
+    <meta name="description" content="Learn how to discover Out-of-Band SQL Injection (OOB SQLi) on MSSQL servers by bypassing 403 restrictions through directory fuzzing and payload crafting techniques.">
+    <meta name="keywords" content="SQL Injection, OOB SQLi, Out-of-Band SQL Injection, MSSQL, Bug Bounty, VDP, BurpSuite, Web Security, Penetration Testing, Ethical Hacking">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/breaking-past-403-oob-sql-injection/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/breaking-past-403-oob-sql-injection/">
+    <meta property="og:title" content="Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery">
+    <meta property="og:description" content="Learn how to discover Out-of-Band SQL Injection (OOB SQLi) on MSSQL servers by bypassing 403 restrictions through directory fuzzing and payload crafting techniques.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/12.jpg">
+    <meta property="og:site_name" content="RyuuKhagetsu Blog">
+    <meta property="article:published_time" content="2025-12-07">
+    <meta property="article:author" content="RyuuKhagetsu">
+    <meta property="article:section" content="Cybersecurity">
+    <meta property="article:tag" content="SQL Injection">
+    <meta property="article:tag" content="Bug Bounty">
+    <meta property="article:tag" content="Penetration Testing">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/breaking-past-403-oob-sql-injection/">
+    <meta property="twitter:title" content="Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery">
+    <meta property="twitter:description" content="Learn how to discover Out-of-Band SQL Injection (OOB SQLi) on MSSQL servers by bypassing 403 restrictions through directory fuzzing and payload crafting techniques.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/12.jpg">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery",
+        "description": "Learn how to discover Out-of-Band SQL Injection (OOB SQLi) on MSSQL servers by bypassing 403 restrictions through directory fuzzing and payload crafting techniques.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/content/12.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "url": "https://ryuukhagetsu.github.io"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png"
+            }
+        },
+        "datePublished": "2025-12-07",
+        "dateModified": "2025-12-07",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ryuukhagetsu.github.io/blog/breaking-past-403-oob-sql-injection/"
+        },
+        "keywords": ["SQL Injection", "OOB SQLi", "Out-of-Band", "MSSQL", "Bug Bounty", "Penetration Testing"]
+    }
+    </script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts - Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/cyber-animations.css">
-    <link rel="stylesheet" href="../assets/css/blog-article.css">
-    <link rel="shortcut icon" href="../assets/img/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/cyber-animations.css">
+    <link rel="stylesheet" href="../../assets/css/blog-article.css">
+    <link rel="shortcut icon" href="../../assets/img/icon/favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -46,7 +109,7 @@
                         <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Blog</a>
+                        <a class="nav-link active" href="../">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +122,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- Back to Articles Button -->
-                    <a href="index.html#blog" class="back-to-articles">
+                    <a href="../" class="back-to-articles">
                         <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -165,7 +228,7 @@
                         <p>It all started when I joined a VDP program at a university in my area. Let's just call it <code>site.com</code>. When I tried accessing site.com, it showed a <strong>403 Forbidden</strong> page.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/2.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/2.webp"
                                 alt="403 Forbidden">
                             <p class="image-caption">403 Forbidden</p>
                         </div>
@@ -174,13 +237,13 @@
                         <p>Before continuing with other enumerations, I first checked what technologies were being used and whether there was any WAF by using the Wappalyzer extension and wafw00f.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/3.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/3.webp"
                                 alt="Wappalyzer and wafw00f">
                             <p class="image-caption">Wappalyzer</p>
                         </div>
                         
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/4.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/4.webp"
                                 alt="Wappalyzer and wafw00f">
                             <p class="image-caption">wafw00f</p>
                         </div>
@@ -203,7 +266,7 @@
                         </ul>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/5.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/5.webp"
                                 alt="ffuf output">
                             <p class="image-caption">ffuf output</p>
                         </div>
@@ -227,13 +290,13 @@
                         <p>In my browser, I accessed <code>https://site.com/admissions/auth</code> and got a login page.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/6.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/6.webp"
                                 alt="login page">
                             <p class="image-caption">Login page</p>
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/7.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/7.webp"
                                 alt="burpsuite login request">
                             <p class="image-caption">burpsuite login request</p>
                         </div>
@@ -249,7 +312,7 @@
                         <p>One of the SQL injection payload lists: <a href="https://github.com/payloadbox/sql-injection-payload-list/tree/master" target="_blank">https://github.com/payloadbox/sql-injection-payload-list</a></p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/8.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/8.webp"
                                 alt="sql injection payload list">
                             <p class="image-caption">sql injection payload list</p>
                         </div>
@@ -260,7 +323,7 @@
 
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/9.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/9.webp"
                                 alt="intruder response">
                             <p class="image-caption">This is just an illustration, because I forgot to screenshot.</p>
                         </div>
@@ -286,13 +349,13 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/10.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/10.webp"
                                 alt="burpsuite payload">
                             <p class="image-caption">burpsuite payload</p>
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/11.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/11.webp"
                                 alt="burpsuite collaborator response">
                             <p class="image-caption">burpsuite collaborator response</p>
                         </div>
@@ -310,7 +373,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/12.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/12.webp"
                                 alt="oob sql injection payload - get database name">
                             <p class="image-caption">oob sql injection payload - get database name</p>
                         </div>
@@ -323,7 +386,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/13.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/13.webp"
                                 alt="oob sql injection payload - get current user">
                             <p class="image-caption">oob sql injection payload - get current user</p>
                         </div>
@@ -336,7 +399,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/14.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/14.webp"
                                 alt="oob sql injection payload - get server name">
                             <p class="image-caption">oob sql injection payload - get server name</p>
                         </div>
@@ -344,7 +407,7 @@
                         <p>If you're wondering how I figured it out, it was simply curiosity — I spent time reading and experimenting through trial and error. I initially intended to push it further to achieve RCE, but I felt it wasn't necessary. I immediately submitted a report to the VDP program.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/breaking-past-403-oob-sql-injection/15.webp"
+                            <img src="../../assets/img/blog/breaking-past-403-oob-sql-injection/15.webp"
                                 alt="my expression">
                             <p class="image-caption">Me when I found the vulnerability</p>
                         </div>
@@ -391,9 +454,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/13.png">
+                            <img src="../../assets/img/content/13.png">
                             <div class="article-overlay">
-                                <a href="abusing-broken-access-control-and-sql-injection.html" class="article-link">read article</a>
+                                <a href="../abusing-broken-access-control-and-sql-injection/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
@@ -402,7 +465,7 @@
                                 <span class="article-tag">SQL Injection</span>
                             </div>
                             <h3 class="related-title">
-                                <a href="abusing-broken-access-control-and-sql-injection.html">Abusing Broken Access Control and SQL Injection in the Wild</a>
+                                <a href="../abusing-broken-access-control-and-sql-injection/">Abusing Broken Access Control and SQL Injection in the Wild</a>
                             </h3>
                             <p class="article-excerpt">
                                 Hi all! How are you guys? I hope everything is fine. It's been quite a while since I last wrote an article...
@@ -413,9 +476,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/5.jpeg">
+                            <img src="../../assets/img/content/5.jpeg">
                             <div class="article-overlay">
-                                <a href="access-server-from-sql.html" class="article-link">read article</a>
+                                <a href="../access-server-from-sql/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
@@ -424,7 +487,7 @@
                                 <span class="article-tag">Database Security</span>
                             </div>
                             <h3 class="related-title">
-                                <a href="access-server-from-sql.html">Got Access To Server through SQL Injection</a>
+                                <a href="../access-server-from-sql/">Got Access To Server through SQL Injection</a>
                             </h3>
                             <p class="article-excerpt">
                                 Hi, how are you guys? I hope you are fine. This is my first article of the
@@ -493,8 +556,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/cyber-animations.js"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/cyber-animations.js"></script>
 
 </body>
 

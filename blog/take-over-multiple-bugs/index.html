@@ -4,7 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Got Takeover Account From Multiple Bugs - ryuukhagetsu@smileforyou</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Account Takeover From Multiple Bugs: Chaining Vulnerabilities | RyuuKhagetsu</title>
+    <meta name="title" content="Account Takeover From Multiple Bugs: Chaining Vulnerabilities | RyuuKhagetsu">
+    <meta name="description" content="Learn how chaining multiple low-severity bugs can lead to complete account takeover. A bug bounty writeup demonstrating vulnerability chaining techniques.">
+    <meta name="keywords" content="Account Takeover, Bug Chaining, Vulnerability Chaining, Bug Bounty, ATO, Web Security, Penetration Testing, Multiple Vulnerabilities">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/take-over-multiple-bugs/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/take-over-multiple-bugs/">
+    <meta property="og:title" content="Account Takeover From Multiple Bugs: Chaining Vulnerabilities">
+    <meta property="og:description" content="Learn how chaining multiple low-severity bugs can lead to complete account takeover.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/3.jpg">
+    <meta property="og:site_name" content="RyuuKhagetsu Blog">
+    <meta property="article:author" content="RyuuKhagetsu">
+    <meta property="article:section" content="Bug Bounty">
+    <meta property="article:tag" content="Account Takeover">
+    <meta property="article:tag" content="Vulnerability Chaining">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/take-over-multiple-bugs/">
+    <meta property="twitter:title" content="Account Takeover From Multiple Bugs: Chaining Vulnerabilities">
+    <meta property="twitter:description" content="Learn how chaining multiple low-severity bugs can lead to complete account takeover.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/3.jpg">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Account Takeover From Multiple Bugs: Chaining Vulnerabilities",
+        "description": "Learn how chaining multiple low-severity bugs can lead to complete account takeover. A bug bounty writeup demonstrating vulnerability chaining techniques.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/content/3.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "url": "https://ryuukhagetsu.github.io"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ryuukhagetsu.github.io/blog/take-over-multiple-bugs/"
+        },
+        "keywords": ["Account Takeover", "Bug Chaining", "Vulnerability Chaining", "Bug Bounty"]
+    }
+    </script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts - Roboto -->
@@ -45,7 +100,7 @@
                         <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Blog</a>
+                        <a class="nav-link active" href="../">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- Back to Articles Button -->
-                    <a href="index.html#blog" class="back-to-articles">
+                    <a href="../" class="back-to-articles">
                         <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -164,7 +219,7 @@
                             allowed for complete account takeover.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/content/9.jpeg" alt="Account Security Vulnerabilities">
+                            <img src="../../assets/img/content/9.jpeg" alt="Account Security Vulnerabilities">
                             <p class="image-caption">Multiple security vulnerabilities leading to account takeover</p>
                         </div>
 
@@ -198,14 +253,14 @@
                             reset URL destination.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/take-over-multiple-bugs/1.webp"
+                            <img src="../../assets/img/blog/take-over-multiple-bugs/1.webp"
                                 alt="Burp Suite Request Analysis">
                             <p class="image-caption">Analyzing password reset requests with Burp Suite</p>
                         </div>
 
                         <p>After modifying the password reset URL, I was able to generate a malicious link like:</p>
                         <div class="article-image">
-                            <img src="../assets/img/blog/take-over-multiple-bugs/2.webp"
+                            <img src="../../assets/img/blog/take-over-multiple-bugs/2.webp"
                                 alt="Burp Suite Request Analysis">
                             <p class="image-caption">Analyzing password reset requests with Burp Suite</p>
                         </div>
@@ -288,7 +343,7 @@
                             appeared legitimate but actually captured their reset tokens.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/take-over-multiple-bugs/3.webp"
+                            <img src="../../assets/img/blog/take-over-multiple-bugs/3.webp"
                                 alt="Burp Suite Request Analysis">
                             <p class="image-caption">Analyzing password reset requests with Burp Suite</p>
                         </div>
@@ -304,7 +359,7 @@
                         </ul>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/take-over-multiple-bugs/4.webp"
+                            <img src="../../assets/img/blog/take-over-multiple-bugs/4.webp"
                                 alt="Burp Suite Request Analysis">
                             <p class="image-caption">Analyzing password reset requests with Burp Suite</p>
                         </div>
@@ -321,7 +376,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/take-over-multiple-bugs/5.webp"
+                            <img src="../../assets/img/blog/take-over-multiple-bugs/5.webp"
                                 alt="Burp Suite Request Analysis">
                             <p class="image-caption">Analyzing password reset requests with Burp Suite</p>
                         </div>
@@ -431,9 +486,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
@@ -454,9 +509,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">

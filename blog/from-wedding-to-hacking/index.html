@@ -4,7 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>From Wedding to Hacking - ryuukhagetsu@smileforyou</title>
+
+    <!-- Primary Meta Tags -->
+    <title>From Wedding to Hacking: Discovering Multiple Vulnerabilities | RyuuKhagetsu</title>
+    <meta name="title" content="From Wedding to Hacking: Discovering Multiple Vulnerabilities | RyuuKhagetsu">
+    <meta name="description" content="A bug bounty story about discovering multiple security vulnerabilities during an unexpected moment at a wedding event. Learn how opportunistic security research can lead to critical findings.">
+    <meta name="keywords" content="Bug Bounty, Security Research, Multiple Vulnerabilities, Web Security, Ethical Hacking, Penetration Testing, VDP, Vulnerability Discovery">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/from-wedding-to-hacking/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/from-wedding-to-hacking/">
+    <meta property="og:title" content="From Wedding to Hacking: Discovering Multiple Vulnerabilities">
+    <meta property="og:description" content="A bug bounty story about discovering multiple security vulnerabilities during an unexpected moment at a wedding event.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/10.jpg">
+    <meta property="og:site_name" content="RyuuKhagetsu Blog">
+    <meta property="article:author" content="RyuuKhagetsu">
+    <meta property="article:section" content="Bug Bounty">
+    <meta property="article:tag" content="Bug Bounty">
+    <meta property="article:tag" content="Security Research">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/from-wedding-to-hacking/">
+    <meta property="twitter:title" content="From Wedding to Hacking: Discovering Multiple Vulnerabilities">
+    <meta property="twitter:description" content="A bug bounty story about discovering multiple security vulnerabilities during an unexpected moment at a wedding event.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/10.jpg">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "From Wedding to Hacking: Discovering Multiple Vulnerabilities",
+        "description": "A bug bounty story about discovering multiple security vulnerabilities during an unexpected moment at a wedding event.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/content/10.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "url": "https://ryuukhagetsu.github.io"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ryuukhagetsu.github.io/blog/from-wedding-to-hacking/"
+        },
+        "keywords": ["Bug Bounty", "Security Research", "Multiple Vulnerabilities", "Web Security"]
+    }
+    </script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts - Roboto -->
@@ -45,7 +100,7 @@
                         <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Blog</a>
+                        <a class="nav-link active" href="../">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- Back to Articles Button -->
-                    <a href="index.html#blog" class="back-to-articles">
+                    <a href="../" class="back-to-articles">
                         <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -179,7 +234,7 @@
                             invitation.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/1.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/1.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -193,7 +248,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/2.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/2.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -205,7 +260,7 @@
                             "naruto" that I inputted appeared in the invitation.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/3.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/3.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -218,7 +273,7 @@
                         <p>And I successfully executed the pop-up alert.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/4.webp" alt="XSS Alert">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/4.webp" alt="XSS Alert">
                             <p class="image-caption">Successful XSS reflected attack execution</p>
                         </div>
 
@@ -229,7 +284,7 @@
                             without the added features.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/5.webp" alt="Pricing Page">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/5.webp" alt="Pricing Page">
                             <p class="image-caption">Premium pricing page with multiple packages</p>
                         </div>
 
@@ -237,7 +292,7 @@
                         </p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/6.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/6.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using burp</p>
                         </div>
 
@@ -245,14 +300,14 @@
                             <strong>"Price:10"</strong>. Then, I forwarded the request data.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/7.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/7.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter change using burp</p>
                         </div>
 
                         <p>Unfortunately, I didn't get what I was expecting, which was a change in the price.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/8.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/8.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -260,7 +315,7 @@
                             my purchase.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/9.webp" alt="Burp Suite Request">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/9.webp" alt="Burp Suite Request">
                             <p class="image-caption">Burp Suite intercepting payment request</p>
                         </div>
 
@@ -268,7 +323,7 @@
                             the following request data:</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/10.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/10.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -276,7 +331,7 @@
                             I modified all the "Price" parameters under the "Items" section to "10".</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/11.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/11.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -284,7 +339,7 @@
                             which was <strong>"1,003,976"</strong>. It became <strong>"129,570"</strong>.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/12.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/12.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -299,14 +354,14 @@
                             created a user on the website and tried to look at the 'Edit Profile' section.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/13.webp" alt="User Dashboard">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/13.webp" alt="User Dashboard">
                             <p class="image-caption">User dashboard and profile edit section</p>
                         </div>
 
                         <p>I filled in the required data before pressing 'Update Profile.' I made sure my Burp Suite was
                             running.</p>
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/14.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/14.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -335,7 +390,7 @@
                         <p>To take over an account, you can request a password reset link sent to the registered
                             WhatsApp number.</p>
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/15.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/15.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -343,7 +398,7 @@
                             immediately and received a data request as follows:</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/16.webp" alt="Parameter Discovery">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/16.webp" alt="Parameter Discovery">
                             <p class="image-caption">Parameter discovery using Arjun tool</p>
                         </div>
 
@@ -363,7 +418,7 @@
                             The invitation link is located at <strong>www.site.com/test-bug</strong></p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/17.webp" alt="Invitation Creation">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/17.webp" alt="Invitation Creation">
                             <p class="image-caption">Creating a custom wedding invitation template</p>
                         </div>
 
@@ -375,7 +430,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/18.webp" alt="Invitation Creation">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/18.webp" alt="Invitation Creation">
                             <p class="image-caption">Creating a custom wedding invitation template</p>
                         </div>
 
@@ -389,7 +444,7 @@
                         <p>I tried accessing my digital invitation and the XSS payload appeared perfectly.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/19.webp" alt="XSS Stored Execution">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/19.webp" alt="XSS Stored Execution">
                             <p class="image-caption">Stored XSS successfully executing in the invitation</p>
                         </div>
 
@@ -407,21 +462,21 @@
                         <p>In the Burp Collaborator, I received a response like the one below.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/20.webp" alt="Burp Collaborator">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/20.webp" alt="Burp Collaborator">
                             <p class="image-caption">Burp Collaborator capturing stolen cookies</p>
                         </div>
 
                         <p>I immediately changed all the cookies in the browser to match the cookie I obtained.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/21.webp" alt="Invitation Creation">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/21.webp" alt="Invitation Creation">
                             <p class="image-caption">Creating a custom wedding invitation template</p>
                         </div>
 
                         <p>I refreshed my browser, and I successfully gained access to my friend's account.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/from_wedding_to_hacking/22.webp" alt="Invitation Creation">
+                            <img src="../../assets/img/blog/from_wedding_to_hacking/22.webp" alt="Invitation Creation">
                             <p class="image-caption">Creating a custom wedding invitation template</p>
                         </div>
 
@@ -497,9 +552,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
@@ -520,9 +575,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">

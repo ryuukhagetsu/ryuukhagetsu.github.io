@@ -4,7 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Bug Bounty] SQL Injection and Bypass SQL Login - ryuukhagetsu@smileforyou</title>
+
+    <!-- Primary Meta Tags -->
+    <title>SQL Injection and Bypass SQL Login: Bug Bounty Writeup | RyuuKhagetsu</title>
+    <meta name="title" content="SQL Injection and Bypass SQL Login: Bug Bounty Writeup | RyuuKhagetsu">
+    <meta name="description" content="Learn how SQL Injection can be used to bypass login authentication. A detailed bug bounty writeup demonstrating SQL login bypass techniques and exploitation methods.">
+    <meta name="keywords" content="SQL Injection, Login Bypass, Authentication Bypass, Bug Bounty, SQLi, Web Security, Penetration Testing, Database Security">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/bypass-sqli/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/bypass-sqli/">
+    <meta property="og:title" content="SQL Injection and Bypass SQL Login: Bug Bounty Writeup">
+    <meta property="og:description" content="Learn how SQL Injection can be used to bypass login authentication. A detailed bug bounty writeup.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/6.jpg">
+    <meta property="og:site_name" content="RyuuKhagetsu Blog">
+    <meta property="article:author" content="RyuuKhagetsu">
+    <meta property="article:section" content="Bug Bounty">
+    <meta property="article:tag" content="SQL Injection">
+    <meta property="article:tag" content="Login Bypass">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/bypass-sqli/">
+    <meta property="twitter:title" content="SQL Injection and Bypass SQL Login: Bug Bounty Writeup">
+    <meta property="twitter:description" content="Learn how SQL Injection can be used to bypass login authentication. A detailed bug bounty writeup.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/6.jpg">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "SQL Injection and Bypass SQL Login: Bug Bounty Writeup",
+        "description": "Learn how SQL Injection can be used to bypass login authentication. A detailed bug bounty writeup demonstrating SQL login bypass techniques.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/content/6.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "url": "https://ryuukhagetsu.github.io"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ryuukhagetsu.github.io/blog/bypass-sqli/"
+        },
+        "keywords": ["SQL Injection", "Login Bypass", "Authentication Bypass", "Bug Bounty"]
+    }
+    </script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts - Roboto -->
@@ -45,7 +100,7 @@
                         <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Blog</a>
+                        <a class="nav-link active" href="../">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- Back to Articles Button -->
-                    <a href="index.html#blog" class="back-to-articles">
+                    <a href="../" class="back-to-articles">
                         <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -206,7 +261,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/1.webp"
+                            <img src="../../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/1.webp"
                                 alt="University website login page">
                             <p class="image-caption">University admission portal with vulnerable login system</p>
                         </div>
@@ -253,7 +308,7 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/2.webp"
+                            <img src="../../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/2.webp"
                                 alt="University website login page">
                             <p class="image-caption">University admission portal with vulnerable login system</p>
                         </div>
@@ -264,7 +319,7 @@
                             automated SQL injection tool, to extract database information.</p>
 
                         <div class="article-image">
-                            <img src="../assets/img/content/13.png" alt="SQLmap tool interface">
+                            <img src="../../assets/img/content/13.png" alt="SQLmap tool interface">
                             <p class="image-caption">SQLmap - automated SQL injection exploitation tool</p>
                         </div>
 
@@ -291,7 +346,7 @@
 
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/3.webp"
+                            <img src="../../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/3.webp"
                                 alt="University website login page">
                             <p class="image-caption">University admission portal with vulnerable login system</p>
                         </div>
@@ -344,13 +399,13 @@
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/4.webp"
+                            <img src="../../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/4.webp"
                                 alt="Admin dashboard access">
                             <p class="image-caption">Inject bypass sql</p>
                         </div>
 
                         <div class="article-image">
-                            <img src="../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/5.webp"
+                            <img src="../../assets/img/blog/bug-bounty-sql-injection-and-bypass-sql-login/5.webp"
                                 alt="Admin dashboard access">
                             <p class="image-caption">Successfully bypassed login and gained admin access</p>
                         </div>
@@ -537,9 +592,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
@@ -560,9 +615,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../assets/img/content/1.jpeg">
+                            <img src="../../assets/img/content/1.jpeg">
                             <div class="article-overlay">
-                                <a href="how-do-i-get-root-on-linux.html" class="article-link">read article</a>
+                                <a href="../how-do-i-get-root-on-linux/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
