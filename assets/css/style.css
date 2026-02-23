@@ -359,6 +359,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .achievement-card-wrapper:hover {

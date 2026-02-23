@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or private paths (none currently, but good practice)
+Disallow: /google51565ae54cfa0279.html
+
+Sitemap: https://ryuukhagetsu.github.io/sitemap.xml

@@ -227,32 +227,30 @@ document.addEventListener("DOMContentLoaded", function () {
   const animateElements = document.querySelectorAll(
     ".skill-card, .project-card, .recognition-card, .blog-card"
   );
-  let animationTicking = false;
 
-  function checkIfInView() {
-    animateElements.forEach((element) => {
-      if (element.getBoundingClientRect) {
-        const elementTop = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (elementTop < windowHeight - 100) {
-          element.classList.add("animate");
+  const cardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // Animate if entering viewport OR if already scrolled past (top < 0)
+        if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+          entry.target.classList.add("animate");
+          cardObserver.unobserve(entry.target);
         }
-      }
-    });
-    animationTicking = false;
-  }
-
-  function handleAnimationScroll() {
-    if (!animationTicking) {
-      requestAnimationFrame(checkIfInView);
-      animationTicking = true;
+      });
+    },
+    {
+      threshold: 0,
+      rootMargin: "0px 0px 80px 0px", // pre-trigger 80px before entering viewport
     }
-  }
+  );
 
-  checkIfInView();
-  window.addEventListener("scroll", handleAnimationScroll, {
-    passive: true,
+  animateElements.forEach((element) => {
+    // Elements already in/above viewport on load → animate immediately
+    if (element.getBoundingClientRect().top < window.innerHeight) {
+      element.classList.add("animate");
+    } else {
+      cardObserver.observe(element);
+    }
   });
 });
 
@@ -383,44 +381,56 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
+  function revealItem(item) {
+    item.style.opacity = "1";
+    item.style.transform = "translateY(0)";
+  }
 
-  const timelineObserver = new IntersectionObserver(function (entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.target.style) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  }, observerOptions);
+  const timelineObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach((entry) => {
+        // Fire if entering viewport OR if already scrolled past (above viewport)
+        if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+          revealItem(entry.target);
+          timelineObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0,
+      rootMargin: "0px 0px 60px 0px", // pre-trigger 60px before entering viewport
+    }
+  );
 
   const timelineItems = document.querySelectorAll(".timeline-item");
   timelineItems.forEach((item, index) => {
-    if (item.style) {
-      item.style.opacity = "0";
-      item.style.transform = "translateY(50px)";
-      item.style.transition = `opacity 0.6s ease ${
-        index * 0.2
-      }s, transform 0.6s ease ${index * 0.2}s`;
+    item.style.opacity = "0";
+    item.style.transform = "translateY(50px)";
+
+    if (item.getBoundingClientRect().top < window.innerHeight) {
+      // Already visible on load → reveal without stagger delay
+      item.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      revealItem(item);
+    } else {
+      item.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
+      timelineObserver.observe(item);
     }
-    timelineObserver.observe(item);
   });
 
   const experienceTimelineItems = document.querySelectorAll(
     ".experience-timeline-item"
   );
   experienceTimelineItems.forEach((item, index) => {
-    if (item.style) {
-      item.style.opacity = "0";
-      item.style.transform = "translateY(20px)";
-      item.style.transition = `opacity 0.6s ease ${
-        index * 0.1
-      }s, transform 0.6s ease ${index * 0.1}s`;
+    item.style.opacity = "0";
+    item.style.transform = "translateY(20px)";
+
+    if (item.getBoundingClientRect().top < window.innerHeight) {
+      item.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      revealItem(item);
+    } else {
+      item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+      timelineObserver.observe(item);
     }
-    timelineObserver.observe(item);
   });
 });
 
@@ -805,62 +815,78 @@ function forceFixAllImages() {
   });
 }
 
-function setupSimpleModal() {
-  window.openAchievementModal = function (modalId) {
-    const modal = document.getElementById("achievement-detail-modal");
-    const modalTitle = document.getElementById("achievement-modal-title");
-    const modalImage = document.getElementById("achievement-modal-image");
-    const contentElement = document.getElementById(modalId);
+window.achievementModalManager = {
+  modal: null,
+  modalTitle: null,
+  modalImage: null,
 
-    if (!modal || !modalTitle || !modalImage || !contentElement) {
-      console.error("Modal elements not found:", modalId);
-      return;
-    }
+  init: function () {
+    this.modal = document.getElementById("achievement-detail-modal");
+    this.modalTitle = document.getElementById("achievement-modal-title");
+    this.modalImage = document.getElementById("achievement-modal-image");
 
-    const titleElement = contentElement.querySelector("h4");
-    const imageElement = contentElement.querySelector("img");
+    if (!this.modal) return;
 
-    if (titleElement && imageElement) {
-      modalTitle.textContent = titleElement.textContent;
-      modalImage.src = imageElement.src;
-      modalImage.alt = imageElement.alt;
-
-      modalImage.style.setProperty("display", "block", "important");
-      modalImage.style.setProperty("opacity", "1", "important");
-      modalImage.style.setProperty("visibility", "visible", "important");
-    }
-
-    modal.classList.add("modal-active");
-    document.body.style.overflow = "hidden";
-  };
-
-  window.closeAchievementModal = function () {
-    const modal = document.getElementById("achievement-detail-modal");
-    if (modal) {
-      modal.classList.remove("modal-active");
-      document.body.style.overflow = "auto";
-    }
-  };
-
-  const modal = document.getElementById("achievement-detail-modal");
-  if (modal) {
-    modal.addEventListener("click", function (e) {
-      if (e.target.classList.contains("achievement-modal-overlay")) {
-        closeAchievementModal();
+    // Close when clicking the overlay backdrop
+    this.modal.addEventListener("click", (e) => {
+      if (e.target === this.modal) {
+        this.closeModal();
       }
     });
-  }
 
-  const closeBtn = document.querySelector(".achievement-modal-close");
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeAchievementModal);
-  }
-}
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.modal.classList.contains("modal-active")) {
+        this.closeModal();
+      }
+    });
+
+    // Click delegation: any card in the gallery opens the modal
+    const gallery = document.getElementById("achievement-items-container");
+    if (gallery) {
+      gallery.addEventListener("click", (e) => {
+        const card = e.target.closest(".achievement-card-wrapper");
+        if (!card) return;
+
+        const img = card.querySelector(".achievement-main-image");
+        const titleEl = card.querySelector(".achievement-title-text");
+        const issuerEl = card.querySelector(".achievement-issuer-name");
+        const dateEl = card.querySelector(".achievement-date-info");
+
+        this.openModal(
+          img ? img.src : "",
+          titleEl ? titleEl.textContent.trim() : "Certificate Details",
+          issuerEl ? issuerEl.textContent.trim() : "",
+          dateEl ? dateEl.textContent.trim() : ""
+        );
+      });
+    }
+  },
+
+  openModal: function (imgSrc, title, issuer, date) {
+    if (!this.modal) return;
+
+    if (this.modalTitle) {
+      this.modalTitle.textContent = title || "Certificate Details";
+    }
+    if (this.modalImage) {
+      this.modalImage.src = imgSrc;
+      this.modalImage.alt = title || "Certificate";
+    }
+
+    this.modal.classList.add("modal-active");
+    document.body.style.overflow = "hidden";
+  },
+
+  closeModal: function () {
+    if (!this.modal) return;
+    this.modal.classList.remove("modal-active");
+    document.body.style.overflow = "";
+  },
+};
 
 document.addEventListener("DOMContentLoaded", function () {
-  setTimeout(() => {
-    setupSimpleModal();
-  }, 500);
+  achievementModalManager.init();
 });
 
 window.addEventListener("load", function () {

@@ -639,39 +639,6 @@
 
 
 
-.articles-grid .article-tag:not(:first-child) {
-    display: none;
-}
-
-.articles-grid .article-tags::after {
-    content: "+1";
-    display: inline-block;
-    padding: 5px 12px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    white-space: nowrap;
-    margin-left: 4px;
-}
-
-.articles-grid .article-tags:has(.article-tag:nth-child(3))::after {
-    content: "+2";
-}
-
-.articles-grid .article-tags:has(.article-tag:nth-child(4))::after {
-    content: "+3";
-}
-
-.articles-grid .article-tags:has(.article-tag:nth-child(5))::after {
-    content: "+4";
-}
-
-.articles-grid .article-tags:not(:has(.article-tag:nth-child(2)))::after {
-    display: none;
-}
 
 
 .articles-grid .article-title {
