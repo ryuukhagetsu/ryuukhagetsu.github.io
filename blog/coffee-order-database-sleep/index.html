@@ -6,48 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Abusing Broken Access Control and SQL Injection in the Wild | RyuuKhagetsu</title>
-    <meta name="title" content="Abusing Broken Access Control and SQL Injection in the Wild | RyuuKhagetsu">
-    <meta name="description" content="Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.">
-    <meta name="keywords" content="Broken Access Control, SQL Injection, OWASP Top 10, Bug Bounty, Web Security, Penetration Testing, Admin Panel, IDOR, Authentication Bypass, RyuuKhagetsu, Septio, Septio Noerdiansyah">
+    <title>The Coffee Order That Made the Database Sleep | RyuuKhagetsu</title>
+    <meta name="title" content="The Coffee Order That Made the Database Sleep | RyuuKhagetsu">
+    <meta name="description" content="A casual coffee order led to discovering a Time-Based SQL Injection in a mobile ordering API. Walkthrough of API interception, payload crafting, and sqlmap enumeration on a MySQL backend.">
+    <meta name="keywords" content="Time-Based SQL Injection, SQL Injection, Mobile API, BurpSuite, sqlmap, MySQL, Bug Bounty, API Security, Penetration Testing, RyuuKhagetsu, Septio, Septio Noerdiansyah">
     <meta name="author" content="RyuuKhagetsu">
     <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/">
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/coffee-order-database-sleep/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/">
-    <meta property="og:title" content="Abusing Broken Access Control and SQL Injection in the Wild">
-    <meta property="og:description" content="Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.">
-    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/13.webp">
-    <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:width" content="915">
-    <meta property="og:image:height" content="917">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/coffee-order-database-sleep/">
+    <meta property="og:title" content="The Coffee Order That Made the Database Sleep">
+    <meta property="og:description" content="A casual coffee order led to discovering a Time-Based SQL Injection in a mobile ordering API. Walkthrough of API interception, payload crafting, and sqlmap enumeration on a MySQL backend.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/blog/coffee-order-database-sleep/preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1400">
+    <meta property="og:image:height" content="1867">
     <meta property="og:site_name" content="RyuuKhagetsu Blog">
-    <meta property="article:published_time" content="2025-07-19">
+    <meta property="article:published_time" content="2026-03-11">
     <meta property="article:author" content="RyuuKhagetsu">
     <meta property="article:section" content="Cybersecurity">
-    <meta property="article:tag" content="Broken Access Control">
-    <meta property="article:tag" content="SQL Injection">
+    <meta property="article:tag" content="Time-Based SQL Injection">
+    <meta property="article:tag" content="Mobile API">
     <meta property="article:tag" content="Bug Bounty">
+    <meta property="article:tag" content="Penetration Testing">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/">
-    <meta property="twitter:title" content="Abusing Broken Access Control and SQL Injection in the Wild">
-    <meta property="twitter:description" content="Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.">
-    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/13.webp">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/coffee-order-database-sleep/">
+    <meta property="twitter:title" content="The Coffee Order That Made the Database Sleep">
+    <meta property="twitter:description" content="A casual coffee order led to discovering a Time-Based SQL Injection in a mobile ordering API. Walkthrough of API interception, payload crafting, and sqlmap enumeration on a MySQL backend.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/blog/coffee-order-database-sleep/preview.jpg">
 
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Abusing Broken Access Control and SQL Injection in the Wild",
-        "description": "Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.",
-        "image": "https://ryuukhagetsu.github.io/assets/img/content/13.webp",
+        "headline": "The Coffee Order That Made the Database Sleep",
+        "description": "A casual coffee order led to discovering a Time-Based SQL Injection in a mobile ordering API. Walkthrough of API interception, payload crafting, and sqlmap enumeration on a MySQL backend.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/blog/coffee-order-database-sleep/preview.jpg",
         "author": {
             "@type": "Person",
             "name": "RyuuKhagetsu",
@@ -61,13 +62,13 @@
                 "url": "https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png"
             }
         },
-        "datePublished": "2025-07-19",
-        "dateModified": "2025-07-19",
+        "datePublished": "2026-03-11",
+        "dateModified": "2026-03-11",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/"
+            "@id": "https://ryuukhagetsu.github.io/blog/coffee-order-database-sleep/"
         },
-        "keywords": ["Broken Access Control", "SQL Injection", "OWASP Top 10", "Bug Bounty", "Penetration Testing"]
+        "keywords": ["Time-Based SQL Injection", "SQL Injection", "Mobile API", "BurpSuite", "sqlmap", "MySQL", "Bug Bounty", "API Security"]
     }
     </script>
 
@@ -92,8 +93,8 @@
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "Abusing Broken Access Control and SQL Injection in the Wild",
-                "item": "https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/"
+                "name": "The Coffee Order That Made the Database Sleep",
+                "item": "https://ryuukhagetsu.github.io/blog/coffee-order-database-sleep/"
             }
         ]
     }
@@ -178,8 +179,7 @@
                         Back to Articles
                     </a>
                     <!-- Article Title -->
-                    <h1 class="article-title">Abusing <span class="highlight">Broken Access Control</span> and SQL Injection in the Wild
-                    </h1>
+                    <h1 class="article-title">The Coffee Order That Made the <span class="highlight">Database Sleep</span></h1>
 
                     <!-- Author Section - Single Row -->
                     <div class="article-author-section">
@@ -194,7 +194,7 @@
                                         <path
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
                                     </svg>
-                                    <time datetime="2025-07-19">Jul 19, 2025</time>
+                                    <time datetime="2026-03-11">Mar 11, 2026</time>
                                 </div>
                                 <div class="read-time">
                                     <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
@@ -203,7 +203,7 @@
                                         <path
                                             d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                     </svg>
-                                    10 min read
+                                    7 min read
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
                     <!-- Share Section with View on Medium -->
                     <div class="article-share-section">
                         <div class="share-left">
-                            <a href="https://systemweakness.com/abusing-broken-access-control-and-sql-injection-in-the-wild-891559e13199"
+                            <a href="https://medium.com/system-weakness/the-coffee-order-that-made-the-database-sleep-924f21f97bda"
                                 class="view-on-medium" target="_blank" rel="noopener noreferrer">
                                 <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
                                     <path
@@ -267,241 +267,275 @@
                                 to test. Unauthorized access to computer systems is illegal.</p>
                         </div>
 
-                        <p>Hi all! How are you guys? I hope everything is fine. It's been quite a while since I last wrote an article — probably over a year. Work and university life kept me pretty busy, and I just didn't have the time to sit down and write, even though there were a lot of things I wanted to share and document. So, this time I'm easing back into it with a light story.</p>
-
-                        <p>A few weeks ago, I was helping a family member register at a school that offered online registration. Out of curiosity and habit, as someone who's into web security, I started poking around the application to see how it was built.</p>
-
-                        <p>Let's just call the site: <code>www.site.com</code></p>
-
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/2.webp"
-                                alt="Scope site.com">
-                            <p class="image-caption">Scope site.com</p>
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/preview.jpg"
+                                alt="The Coffee Order That Made the Database Sleep">
                         </div>
 
-                        <h2>Broken Access Control</h2>
-                        <p>I began with the usual suspects — trying SQL Injection on the login form, checking for auth bypasses, and other basic attacks. Unfortunately, nothing worked — at least at first.</p>
+                        <p>Hi everyone! Hope you're all doing well.</p>
 
-                        <p>So I tried viewing the source code and started fuzzing with ffuf:</p>
+                        <p>It's been a while since my last article — probably a few months. Work and university responsibilities have been taking up most of my time lately, to the point where it's been hard to just sit down and write, even though there were quite a few things I wanted to document and share.</p>
+
+                        <p>This time, I'm coming back with a rather interesting story that started from something very simple… <em><strong>"ordering coffee"</strong></em>.</p>
+
+                        <p>What began as a casual moment of scrolling through a coffee ordering app quickly turned into an unexpected security discovery involving a <strong>Time-Based SQL Injection</strong> in one of the application's APIs.</p>
+
+                        <p>So in this article, I'd like to walk through the process of how that small curiosity eventually led to a vulnerability discovery — the one I like to call:</p>
+
+                        <p><strong>"The Coffee Order That Made the Database Sleep."</strong></p>
+
+                        <h2>Introduction</h2>
+                        <p>It started with a simple craving.</p>
+
+                        <p>One evening, I opened a coffee ordering app because there were plenty of promotions available. Discounts, cashback, and special deals — the kind that suddenly makes you want coffee even when you didn't plan to buy one.</p>
+
+                        <p>While browsing through the menu, a <strong>point redemption feature</strong> popped up, offering a free drink.</p>
+
+                        <p>Unfortunately, since this account was newly created, I didn't have enough points yet to claim the free coffee.</p>
+
+                        <p>That's when a random thought crossed my mind.</p>
+
+                        <p><em><strong>"What if I can still get free coffee… without the points?"</strong></em></p>
+
+                        <p>As a security researcher, curiosity sometimes kicks in at the most random moments — even when you're just trying to order coffee.</p>
+
+                        <p>Not to abuse the system, of course. It was simply a small <strong>hacker-style curiosity</strong> to understand how the application handled its ordering logic behind the scenes.</p>
+
+                        <p>So I decided to take a closer look at how the mobile application communicated with its backend.</p>
+
+                        <p>At that moment, I wasn't expecting to find anything serious. I just wanted to understand how the application worked.</p>
+
+                        <h2>Breaking the App's Defenses</h2>
+                        <p>After deciding to take a closer look at how the application worked, the next step was simple: intercept the API traffic.</p>
+
+                        <p>Usually, this part can become quite time-consuming when testing mobile applications. Many apps implement multiple security protections such as SSL pinning, certificate validation, or other mechanisms that prevent traffic interception.</p>
+
+                        <p>In those cases, bypassing the protections can take a while — sometimes requiring dynamic instrumentation or patching before the traffic becomes visible.</p>
+
+                        <p>But this time, things were surprisingly straightforward.</p>
+
+                        <p>After configuring my proxy and launching the application, the API traffic appeared immediately inside <strong>Burp Suite</strong>.</p>
+
+                        <p>No SSL pinning. No complicated bypass. Just clean, observable API requests.</p>
+
+                        <p>As a security tester, moments like this always feel refreshing.</p>
+
+                        <p>Not because the application is insecure — but because it means I can immediately focus on what matters most: understanding how the backend behaves.</p>
+
+                        <p>With the traffic now visible in the proxy, I started exploring the application's normal workflow and observing how different user actions translated into API requests.</p>
+
+                        <p>And that's where things started to get interesting.</p>
+
+                        <h2>Understanding the Request Flow</h2>
+                        <p>With the API traffic now visible in <strong>Burp Suite</strong>, I started exploring the application's normal workflow.</p>
+
+                        <p>The goal here wasn't immediately looking for vulnerabilities. Instead, I wanted to understand how the application behaved during regular user interactions.</p>
+
+                        <p>Some common actions generated various API requests, such as:</p>
+
+                        <ol>
+                            <li>Opening the application</li>
+                            <li>Selecting <strong>Pick Up</strong></li>
+                            <li>Browsing the menu</li>
+                            <li>Adding a drink to the cart</li>
+                            <li>Viewing the cart page</li>
+                        </ol>
+
+                        <p>While repeating these steps and observing the requests inside the "HTTP history", I noticed an endpoint responsible for calculating the estimated waiting time for an order.</p>
+
+                        <p>The request looked something like this:</p>
 
                         <div class="code-block">
-                            <code>
-                                ffuf -u https://site.com/FUZZ -w db/dicc.txt -fs 0 -c
-                            </code>
+                            <code>POST /store/{store_id}/wait-time</code>
                         </div>
 
-                        <h3>Explanation</h3>
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/1-request-body.png"
+                                alt="POST /store/{store_id}/wait-time request body">
+                            <p class="image-caption">Body request from POST /store/{store_id}/wait-time</p>
+                        </div>
+
+                        <p>This request tells how long the order can be picked up, in my case it took 15 minutes.</p>
+
+                        <p>At first glance, this appeared to be a simple numeric identifier — most likely representing a product attribute used by the backend system to determine preparation time.</p>
+
+                        <p>Parameters like this are quite common in APIs.</p>
+
+                        <p>But from a security testing perspective, parameters that are passed directly into backend processes are always worth exploring further.</p>
+
+                        <p>So I decided to experiment with it.</p>
+
+                        <h2>A Suspicious Delay</h2>
+                        <p>At this point, the real testing began.</p>
+
+                        <p>Using <strong>Burp Suite</strong>, I started exploring the API requests captured from the mobile application to see how the backend handled user input.</p>
+
+                        <p>My first step was testing basic SQL injection indicators. I tried inserting a single quote ( <code>'</code> ) into several parameters, expecting at least a 500 error or some database-related message. But nothing happened. The responses looked completely normal.</p>
+
+                        <p>So I kept testing.</p>
+
+                        <p>I tried different SQL injection techniques across multiple endpoints, but everything seemed stable. No errors, no unusual responses. After <strong>almost two hours of testing</strong>, I decided to take a short break.</p>
+
+                        <p>While resting, something crossed my mind.</p>
+
+                        <p><em>"Wait… I haven't tested time-based SQL injection yet."</em></p>
+
+                        <p>So I went back and started injecting <strong>time-delay payloads</strong> into several parameters.</p>
+
+                        <p>At first, one request took slightly longer than usual to respond.</p>
+
+                        <p>My first thought was that it might just be my internet connection.</p>
+
+                        <p>But after repeating the request and testing the same payload across <strong>multiple parameters</strong>, the pattern became clear.</p>
+
+                        <p>The delay was <strong>consistent</strong>. And that's when I realized. This wasn't a network issue.</p>
+
+                        <p>It was <strong>Time-Based SQL Injection</strong>.</p>
+
+                        <h2>Confirming the Injection</h2>
+                        <p>Once I noticed the delay, the next step was verification.</p>
+
+                        <p>Using <strong>Burp Suite</strong>, I crafted a simple time-based payload to see whether the database execution time could actually be controlled.</p>
+
+                        <p>When the payload was sent, the response time increased noticeably.</p>
+
+                        <p>To make sure this wasn't just random latency, I repeated the same request several times and compared it with a normal request without the payload.</p>
+
+                        <p>The result was clear:</p>
+
+                        <ol>
+                            <li>Normal request → responded almost instantly</li>
+                            <li>Injected request → delayed response</li>
+                        </ol>
+
+                        <p>To further validate the behavior, I tested the payload across several parameters. Some of them responded normally, but one specific parameter consistently triggered the delay.</p>
+
+                        <p>At that point, the conclusion was obvious.</p>
+
+                        <p>The backend was processing my input directly inside a database query. For the payload I use:</p>
+
+                        <div class="code-block">
+                            <code>(select*from(select(sleep(7)))a)</code>
+                        </div>
+
+                        <p><em>The payload is to provide sleep / delay for 7 seconds</em></p>
+
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/2-delay-7s.png"
+                                alt="Burp Suite showing 7,075 ms delay">
+                            <p class="image-caption">Delay for 7 seconds. Look at the bottom right of burpsuite. "7,075 milis"</p>
+                        </div>
+
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/3-delay-15s.png"
+                                alt="Burp Suite showing 15,089 ms delay">
+                            <p class="image-caption">Delay for 15 seconds. Look at the bottom right of burpsuite. "15,089 milis"</p>
+                        </div>
+
+                        <p>And that meant the application was vulnerable to <strong>Time-Based SQL Injection</strong>.</p>
+
+                        <h2>Turning Delay into Proof</h2>
+                        <p>To strengthen the findings, I used sqlmap. I created a file called <code>inj.txt</code>, and pasted all the requests captured from Burp Suite.</p>
+
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/4-request-from-burpsuite.png"
+                                alt="Raw HTTP request saved from Burp Suite">
+                            <p class="image-caption">Request from burpsuite</p>
+                        </div>
+
+                        <p>Using <strong>sqlmap</strong>, I continued the testing process to identify the backend database and see whether the injection allowed further interaction. I use this command:</p>
+
+                        <div class="code-block">
+                            <code>sqlmap -r inj.txt -p pa_id --batch --random-agent --tamper=space2comment --level 3 --risk 3 --technique=T --time-sec=1 --dbms=mysql --threads=7 --banner</code>
+                        </div>
+
+                        <h3>Here's a quick breakdown of what each option does:</h3>
                         <ul>
-                            <li><strong>-u</strong> : target URL. Make sure to include FUZZ so ffuf knows where to test.</li>
-                            <li><strong>-w</strong> : wordlist file. You can use a list from SecList or dirsearch.</li>
-                            <li><strong>-fs 0</strong> : filters out responses with size 0. Helpful to reduce false positives.</li>
-                            <li><strong>-c</strong> : adds color to the output (because colors make bugs more fun)</li>
-                        </ul>
-
-                        <p>Unfortunately… nothing useful came up.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/3.webp"
-                                alt="fuzzing directory">
-                            <p class="image-caption">Fuzzing directory</p>
-                        </div>
-
-                        <p>Since fuzzing didn't give anything, I switched to Burp Suite and ensured my proxy was set using FoxyProxy.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/4.webp"
-                                alt="FoxyProxy settings">
-                            <p class="image-caption">FoxyProxy settings</p>
-                        </div>
-
-                        <p>After refreshing the page and attempting to log in again, I noticed a file called <code>spk.php</code></p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/5.webp"
-                                alt="spk.php discovery">
-                            <p class="image-caption">spk.php discovery</p>
-                        </div>
-                            
-                        <p>which I somehow missed during fuzzing. Accessing it via browser returned a <strong>302 Found</strong> with a pop-up saying "Silakan login terlebih dahulu" — which means I am asked to log in first.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/6.webp"
-                                alt="Pop-up login">
-                            <p class="image-caption">Pop-up login</p>
-                        </div>
-
-                        <p>Hmm. Not very helpful. But then I checked the raw response in Burp. Even though it was a 302 redirect, the source code was still visible. I found:</p>
-
-                        <div class="code-block">
-                            <code>
-                                &lt;script&gt;alert('anda belum login')&lt;/script&gt;
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/7.webp"
-                                alt="code source">
-                            <p class="image-caption">Code source</p>
-                        </div>
-
-                        <p>And further down… an admin dashboard with a logout button. I switched Burp's layout to a top-bottom view and clicked on the Render tab.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/8.webp"
-                                alt="burpsuite render tab">
-                            <p class="image-caption">BurpSuite render tab</p>
-                        </div>
-
-                        <div class="highlight-box">
-                            <p><strong>Result:</strong> The full admin dashboard appeared, complete with student data and grades.</p>
-                        </div>
-
-                        <p>I started collecting URLs from the dashboard:</p>
-
-                        <ul>
-                            <li>index.php</li>
-                            <li>alternatif.php</li>
-                            <li>kriteria.php</li>
-                            <li>nilai.php</li>
-                            <li>spk.php</li>
-                        </ul>
-
-                        <p>Then I tried adding a new student to see whether access was read-only or if I could go further.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/9.webp"
-                                alt="adding new student">
-                            <p class="image-caption">Adding new student</p>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/10.webp"
-                                alt="success adding new student">
-                            <p class="image-caption">Success adding new student</p>
-                        </div>
-
-                        <p>It worked. Next, I edited the student's name from <code>test-poc</code> to <code>test-poc-change</code>.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/11.webp"
-                                alt="success editing student">
-                            <p class="image-caption">Success editing student, test-poc to test-poc-change</p>
-                        </div>
-
-                        <div class="highlight-box">
-                            <p><strong>Confirmed:</strong> This wasn't just visibility — Broken Access Control allowed full CRUD functionality.</p>
-                        </div>
-
-                        <h2>SQL Injection</h2>
-                        <p>After taking a break, I was about to shut down my laptop. But then I thought "Why not go just a bit further?"</p>
-
-                        <p>So I revisited the request used to edit the student data:</p>
-
-                        <div class="code-block">
-                            <code>
-                                nama=test-poc-change&kelamin=Laki-Laki&kelas=9B&sekolah=SMP+TEST&update=Simpan+Perubahan
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/12.webp"
-                                alt="request edit student">
-                            <p class="image-caption">Request edit student</p>
-                        </div>
-
-                        <p>Normally, a success message like "Data berhasil diperbarui" appears.</p>
-
-                        <p>I added a single quote:</p>
-
-                        <div class="code-block">
-                            <code>
-                                nama=test-poc-change'&kelamin=Laki-Laki&kelas=9B&sekolah=SMP+TEST&update=Simpan+Perubahan
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/13.webp"
-                                alt="add single quote">
-                            <p class="image-caption">Add single quote</p>
-                        </div>
-
-                        <p>The message disappeared.</p>
-
-                        <p>Then I added another quote:</p>
-
-                        <div class="code-block">
-                            <code>
-                                nama=test-poc-change''&kelamin=Laki-Laki&kelas=9B&sekolah=SMP+TEST&update=Simpan+Perubahan
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/14.webp"
-                                alt="add another quote">
-                            <p class="image-caption">Add another quote</p>
-                        </div>
-
-                        <p>The success message came back. That looked suspiciously like a classic SQL injection indicator. I copied the full request and saved it as <code>inject.txt</code>.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/15.webp"
-                                alt="save request">
-                            <p class="image-caption">Save request</p>
-                        </div>
-                        
-                        <h3>SQLMap Exploitation</h3>
-                        <p>Start sqlmap with this command:</p>
-
-                        <div class="code-block">
-                            <code>
-                                sqlmap -r inject.txt -p nama --level 3 --risk 3 --random-agent --batch --ignore-redirect --dbs
-                            </code>
-                        </div>
-
-                        <h3>What each option does</h3>
-                        <ul>
-                            <li><strong>-r</strong> : read the raw request file.</li>
-                            <li><strong>-p</strong> : test only the nama parameter</li>
-                            <li><strong>--level 3</strong> : deeper and more extensive tests</li>
-                            <li><strong>--risk 3</strong> : includes higher-risk payloads</li>
-                            <li><strong>--random-agent</strong> : rotates user-agent strings</li>
-                            <li><strong>--batch</strong> : no prompts, just run</li>
-                            <li><strong>--ignore-redirect</strong> : super important here; avoids 302 redirection that would otherwise break injection</li>
-                            <li><strong>--dbs</strong> : dumps database names if vulnerable</li>
+                            <li><strong>-r inj.txt</strong> : Uses the raw HTTP request saved in inj.txt</li>
+                            <li><strong>-p pa_id</strong> : Injection Point</li>
+                            <li><strong>--batch</strong> : Runs sqlmap automatically without interactive prompts</li>
+                            <li><strong>--random-agent</strong> : Randomizes the User-Agent header to mimic different clients</li>
+                            <li><strong>--tamper=space2comment</strong> : Bypasses simple filters by replacing spaces with SQL comments</li>
+                            <li><strong>--level 3</strong> : Increases the number of parameters and tests performed</li>
+                            <li><strong>--risk 3</strong> : Enables more aggressive payloads during testing</li>
+                            <li><strong>--technique=T</strong> : Focuses on Time-Based SQL Injection techniques</li>
+                            <li><strong>--time-sec=1</strong> : Sets the delay used for timing-based verification</li>
+                            <li><strong>--dbms=mysql</strong> : Forces sqlmap to test specifically for MySQL</li>
+                            <li><strong>--threads=7</strong> : Speeds up the testing process using multiple threads</li>
+                            <li><strong>--banner</strong> : Retrieves the database version banner if possible</li>
                         </ul>
 
                         <div class="highlight-box">
-                            <p><strong>Important:</strong> The most critical command in this case is <code>--ignore-redirect</code> because otherwise sqlmap will follow the redirect and the injection process will not succeed.</p>
+                            <p><strong>Another Tip:</strong> If you have problems using <code>-p</code>, you can use <code>*</code>. To use it like this <code>"pa_id":"6182*"</code>. This serves to tell sqlmap which part is the injection point.</p>
                         </div>
 
+                        <p>I already suspected that the backend database was <strong>MySQL</strong> because the payload I tested earlier used the <em><strong>SLEEP()</strong></em> function, which is commonly supported in MySQL-based queries. The consistent delay in the server response strongly indicated that the payload was being executed by a MySQL database.</p>
+
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/16.webp"
-                                alt="sqlmap output">
-                            <p class="image-caption">Sqlmap output</p>
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/5-backend-mysql.png"
+                                alt="sqlmap output confirming MySQL backend">
+                            <p class="image-caption">Backend MySQL</p>
+                        </div>
+
+                        <p>The results showed that the backend was running <strong>MySQL</strong>, and the injection point allowed database-level enumeration.</p>
+
+                        <p>Try another command:</p>
+
+                        <div class="code-block">
+                            <code>sqlmap -r inj.txt -p pa_id --batch --tamper=space2comment --level 3 --risk 3 --technique=T --time-sec=6 --dbms=mysql --threads=1 --dbs</code>
+                        </div>
+
+                        <p>Note:</p>
+                        <ul>
+                            <li><strong>--dbs</strong> : To retrieve all existing databases</li>
+                        </ul>
+
+                        <p>From there, sqlmap was able to retrieve information such as:</p>
+
+                        <ol>
+                            <li>Database user</li>
+                            <li>Available databases</li>
+                            <li>Database version</li>
+                        </ol>
+
+                        <p>At one point, the enumeration revealed a database name (redacted for responsible disclosure).</p>
+
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/6-retrieved-database.png"
+                                alt="sqlmap retrieved database (redacted)">
+                            <p class="image-caption">Retrieved database</p>
                         </div>
 
                         <h2>Conclusion</h2>
-                        <p>Writing this story reminds me how much I enjoy documenting things like this. Even though this was just a small finding, it felt good to dive back into the habit of writing again. Hopefully, I can keep it up and share more in the future.</p>
+                        <p>Not every test leads to a vulnerability, and not every vulnerability leads to a bounty. But every investigation teaches something new — whether it's about application behavior, testing methodology, or simply improving patience during long testing sessions.</p>
 
-                        <p>Interestingly, this kind of vulnerability is something I often come across during bug bounty hunting — especially in private programs. It shows how even simple misconfigurations can have a big impact, and how important it is to test and secure applications thoroughly.</p>
+                        <p>Interestingly, the application did not have a <strong>public bug bounty program</strong>. However, after reporting the issue responsibly, the company acknowledged the report and provided a reward as appreciation. They also granted permission for this vulnerability to be disclosed publicly with sensitive information properly redacted.</p>
 
-                        <p>Maybe that's all from me, hopefully it won't take me another year to post again. I'm RyuuKhagetsu, see you in next article.</p>
+                        <div class="highlight-box">
+                            <p><strong>Key Takeaway:</strong> Don't hunt bugs only for the bounty. Focus on curiosity, learning, and responsible disclosure.</p>
+                        </div>
+
+                        <p>And sometimes, all it takes is <strong>a simple coffee order to make the database sleep.</strong></p>
+
+                        <p>Maybe that's all from me. <em>I'm RyuuKhagetsu, see you in next article.</em></p>
 
                         <!-- Tags Section -->
                         <div class="article-tags">
                             <h4>Tags:</h4>
                             <div class="tags-list">
-                                <span class="tag">#BrokenAccessControl</span>
+                                <span class="tag">#TimeBasedSQLi</span>
                                 <span class="tag">#SQLInjection</span>
-                                <span class="tag">#WebSecurity</span>
-                                <span class="tag">#BugBounty</span>
-                                <span class="tag">#PenetrationTesting</span>
-                                <span class="tag">#SQLMap</span>
+                                <span class="tag">#MobileAPI</span>
                                 <span class="tag">#BurpSuite</span>
-                                <span class="tag">#Cybersecurity</span>
+                                <span class="tag">#sqlmap</span>
+                                <span class="tag">#MySQL</span>
+                                <span class="tag">#BugBounty</span>
+                                <span class="tag">#APISecurity</span>
+                                <span class="tag">#PenetrationTesting</span>
                             </div>
                         </div>
                     </div>
+        </div>
     </section>
 
     <!-- Related Articles -->
@@ -517,22 +551,21 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/content/5.webp">
+                            <img loading="lazy" decoding="async" src="../../assets/img/content/12.webp">
                             <div class="article-overlay">
-                                <a href="../access-server-from-sql/" class="article-link">read article</a>
+                                <a href="../breaking-past-403-oob-sql-injection/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
                             <div class="article-tags">
                                 <span class="article-tag">SQL Injection</span>
-                                <span class="article-tag">Database Security</span>
+                                <span class="article-tag">OOB SQLi</span>
                             </div>
                             <h3 class="related-title">
-                                <a href="../access-server-from-sql/">Got Access To Server through SQL Injection</a>
+                                <a href="../breaking-past-403-oob-sql-injection/">Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery</a>
                             </h3>
                             <p class="article-excerpt">
-                                Hi, how are you guys? I hope you are fine. This is my first article of the
-                                month, I hope you enjoy it...
+                                Discovered Out-of-Band SQL Injection on MSSQL server, bypassing 403 restrictions through directory fuzzing and payload crafting...
                             </p>
                         </div>
                     </div>
@@ -542,20 +575,19 @@
                         <div class="article-image">
                             <img loading="lazy" decoding="async" src="../../assets/img/content/13.webp">
                             <div class="article-overlay">
-                                <a href="../bypass-sqli/" class="article-link">read article</a>
+                                <a href="../abusing-broken-access-control-and-sql-injection/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
                             <div class="article-tags">
-                                <span class="article-tag">Bug Bounty</span>
+                                <span class="article-tag">Broken Access Control</span>
                                 <span class="article-tag">SQL Injection</span>
                             </div>
                             <h3 class="related-title">
-                                <a href="../bypass-sqli/">[Bug Bounty] SQL Injection and Bypass SQL Login</a>
+                                <a href="../abusing-broken-access-control-and-sql-injection/">Abusing Broken Access Control and SQL Injection in the Wild</a>
                             </h3>
                             <p class="article-excerpt">
-                                Hi Semuanya bagaimana kabarnya? Semoga dalam keadaan baik baik saja. Kali
-                                ini saya ingin membagikan tulisan saya mengenai bug bounty...
+                                Hi all! How are you guys? I hope everything is fine. It's been quite a while since I last wrote an article...
                             </p>
                         </div>
                     </div>

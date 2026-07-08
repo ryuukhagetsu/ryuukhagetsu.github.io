@@ -21,7 +21,10 @@
     <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/take-over-scammer/">
     <meta property="og:title" content="How I Took Over The Scammer's Data: Hacking Back">
     <meta property="og:description" content="A story about turning the tables on scammers by exploiting vulnerabilities in their phishing infrastructure.">
-    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/4.jpg">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/4.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
     <meta property="og:site_name" content="RyuuKhagetsu Blog">
     <meta property="article:author" content="RyuuKhagetsu">
     <meta property="article:section" content="Security Research">
@@ -33,7 +36,7 @@
     <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/take-over-scammer/">
     <meta property="twitter:title" content="How I Took Over The Scammer's Data: Hacking Back">
     <meta property="twitter:description" content="A story about turning the tables on scammers by exploiting vulnerabilities in their phishing infrastructure.">
-    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/4.jpg">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/4.webp">
 
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
@@ -42,7 +45,7 @@
         "@type": "Article",
         "headline": "How I Took Over The Scammer's Data: Hacking Back",
         "description": "A story about turning the tables on scammers by exploiting vulnerabilities in their phishing infrastructure.",
-        "image": "https://ryuukhagetsu.github.io/assets/img/content/4.jpg",
+        "image": "https://ryuukhagetsu.github.io/assets/img/content/4.webp",
         "author": {
             "@type": "Person",
             "name": "RyuuKhagetsu",
@@ -60,18 +63,62 @@
     }
     </script>
 
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://ryuukhagetsu.github.io/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://ryuukhagetsu.github.io/blog/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How I Took Over The Scammer's Data: Hacking Back",
+                "item": "https://ryuukhagetsu.github.io/blog/take-over-scammer/"
+            }
+        ]
+    }
+    </script>
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Google Fonts - Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/cyber-animations.css">
     <link rel="stylesheet" href="../../assets/css/blog-article.css">
-    <link rel="shortcut icon" href="../../assets/img/icon/favicon.ico" type="image/x-icon">
+    <!-- Blog enhancements (copy buttons, reading progress) -->
+    <link rel="stylesheet" href="../../assets/css/blog-enhancements.css">
+    <!-- Favicons (Google-indexable: 48x48+ PNG required) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0a0a0a">
 </head>
 
 <body>
+    <div class="reading-progress" aria-hidden="true"></div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
@@ -127,7 +174,7 @@
                     <!-- Author Section - Single Row -->
                     <div class="article-author-section">
                         <div class="author-avatar">
-                            <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu">
+                            <img loading="lazy" decoding="async" src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu">
                         </div>
                         <div class="author-details">
                             <h4>RyuuKhagetsu</h4>
@@ -137,7 +184,7 @@
                                         <path
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
                                     </svg>
-                                    Feb 22, 2024
+                                    <time datetime="2024-02-22">Feb 22, 2024</time>
                                 </div>
                                 <div class="read-time">
                                     <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
@@ -156,7 +203,7 @@
                     <div class="article-share-section">
                         <div class="share-left">
                             <a href="http://medium.com/system-weakness/how-i-take-over-the-scammers-data-2d77a2824c06"
-                                class="view-on-medium" target="_blank">
+                                class="view-on-medium" target="_blank" rel="noopener noreferrer">
                                 <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
                                     <path
                                         d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
@@ -218,7 +265,7 @@
                             website, for that we will call it <strong>"site.com"</strong>.</p>
 
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/1.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/1.webp"
                                 alt="Phishing Website Analysis">
                             <p class="image-caption">Analyzing a malicious phishing website targeting bank customers</p>
                         </div>
@@ -248,13 +295,13 @@
                             <li><strong>Victims will be asked to enter their 16 digit credit card number and pin
                                     number.</strong></li>
                             <div class="article-image">
-                                <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/2.webp"
+                                <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/2.webp"
                                     alt="Phishing Website Analysis">
                             </div>
                             <li><strong>The victim will get a message in the form of an OTP which is just a fake
                                     OTP.</strong></li>
                             <div class="article-image">
-                                <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/3.webp"
+                                <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/3.webp"
                                     alt="Phishing Website Analysis">
                             </div>
                             <li><strong>After filling in the OTP, the scam website will respond that there is a problem
@@ -286,17 +333,17 @@
                             website was vulnerable to SSRF attacks.</p>
 
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/4.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/4.webp"
                                 alt="SSRF Vulnerability Testing">
                             <p class="image-caption">Testing SSRF vulnerability using Burp Collaborator</p>
                         </div>
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/5.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/5.webp"
                                 alt="SSRF Vulnerability Testing">
                             <p class="image-caption">Testing SSRF vulnerability using Burp Collaborator</p>
                         </div>
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/6.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/6.webp"
                                 alt="SSRF Vulnerability Testing">
                             <p class="image-caption">Testing SSRF vulnerability using Burp Collaborator</p>
                         </div>
@@ -306,7 +353,7 @@
                             <strong>"admin.php"</strong>:</p>
 
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/7.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/7.webp"
                                 alt="Directory Enumeration">
                             <p class="image-caption">Directory enumeration revealing admin panel and configuration files
                             </p>
@@ -321,7 +368,7 @@
                             Telegram bot. The configuration looked something like this:</p>
 
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/8.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/8.webp"
                                 alt="Directory Enumeration">
                             <p class="image-caption">Directory enumeration revealing admin panel and configuration files
                             </p>
@@ -352,12 +399,12 @@
                             stolen data was being sent to the configured bot.</p>
 
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/9.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/9.webp"
                                 alt="Telegram Bot Notification">
                             <p class="image-caption">Proof of concept showing stolen data being sent to Telegram bot</p>
                         </div>
                         <div class="article-image">
-                            <img src="../../assets/img/blog/how-i-take-over-the-scammers-data/10.webp"
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/how-i-take-over-the-scammers-data/10.webp"
                                 alt="Telegram Bot Notification">
                             <p class="image-caption">Proof of concept showing stolen data being sent to Telegram bot</p>
                         </div>
@@ -496,7 +543,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../../assets/img/content/9.jpeg">
+                            <img loading="lazy" decoding="async" src="../../assets/img/content/9.webp">
                             <div class="article-overlay">
                                 <a href="../take-over-multiple-bugs/" class="article-link">read article</a>
                             </div>
@@ -518,7 +565,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img src="../../assets/img/content/2.jpeg">
+                            <img loading="lazy" decoding="async" src="../../assets/img/content/2.webp">
                             <div class="article-overlay">
                                 <a href="../from-wedding-to-hacking/" class="article-link">read article</a>
                             </div>
@@ -593,8 +640,10 @@
             </div>
         </div>
     </footer>
+    <!-- Blog enhancements (copy buttons, reading progress) -->
+    <script src="../../assets/js/blog-enhancements.js" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../../assets/js/script.js"></script>
     <script src="../../assets/js/cyber-animations.js"></script>
 

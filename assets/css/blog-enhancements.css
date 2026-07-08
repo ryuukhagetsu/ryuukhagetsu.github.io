@@ -1,0 +1,145 @@
+/* ============================================================
+   Blog Enhancements: copy button, reading bar, tag filter
+   ============================================================ */
+
+/* ---------- Reading progress bar ---------- */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #00f1e7 0%, #4ade80 100%);
+    box-shadow: 0 0 10px rgba(0, 241, 231, 0.55);
+    z-index: 1080; /* above Bootstrap fixed-top navbar */
+    transition: width 0.08s linear;
+    pointer-events: none;
+}
+
+/* ---------- Code block: kill horizontal scroll, wrap content instead ---------- */
+/* Use overflow:visible so the absolutely-positioned "Terminal" badge and copy
+   button (both at top:-1px) stay visible. Aggressive wrapping on <code> guarantees
+   content never overflows in the first place. */
+.code-block {
+    overflow: visible !important;
+}
+.code-block code {
+    white-space: normal;            /* collapse source indentation/newlines */
+    overflow-wrap: anywhere;        /* break long URLs / unbreakable strings */
+    word-break: normal;             /* prefer breaking at spaces first */
+    display: block;                 /* fill the row so wrap respects container width */
+    max-width: 100%;
+}
+
+/* ---------- Copy-to-clipboard button ---------- */
+.code-copy {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: var(--dark-accent, #1a1d20);
+    color: var(--highlight-color, #00f1e7);
+    border: 1px solid var(--highlight-color, #00f1e7);
+    border-radius: 0 8px 0 8px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.4;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.code-copy:hover {
+    background: var(--highlight-color, #00f1e7);
+    color: var(--dark-accent, #1a1d20);
+    box-shadow: 0 0 10px rgba(0, 241, 231, 0.45);
+}
+.code-copy:focus-visible {
+    outline: 2px solid var(--highlight-color, #00f1e7);
+    outline-offset: 2px;
+}
+.code-copy.is-copied {
+    background: #4ade80;
+    color: #0a0a0a;
+    border-color: #4ade80;
+}
+.code-copy svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 576px) {
+    .code-copy { font-size: 0.65rem; padding: 3px 8px; }
+}
+
+/* ---------- Tag filter chips (blog index) ---------- */
+.tag-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 28px;
+    align-items: center;
+}
+.tag-filter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+}
+.tag-chip {
+    background: transparent;
+    border: 1px solid rgba(0, 241, 231, 0.35);
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.tag-chip:hover {
+    border-color: var(--highlight-color, #00f1e7);
+    color: var(--highlight-color, #00f1e7);
+}
+.tag-chip.is-active {
+    background: var(--highlight-color, #00f1e7);
+    color: #0a0a0a;
+    border-color: var(--highlight-color, #00f1e7);
+    box-shadow: 0 0 10px rgba(0, 241, 231, 0.45);
+}
+.tag-chip .count {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 999px;
+    padding: 1px 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+.tag-chip.is-active .count {
+    background: rgba(0, 0, 0, 0.2);
+    color: #0a0a0a;
+}
+
+.article-item.is-hidden {
+    display: none !important;
+}
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    display: none;
+}
+.no-results.is-shown { display: block; }
