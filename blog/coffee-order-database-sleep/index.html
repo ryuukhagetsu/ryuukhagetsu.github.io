@@ -133,7 +133,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo">
+                <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo" width="500" height="500">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,6 +152,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#cve">CVE</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
@@ -184,7 +187,7 @@
                     <!-- Author Section - Single Row -->
                     <div class="article-author-section">
                         <div class="author-avatar">
-                            <img loading="lazy" decoding="async" src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu">
+                            <img loading="lazy" decoding="async" src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu" width="500" height="500">
                         </div>
                         <div class="author-details">
                             <h4>RyuuKhagetsu</h4>
@@ -269,7 +272,7 @@
 
                         <div class="article-image">
                             <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/preview.jpg"
-                                alt="The Coffee Order That Made the Database Sleep">
+                                alt="The Coffee Order That Made the Database Sleep" width="1200" height="1600">
                         </div>
 
                         <p>Hi everyone! Hope you're all doing well.</p>
@@ -350,8 +353,8 @@
                         </div>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/1-request-body.png"
-                                alt="POST /store/{store_id}/wait-time request body">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/1-request-body.webp"
+                                alt="POST /store/{store_id}/wait-time request body" width="1366" height="938">
                             <p class="image-caption">Body request from POST /store/{store_id}/wait-time</p>
                         </div>
 
@@ -421,14 +424,14 @@
                         <p><em>The payload is to provide sleep / delay for 7 seconds</em></p>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/2-delay-7s.png"
-                                alt="Burp Suite showing 7,075 ms delay">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/2-delay-7s.webp"
+                                alt="Burp Suite showing 7,075 ms delay" width="1366" height="983">
                             <p class="image-caption">Delay for 7 seconds. Look at the bottom right of burpsuite. "7,075 milis"</p>
                         </div>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/3-delay-15s.png"
-                                alt="Burp Suite showing 15,089 ms delay">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/3-delay-15s.webp"
+                                alt="Burp Suite showing 15,089 ms delay" width="1366" height="983">
                             <p class="image-caption">Delay for 15 seconds. Look at the bottom right of burpsuite. "15,089 milis"</p>
                         </div>
 
@@ -438,8 +441,8 @@
                         <p>To strengthen the findings, I used sqlmap. I created a file called <code>inj.txt</code>, and pasted all the requests captured from Burp Suite.</p>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/4-request-from-burpsuite.png"
-                                alt="Raw HTTP request saved from Burp Suite">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/4-request-from-burpsuite.webp"
+                                alt="Raw HTTP request saved from Burp Suite" width="681" height="422">
                             <p class="image-caption">Request from burpsuite</p>
                         </div>
 
@@ -472,8 +475,8 @@
                         <p>I already suspected that the backend database was <strong>MySQL</strong> because the payload I tested earlier used the <em><strong>SLEEP()</strong></em> function, which is commonly supported in MySQL-based queries. The consistent delay in the server response strongly indicated that the payload was being executed by a MySQL database.</p>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/5-backend-mysql.png"
-                                alt="sqlmap output confirming MySQL backend">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/5-backend-mysql.webp"
+                                alt="sqlmap output confirming MySQL backend" width="307" height="38">
                             <p class="image-caption">Backend MySQL</p>
                         </div>
 
@@ -501,8 +504,8 @@
                         <p>At one point, the enumeration revealed a database name (redacted for responsible disclosure).</p>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/6-retrieved-database.png"
-                                alt="sqlmap retrieved database (redacted)">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/6-retrieved-database.webp"
+                                alt="sqlmap retrieved database (redacted)" width="459" height="208">
                             <p class="image-caption">Retrieved database</p>
                         </div>
 
@@ -551,7 +554,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/content/12.webp">
+                            <img loading="lazy" decoding="async" src="../../assets/img/content/12.webp" width="1600" height="1600">
                             <div class="article-overlay">
                                 <a href="../breaking-past-403-oob-sql-injection/" class="article-link">read article</a>
                             </div>
@@ -573,7 +576,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/content/13.webp">
+                            <img loading="lazy" decoding="async" src="../../assets/img/content/13.webp" width="915" height="917">
                             <div class="article-overlay">
                                 <a href="../abusing-broken-access-control-and-sql-injection/" class="article-link">read article</a>
                             </div>

@@ -1571,3 +1571,24 @@
         padding: 30px 16px !important;
     }
 }
+
+/* Inline links inside article prose (default browser blue looked out of place) */
+.article-body p a,
+.article-body li a {
+    color: var(--highlight-color);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 241, 231, 0.4);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.article-body p a:hover,
+.article-body li a:hover {
+    color: #00c5bd;
+    text-decoration-color: currentColor;
+}
+
+.article-body p a:visited,
+.article-body li a:visited {
+    color: var(--highlight-color);
+}

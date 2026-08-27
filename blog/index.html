@@ -86,7 +86,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../index.html">
-                <img src="../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo">
+                <img src="../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo" width="500" height="500">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,6 +105,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#cve">CVE</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.html#halloffame">Hall of Fame</a>
@@ -157,12 +160,42 @@
                         <div class="tag-filter" id="tagFilter" aria-label="Filter articles by category"></div>
                         <div class="row" id="articlesContainer">
 
+                            <!-- Article -2 - The Postman Always Rings Twice -->
+                            <div class="col-lg-4 col-md-6 mb-4 article-item" data-category="vulnerability-research">
+                                <div class="article-card-horizontal">
+                                    <div class="article-image">
+                                        <img loading="lazy" decoding="async" src="../assets/img/blog/postman-docker-rce/1-docker-version-reachable.webp" alt="SSRF to RCE via Postman and a Docker Socket"
+                                            class="img-fluid" width="1091" height="966">
+                                        <div class="article-overlay">
+                                            <a href="postman-docker-rce/" class="article-link">Read
+                                                Article</a>
+                                        </div>
+                                    </div>
+                                    <div class="article-content">
+                                        <div class="article-tags">
+                                            <span class="article-tag">SSRF</span>
+                                            <span class="article-tag">Docker</span>
+                                        </div>
+                                        <h4 class="article-title">
+                                            <a href="postman-docker-rce/">The Postman Always Rings Twice: SSRF to Root via a Docker Socket</a>
+                                        </h4>
+                                        <p class="article-excerpt">
+                                            A dead SSRF guard inside Postman's own request library lets an imported Collection reach the Docker Engine API and become root on the host...
+                                        </p>
+                                        <div class="article-meta">
+                                            <span class="publish-date"><time datetime="2026-08-27">August 27, 2026</time></span>
+                                            <span class="read-time">14 min read</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Article -1 - The Coffee Order That Made the Database Sleep -->
                             <div class="col-lg-4 col-md-6 mb-4 article-item" data-category="bug-bounty">
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/blog/coffee-order-database-sleep/preview-card.jpg" alt="Time-Based SQL Injection in Coffee Ordering App"
-                                            class="img-fluid">
+                                            class="img-fluid" width="800" height="600">
                                         <div class="article-overlay">
                                             <a href="coffee-order-database-sleep/" class="article-link">Read
                                                 Article</a>
@@ -192,7 +225,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/12.webp" alt="Out-of-Band SQL Injection"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1600" height="1600">
                                         <div class="article-overlay">
                                             <a href="breaking-past-403-oob-sql-injection/" class="article-link">Read
                                                 Article</a>
@@ -222,7 +255,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/13.webp" alt="Broken Access Control and SQL Injection"
-                                            class="img-fluid">
+                                            class="img-fluid" width="915" height="917">
                                         <div class="article-overlay">
                                             <a href="abusing-broken-access-control-and-sql-injection/" class="article-link">Read
                                                 Article</a>
@@ -252,7 +285,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/1.webp" alt="Linux Server Security"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1024" height="1024">
                                         <div class="article-overlay">
                                             <a href="how-do-i-get-root-on-linux/" class="article-link">Read
                                                 Article</a>
@@ -284,7 +317,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/2.webp" alt="Wedding Security Testing"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1024" height="1024">
                                         <div class="article-overlay">
                                             <a href="from-wedding-to-hacking/" class="article-link">Read Article</a>
                                         </div>
@@ -313,7 +346,7 @@
                             <div class="col-lg-4 col-md-6 mb-4 article-item" data-category="penetration-testing">
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
-                                        <img loading="lazy" decoding="async" src="../assets/img/content/5.webp" alt="SQL Injection" class="img-fluid">
+                                        <img loading="lazy" decoding="async" src="../assets/img/content/5.webp" alt="SQL Injection" class="img-fluid" width="1024" height="1024">
                                         <div class="article-overlay">
                                             <a href="access-server-from-sql/" class="article-link">Read Article</a>
                                         </div>
@@ -344,7 +377,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/9.webp" alt="Account Takeover"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1024" height="1024">
                                         <div class="article-overlay">
                                             <a href="take-over-multiple-bugs/" class="article-link">Read Article</a>
                                         </div>
@@ -375,7 +408,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/8.webp" alt="Cyber Investigation"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1024" height="1024">
                                         <div class="article-overlay">
                                             <a href="take-over-scammer/" class="article-link">Read Article</a>
                                         </div>
@@ -405,7 +438,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/1.webp" alt="Mobile Security Testing"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1024" height="1024">
                                         <div class="article-overlay">
                                             <a href="bug-bounty-cellphone/" class="article-link">Read Article</a>
                                         </div>
@@ -436,7 +469,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/11.webp" alt="Price Manipulation"
-                                            class="img-fluid">
+                                            class="img-fluid" width="1600" height="1600">
                                         <div class="article-overlay">
                                             <a href="parameter-tampering/" class="article-link">Read Article</a>
                                         </div>
@@ -467,7 +500,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/12-alt.webp" alt="Windows Server Vulnerability"
-                                            class="img-fluid">
+                                            class="img-fluid" width="915" height="917">
                                         <div class="article-overlay">
                                             <a href="ms15-034/" class="article-link">Read Article</a>
                                         </div>
@@ -497,7 +530,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/13.webp" alt="SQL Injection Login Bypass"
-                                            class="img-fluid">
+                                            class="img-fluid" width="915" height="917">
                                         <div class="article-overlay">
                                             <a href="bypass-sqli/" class="article-link">Read Article</a>
                                         </div>
@@ -528,7 +561,7 @@
                                 <div class="article-card-horizontal">
                                     <div class="article-image">
                                         <img loading="lazy" decoding="async" src="../assets/img/content/14.webp" alt="Git Directory Exposure"
-                                            class="img-fluid">
+                                            class="img-fluid" width="915" height="917">
                                         <div class="article-overlay">
                                             <a href="git-exposed/" class="article-link">Read Article</a>
                                         </div>
@@ -583,7 +616,7 @@
                                             </svg>
                                         </span>
                                         <div class="stat-content">
-                                            <span class="stat-text"><span class="stat-number">12</span> posts</span>
+                                            <span class="stat-text"><span class="stat-number">14</span> posts</span>
                                         </div>
                                     </div>
                                     <div class="stat-item">
@@ -618,7 +651,7 @@
 
                                 <!-- Updated timestamp -->
                                 <div class="blog-updated">
-                                    Updated: December 7, 2025
+                                    Updated: August 27, 2026
                                 </div>
                             </div>
                             <!-- Categories Detail (if still needed) -->

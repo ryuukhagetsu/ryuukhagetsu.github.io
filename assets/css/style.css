@@ -2383,10 +2383,17 @@ body.navbar-mobile-open .experience-section {
 }
 
 @media screen and (max-width: 768px) {
+    /* minmax(0, 1fr) lets the column shrink below its min-content width;
+       plain 1fr made the timeline overflow the viewport on <=360px screens */
     .experience-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         row-gap: 3rem;
         padding: 0 16px;
+    }
+
+    .experience-column {
+        min-width: 0;
+        overflow-wrap: break-word;
     }
     
     .experience-section {
@@ -2437,7 +2444,7 @@ body.navbar-mobile-open .experience-section {
 
 @media screen and (max-width: 350px) {
     .experience-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     
     /* Footer adjustments for mobile */
@@ -2584,4 +2591,168 @@ body.navbar-mobile-open .experience-section {
         padding: 10rem 16px !important;
         min-height: auto !important;
     }
+}
+/* ==========================================================================
+   CVE & Security Research Section
+   ========================================================================== */
+
+/* minmax(0, 1fr) — plain 1fr floors at min-content and overflows on narrow phones */
+.cve-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 860px;
+    margin: 0 auto 50px;
+}
+
+.cve-stat {
+    background-color: var(--dark-accent);
+    border: 1px solid var(--light-accent);
+    border-radius: 10px;
+    padding: 26px 18px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.cve-stat:hover {
+    border-color: var(--highlight-color);
+    transform: translateY(-4px);
+}
+
+.cve-stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--highlight-color);
+}
+
+.cve-stat-label {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* min 420px keeps the footer meta and severity badge on one row */
+.cve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 24px;
+}
+
+.cve-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-accent);
+    border: 1px solid var(--light-accent);
+    border-left: 3px solid var(--highlight-color);
+    border-radius: 10px;
+    padding: 24px;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.cve-card:hover,
+.cve-card:focus-visible {
+    color: inherit;
+    transform: translateY(-5px);
+    border-color: var(--highlight-color);
+    box-shadow: 0 10px 25px rgba(0, 241, 231, 0.15);
+}
+
+.cve-id {
+    display: block;
+    margin-bottom: 12px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--highlight-color);
+}
+
+.cve-severity {
+    display: inline-block;
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.cve-severity.high {
+    background-color: rgba(255, 122, 69, 0.15);
+    border: 1px solid rgba(255, 122, 69, 0.45);
+    color: #ff9d73;
+}
+
+.cve-severity.medium {
+    background-color: rgba(255, 205, 86, 0.13);
+    border: 1px solid rgba(255, 205, 86, 0.4);
+    color: #ffd479;
+}
+
+/* now the card's primary text, so it carries the weight the product heading used to */
+.cve-description {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.cve-card-foot {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--light-accent);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cve-meta {
+    min-width: 0;
+}
+
+.cve-cta {
+    margin-top: 45px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .cve-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 35px;
+    }
+
+    .cve-stat {
+        padding: 20px 12px;
+    }
+
+    .cve-stat-number {
+        font-size: 2rem;
+    }
+
+    .cve-stat-label {
+        font-size: 0.75rem;
+    }
+
+    .cve-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .cve-card {
+        padding: 20px;
+    }
+
 }
