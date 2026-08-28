@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Bypass in MalakaBooks: Zero Validation Edition | RyuuKhagetsu</title>
+    <meta name="description" content="A deep dive into how I bypassed MalakaBooks' subscription system and accessed premium content without payment through a completely unprotected API endpoint.">
+    <meta name="keywords" content="MalakaBooks, subscription bypass, API vulnerability, broken authorization, payment bypass, security research">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta property="og:title" content="Subscription Bypass in MalakaBooks: Zero Validation Edition">
+    <meta property="og:description" content="A deep dive into how I bypassed MalakaBooks' subscription system and accessed premium content without payment.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/malakabooks-subscription-bypass/">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Subscription Bypass in MalakaBooks: Zero Validation Edition">
+    <meta name="twitter:description" content="How I bypassed MalakaBooks' subscription system without any payment verification.">
+    <meta name="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Subscription Bypass in MalakaBooks: Zero Validation Edition",
+        "description": "A deep dive into how I bypassed MalakaBooks' subscription system and accessed premium content without payment through a completely unprotected API endpoint.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://ryuukhagetsu.github.io/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://ryuukhagetsu.github.io/blog/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Subscription Bypass in MalakaBooks",
+                "item": "https://ryuukhagetsu.github.io/blog/malakabooks-subscription-bypass/"
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/blog-article.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="../../" class="brand-text">RyuuKhagetsu</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../#cve">CVE</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../#hall-of-fame">Hall of Fame</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-navbar">
+        <div class="mobile-navbar-brand">
+            <a href="../../" class="brand-text">RyuuKhagetsu</a>
+        </div>
+        <div class="mobile-navbar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="mobile-navbar-nav">
+            <li><a href="../../">Home</a></li>
+            <li><a href="../../#about">About</a></li>
+            <li><a href="../../#skills">Skills</a></li>
+            <li><a href="../../#projects">Projects</a></li>
+            <li><a href="../../#cve">CVE</a></li>
+            <li><a href="../../#hall-of-fame">Hall of Fame</a></li>
+            <li><a href="../../blog/">Blog</a></li>
+        </ul>
+    </div>
+
+    <!-- Article Container -->
+    <article class="article-wrapper">
+        <div class="article-header">
+            <div class="container">
+                <div class="article-meta">
+                    <span class="article-date">August 28, 2026</span>
+                    <span class="article-read-time">8 min read</span>
+                </div>
+                <h1 class="article-title">Subscription Bypass in MalakaBooks: Zero Validation Edition</h1>
+                <p class="article-subtitle">How a completely unprotected API endpoint let me access premium book subscriptions without paying a single rupiah.</p>
+                <div class="article-tags">
+                    <span class="article-tag">API Vulnerability</span>
+                    <span class="article-tag">Broken Authorization</span>
+                    <span class="article-tag">Payment Bypass</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-body">
+            <div class="container">
+                <section>
+                    <h2>What is MalakaBooks?</h2>
+                    <p><strong>MalakaBooks.id</strong> is an Indonesian digital book platform that offers a subscription-based model for premium content. Users can access thousands of books and documents, ranging from fiction to educational material, by paying for monthly or annual subscription plans. It's a pretty standard SaaS model — you sign up, browse content, and if you want to read premium books, you subscribe.</p>
+                    <p>The platform offers three subscription tiers:</p>
+                    <ul>
+                        <li><strong>3 Month Plan:</strong> IDR 80,000 (~$5)</li>
+                        <li><strong>6 Month Plan:</strong> IDR 140,000 (~$9)</li>
+                        <li><strong>12 Month Plan:</strong> IDR 240,000 (~$15)</li>
+                    </ul>
+                    <p>All straightforward. Or so it should be.</p>
+                </section>
+
+                <section>
+                    <h2>The Discovery</h2>
+                    <p>I was poking around MalakaBooks' API after signing up for an account. Like most modern platforms, the subscription logic lives in REST endpoints. I found a particularly interesting one: <code>POST /subscriptions/mock-activate</code>.</p>
+                    <p>The endpoint name itself is suspicious — why would a production API have "mock" in the endpoint name? Turns out, this wasn't just a naming quirk. It was a completely unprotected subscription activation endpoint that required absolutely zero payment verification.</p>
+                </section>
+
+                <section>
+                    <h2>How the Vulnerability Works</h2>
+                    <p><strong>Step 1: Create an account and verify it.</strong></p>
+                    <p>Nothing special — just the standard registration flow on malakabooks.id. Once verified, your account has the reader role, which is the default for free users.</p>
+
+                    <p><strong>Step 2: Identify a premium book you can't access.</strong></p>
+                    <p>Navigate to any book that requires a subscription. The UI will show a popup with subscription options and a button to start your subscription. If you check your account status via the API endpoint <code>GET /subscriptions/my-status</code>, you'll see <code>"canAccessSubscriptionBooks": false</code>. This confirms you don't have access yet.</p>
+
+                    <p><strong>Step 3: Bypass the payment entirely.</strong></p>
+                    <p>Here's where it gets interesting. Instead of actually subscribing (which requires payment through a payment gateway), I sent a direct POST request to the `/subscriptions/mock-activate` endpoint:</p>
+
+                    <div class="code-block">
+                        <code>
+curl -X POST https://api.malakabooks.id/subscriptions/mock-activate \<br>
+  -H "Authorization: Bearer YOUR_TOKEN" \<br>
+  -H "Content-Type: application/json" \<br>
+  -d '{"planId":"b10a3d56-c1b1-4ba3-a5f0-0f9b6f7c85e0"}'
+                        </code>
+                    </div>
+
+                    <p>Response? <code>"message": "Subscription activated successfully"</code>.</p>
+
+                    <p><strong>Step 4: Verify the bypass worked.</strong></p>
+                    <p>Check your status again via <code>GET /subscriptions/my-status</code>. Now your response shows <code>"canAccessSubscriptionBooks": true</code>. The frontend doesn't even need a refresh — the permission changed server-side instantaneously.</p>
+
+                    <p><strong>Step 5: Access premium content for free.</strong></p>
+                    <p>Go back to any premium book on the website. Instead of a paywall popup, you now see "Start Reading" and "Save to Library" buttons. Full access. No payment. No transaction log. Nothing.</p>
+                </section>
+
+                <section>
+                    <h2>Root Cause: Zero Authorization Checks</h2>
+                    <p>The vulnerability boils down to three catastrophic failures:</p>
+
+                    <p><strong>1. No payment verification.</strong> The endpoint doesn't check if you've actually completed a payment transaction. It just accepts a <code>planId</code> and activates the subscription.</p>
+
+                    <p><strong>2. No rate limiting or role checks.</strong> Any authenticated user with the reader role can hit this endpoint. There's no check for administrative privileges or special permissions. If you're logged in, you can activate any subscription plan.</p>
+
+                    <p><strong>3. Missing transaction validation.</strong> The endpoint should validate against the payment gateway (Midtrans, Stripe, whatever they use) to confirm a transaction was completed. It does neither — the endpoint is essentially a direct write to the subscription database with zero guards.</p>
+
+                    <p>The "/subscriptions/mock-activate" naming suggests this was a testing endpoint that accidentally got left in production. That's not uncommon — I've seen this pattern before in poorly maintained APIs where test endpoints make it to prod and don't get cleaned up or properly restricted.</p>
+                </section>
+
+                <section>
+                    <h2>The Impact</h2>
+                    <p>This isn't a theoretical vulnerability. It has real consequences:</p>
+
+                    <ul>
+                        <li><strong>Direct revenue loss:</strong> Every subscription that could be bypassed represents lost revenue. Scale this — write a script to auto-register accounts and activate subscriptions, and you're looking at potentially thousands of free premium users.</li>
+                        <li><strong>Subscription model collapse:</strong> The entire business model is based on subscription payments. When users figure out they can bypass it, the model falls apart.</li>
+                        <li><strong>User data integrity:</strong> If subscription status can be modified without payment, what else can be modified without proper authorization? This opens the door to other admin-level operations.</li>
+                        <li><strong>Infrastructure abuse:</strong> Free premium access likely means more concurrent users, higher bandwidth usage, and increased server load — all eating into infrastructure costs.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Responsible Disclosure</h2>
+                    <p>I discovered this vulnerability and reported it through two channels:</p>
+
+                    <ul>
+                        <li><strong>Email:</strong> Sent a detailed report with reproduction steps to the development team.</li>
+                        <li><strong>Instagram:</strong> Also reached out via their social media account to ensure visibility if the email got missed.</li>
+                    </ul>
+
+                    <p>The point of responsible disclosure isn't to embarrass a company — it's to give them time to fix the issue before it becomes public knowledge. I gave them a timeline to patch, and I'm documenting this after a reasonable period to ensure the fix is in place or the issue is public anyway.</p>
+                </section>
+
+                <section>
+                    <h2>Lessons for API Developers</h2>
+                    <p>If you're building a subscription system, don't repeat this mistake:</p>
+
+                    <p><strong>1. Separate test and production environments completely.</strong> Test endpoints should live on staging.api.example.com or behind a feature flag that's off in production. Never mix test and production logic.</p>
+
+                    <p><strong>2. Validate payment status before changing subscription state.</strong> Any endpoint that modifies subscription status should verify a transaction against your payment provider. Don't trust the client or a bare API call.</p>
+
+                    <p><strong>3. Implement role-based authorization.</strong> Even if you eventually want certain users to activate their own subscriptions after payment, explicitly check that the user has the right to modify subscription state. Default to "deny."</p>
+
+                    <p><strong>4. Log and monitor subscription changes.</strong> Every subscription activation should be auditable — who changed it, when, and why. If you see patterns like one account activating subscriptions for multiple planIds, that's a red flag.</p>
+
+                    <p><strong>5. Test your payment flow end-to-end.</strong> Make sure the payment → subscription activation flow actually works and requires payment. Don't assume it does.</p>
+                </section>
+
+                <section>
+                    <h2>Closing Thoughts</h2>
+                    <p>MalakaBooks is a solid platform for Indonesian readers, but this vulnerability showed that not all code paths were equally scrutinized before production. It happens — especially in growing startups where infrastructure gets built fast and security gets reviewed later. The key is to fix it fast once discovered, which I'm optimistic they will.</p>
+
+                    <p>If you're running a subscription service, take this as a wake-up call: audit your authorization logic around payment-critical endpoints. Your revenue depends on it.</p>
+                </section>
+
+                <!-- Related Articles -->
+                <section class="related-articles">
+                    <h3>Related Articles</h3>
+                    <div class="related-articles-grid">
+                        <a href="../breaking-past-403-oob-sql-injection/" class="related-article-card">
+                            <h4>Breaking Past 403: A Deep Dive into Out-of-Band SQL Injection Discovery</h4>
+                            <p>Discovered Out-of-Band SQL Injection on MSSQL server, bypassing 403 restrictions through directory fuzzing and payload crafting.</p>
+                        </a>
+                        <a href="../coffee-order-database-sleep/" class="related-article-card">
+                            <h4>The Coffee Order That Made the Database Sleep</h4>
+                            <p>What started as a casual coffee order turned into a Time-Based SQL Injection discovery in a mobile ordering API.</p>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ryuukhagetsu<span class="highlight">@smileforyou</span></h3>
+                    <p class="footer-tagline">Ethical Hacker | Security Researcher | Bug Hunter | Mahasiswa Biasa</p>
+                    <p class="section-subtitle">Have a project or security concern? Let's work together</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://id.linkedin.com/in/septio-noerdiansyah" class="social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/ryuu_khagetsu" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/ryuukhagetsu" class="social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with <span class="heart">♥</span> by RyuuKhagetsu</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/script.js"></script>
+</body>
+</html>
