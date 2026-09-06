@@ -1634,6 +1634,30 @@ body.navbar-mobile-open .experience-section {
     width: 100%;
 }
 
+/* View-counter badge on article cards (blog listing + homepage) */
+.read-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    white-space: nowrap;
+}
+
+.read-count-badge svg {
+    opacity: 0.8;
+}
+
+.read-count-badge--block {
+    display: flex;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.article-meta .read-count-badge {
+    color: var(--highlight-color);
+}
+
 .contact-info {
     background-color: var(--bg-color);
     border-radius: 10px;

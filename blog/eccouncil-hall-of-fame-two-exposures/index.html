@@ -6,48 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Abusing Broken Access Control and SQL Injection in the Wild | RyuuKhagetsu</title>
-    <meta name="title" content="Abusing Broken Access Control and SQL Injection in the Wild | RyuuKhagetsu">
-    <meta name="description" content="Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.">
-    <meta name="keywords" content="Broken Access Control, SQL Injection, OWASP Top 10, Bug Bounty, Web Security, Penetration Testing, Admin Panel, IDOR, Authentication Bypass, RyuuKhagetsu, Septio, Septio Noerdiansyah">
+    <title>How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures | RyuuKhagetsu</title>
+    <meta name="title" content="How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures | RyuuKhagetsu">
+    <meta name="description" content="Two unauthenticated exposures on EC-Council assets — a leaked Composer credential file and a publicly served ownCloud data directory — that earned me a spot in their Bug Bounty Hall of Fame.">
+    <meta name="keywords" content="EC-Council, Hall of Fame, bug bounty, information disclosure, auth.json, Composer credential, ownCloud, data directory exposure, responsible disclosure, RyuuKhagetsu, Septio Noerdiansyah">
     <meta name="author" content="RyuuKhagetsu">
     <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/">
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/eccouncil-hall-of-fame-two-exposures/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/">
-    <meta property="og:title" content="Abusing Broken Access Control and SQL Injection in the Wild">
-    <meta property="og:description" content="Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.">
-    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/content/13.webp">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/eccouncil-hall-of-fame-two-exposures/">
+    <meta property="og:title" content="How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures">
+    <meta property="og:description" content="Two unauthenticated exposures on EC-Council assets — a leaked Composer credential file and a publicly served ownCloud data directory — that earned me a spot in their Bug Bounty Hall of Fame.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/certification-achievment/cert-achievment-36.webp">
     <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:width" content="915">
-    <meta property="og:image:height" content="917">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="944">
     <meta property="og:site_name" content="RyuuKhagetsu Blog">
-    <meta property="article:published_time" content="2025-07-19">
+    <meta property="article:published_time" content="2026-09-06">
     <meta property="article:author" content="RyuuKhagetsu">
     <meta property="article:section" content="Cybersecurity">
-    <meta property="article:tag" content="Broken Access Control">
-    <meta property="article:tag" content="SQL Injection">
+    <meta property="article:tag" content="Information Disclosure">
+    <meta property="article:tag" content="EC-Council">
     <meta property="article:tag" content="Bug Bounty">
+    <meta property="article:tag" content="Responsible Disclosure">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/">
-    <meta property="twitter:title" content="Abusing Broken Access Control and SQL Injection in the Wild">
-    <meta property="twitter:description" content="Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.">
-    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/content/13.webp">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/eccouncil-hall-of-fame-two-exposures/">
+    <meta property="twitter:title" content="How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures">
+    <meta property="twitter:description" content="Two unauthenticated exposures on EC-Council assets that earned me a spot in their Bug Bounty Hall of Fame.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/certification-achievment/cert-achievment-36.webp">
 
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Abusing Broken Access Control and SQL Injection in the Wild",
-        "description": "Discover how Broken Access Control exposes admin dashboards with full CRUD functionality, chained with SQL Injection vulnerability for critical impact.",
-        "image": "https://ryuukhagetsu.github.io/assets/img/content/13.webp",
+        "headline": "How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures",
+        "description": "Two unauthenticated exposures on EC-Council assets — a leaked Composer credential file and a publicly served ownCloud data directory — that earned me a spot in their Bug Bounty Hall of Fame.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/certification-achievment/cert-achievment-36.webp",
         "author": {
             "@type": "Person",
             "name": "RyuuKhagetsu",
@@ -61,13 +62,13 @@
                 "url": "https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png"
             }
         },
-        "datePublished": "2025-07-19",
-        "dateModified": "2025-07-19",
+        "datePublished": "2026-09-06",
+        "dateModified": "2026-09-06",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/"
+            "@id": "https://ryuukhagetsu.github.io/blog/eccouncil-hall-of-fame-two-exposures/"
         },
-        "keywords": ["Broken Access Control", "SQL Injection", "OWASP Top 10", "Bug Bounty", "Penetration Testing"]
+        "keywords": ["Information Disclosure", "EC-Council", "Bug Bounty", "auth.json", "ownCloud", "Responsible Disclosure"]
     }
     </script>
 
@@ -92,8 +93,8 @@
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "Abusing Broken Access Control and SQL Injection in the Wild",
-                "item": "https://ryuukhagetsu.github.io/blog/abusing-broken-access-control-and-sql-injection/"
+                "name": "How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures",
+                "item": "https://ryuukhagetsu.github.io/blog/eccouncil-hall-of-fame-two-exposures/"
             }
         ]
     }
@@ -181,8 +182,7 @@
                         Back to Articles
                     </a>
                     <!-- Article Title -->
-                    <h1 class="article-title">Abusing <span class="highlight">Broken Access Control</span> and SQL Injection in the Wild
-                    </h1>
+                    <h1 class="article-title">How I Landed in EC-Council's Hall of Fame: <span class="highlight">Two Unauthenticated Exposures</span></h1>
 
                     <!-- Author Section - Single Row -->
                     <div class="article-author-section">
@@ -197,7 +197,7 @@
                                         <path
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
                                     </svg>
-                                    <time datetime="2025-07-19">Jul 19, 2025</time>
+                                    <time datetime="2026-09-06">Sep 6, 2026</time>
                                 </div>
                                 <div class="read-time">
                                     <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
@@ -206,23 +206,22 @@
                                         <path
                                             d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                     </svg>
-                                    4 min read
+                                    5 min read
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Share Section with View on Medium -->
+                    <!-- Share Section -->
                     <div class="article-share-section">
                         <div class="share-left">
-                            <a href="https://systemweakness.com/abusing-broken-access-control-and-sql-injection-in-the-wild-891559e13199"
-                                class="view-on-medium" target="_blank" rel="noopener noreferrer">
+                            <span class="view-on-medium" style="opacity:.6;cursor:default;">
                                 <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
                                     <path
                                         d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
                                 </svg>
-                                View on Medium
-                            </a>
+                                Original research — not cross-posted
+                            </span>
                         </div>
                         <div class="share-right">
                             <span class="share-label">Share:</span>
@@ -265,246 +264,150 @@
                     <!-- Formatted Article Content -->
                     <div class="article-body">
                         <div class="highlight-box">
-                            <p><strong>Disclaimer:</strong> This article is for educational purposes only. The
-                                techniques described should only be used on systems you own or have explicit permission
-                                to test. Unauthorized access to computer systems is illegal.</p>
+                            <p><strong>Disclaimer:</strong> Both findings in this article were reported to EC-Council
+                                through their bug bounty program and are published here after remediation. Sensitive
+                                values (credentials, internal log data) are redacted. Nothing here is a working exploit —
+                                these were plain, unauthenticated exposures found with a browser and an HTTP client.</p>
                         </div>
 
-                        <p>Hi all! How are you guys? I hope everything is fine. It's been quite a while since I last wrote an article — probably over a year. Work and university life kept me pretty busy, and I just didn't have the time to sit down and write, even though there were a lot of things I wanted to share and document. So, this time I'm easing back into it with a light story.</p>
+                        <p>Hi everyone! Hope you're all doing well.</p>
 
-                        <p>A few weeks ago, I was helping a family member register at a school that offered online registration. Out of curiosity and habit, as someone who's into web security, I started poking around the application to see how it was built.</p>
+                        <p>This one's a little different from my usual writeups. Instead of a single deep exploit chain, it's a story about two <em>boring-looking</em> misconfigurations — the kind you find with a browser and a bit of patience — that both hit the same organization: <strong>EC-Council</strong>, the folks behind the CEH certification. Two unauthenticated information exposures, reported responsibly, that put my name in their <a href="https://www.eccouncil.org/bug-bounty/hall-of-fame/" target="_blank" rel="noopener noreferrer">Bug Bounty Hall of Fame</a> and earned a signed Certificate of Appreciation.</p>
 
-                        <p>Let's just call the site: <code>www.site.com</code></p>
+                        <p>No 0-day, no fancy payload. Just two files that were never meant to be public, being served straight off the web root. Here's how both went down.</p>
 
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/2.webp"
-                                alt="Scope site.com" width="1048" height="688">
-                            <p class="image-caption">Scope site.com</p>
-                        </div>
+                        <h2>Why EC-Council?</h2>
+                        <p>If you've spent any time in cybersecurity, you know EC-Council — they run the <strong>Certified Ethical Hacker (CEH)</strong> program and a whole family of security certifications. They also run a public bug bounty program with a Hall of Fame, which makes their in-scope assets fair game for responsible testing. When an organization that <em>teaches</em> security invites you to test their own surface, that's an invitation worth taking seriously.</p>
 
-                        <h2>Broken Access Control</h2>
-                        <p>I began with the usual suspects — trying SQL Injection on the login form, checking for auth bypasses, and other basic attacks. Unfortunately, nothing worked — at least at first.</p>
+                        <p>I picked a couple of their subdomains and started doing what I always do first: looking for things that shouldn't be reachable without logging in.</p>
 
-                        <p>So I tried viewing the source code and started fuzzing with ffuf:</p>
+                        <h2>Finding #1 — A Credential File Served Straight Off the Web Root</h2>
+                        <p>The first target was <code>cybersecurity.eccouncil.org</code>, which runs on <strong>October CMS</strong> (a Laravel-based CMS). October CMS projects use Composer for dependency management, and Composer stores private-repository credentials in a file called <code>auth.json</code>.</p>
+
+                        <p>That file is <em>never</em> supposed to be web-accessible. So naturally, I asked for it:</p>
 
                         <div class="code-block">
-                            <code>
-                                ffuf -u https://site.com/FUZZ -w db/dicc.txt -fs 0 -c
-                            </code>
+                            <code>GET https://[redacted]/auth.json  &rarr;  HTTP 200</code>
                         </div>
 
-                        <h3>Explanation</h3>
-                        <ul>
-                            <li><strong>-u</strong> : target URL. Make sure to include FUZZ so ffuf knows where to test.</li>
-                            <li><strong>-w</strong> : wordlist file. You can use a list from SecList or dirsearch.</li>
-                            <li><strong>-fs 0</strong> : filters out responses with size 0. Helpful to reduce false positives.</li>
-                            <li><strong>-c</strong> : adds color to the output (because colors make bugs more fun)</li>
-                        </ul>
-
-                        <p>Unfortunately… nothing useful came up.</p>
+                        <p>It returned <code>200 OK</code> with the full JSON document — an HTTP Basic credential for <code>gateway.octobercms.com</code>, the marketplace gateway October CMS uses for licensed themes and plugins:</p>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/3.webp"
-                                alt="fuzzing directory" width="815" height="785">
-                            <p class="image-caption">Fuzzing directory</p>
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/eccouncil-hall-of-fame/1-authjson-exposed.webp"
+                                alt="auth.json served with HTTP 200 exposing an October CMS Composer HTTP Basic credential, password redacted" width="1200" height="385">
+                            <p class="image-caption">The exposed <code>auth.json</code> — a live Composer gateway credential, served without any authentication. The password is redacted here; it was fully visible in the response.</p>
                         </div>
 
-                        <p>Since fuzzing didn't give anything, I switched to Burp Suite and ensured my proxy was set using FoxyProxy.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/4.webp"
-                                alt="FoxyProxy settings" width="1100" height="348">
-                            <p class="image-caption">FoxyProxy settings</p>
-                        </div>
-
-                        <p>After refreshing the page and attempting to log in again, I noticed a file called <code>spk.php</code></p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/5.webp"
-                                alt="spk.php discovery" width="361" height="522">
-                            <p class="image-caption">spk.php discovery</p>
-                        </div>
-                            
-                        <p>which I somehow missed during fuzzing. Accessing it via browser returned a <strong>302 Found</strong> with a pop-up saying "Silakan login terlebih dahulu" — which means I am asked to log in first.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/6.webp"
-                                alt="Pop-up login" width="1100" height="422">
-                            <p class="image-caption">Pop-up login</p>
-                        </div>
-
-                        <p>Hmm. Not very helpful. But then I checked the raw response in Burp. Even though it was a 302 redirect, the source code was still visible. I found:</p>
-
-                        <div class="code-block">
-                            <code>
-                                &lt;script&gt;alert('anda belum login')&lt;/script&gt;
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/7.webp"
-                                alt="code source" width="1100" height="650">
-                            <p class="image-caption">Code source</p>
-                        </div>
-
-                        <p>And further down… an admin dashboard with a logout button. I switched Burp's layout to a top-bottom view and clicked on the Render tab.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/8.webp"
-                                alt="burpsuite render tab" width="1100" height="683">
-                            <p class="image-caption">BurpSuite render tab</p>
-                        </div>
-
-                        <div class="highlight-box">
-                            <p><strong>Result:</strong> The full admin dashboard appeared, complete with student data and grades.</p>
-                        </div>
-
-                        <p>I started collecting URLs from the dashboard:</p>
+                        <p>Now, one exposed file could theoretically be intentional. So before reporting, I did two quick checks to prove this was an <em>accident</em>, not a decision:</p>
 
                         <ul>
-                            <li>index.php</li>
-                            <li>alternatif.php</li>
-                            <li>kriteria.php</li>
-                            <li>nilai.php</li>
-                            <li>spk.php</li>
-                        </ul>
-
-                        <p>Then I tried adding a new student to see whether access was read-only or if I could go further.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/9.webp"
-                                alt="adding new student" width="1100" height="446">
-                            <p class="image-caption">Adding new student</p>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/10.webp"
-                                alt="success adding new student" width="1100" height="716">
-                            <p class="image-caption">Success adding new student</p>
-                        </div>
-
-                        <p>It worked. Next, I edited the student's name from <code>test-poc</code> to <code>test-poc-change</code>.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/11.webp"
-                                alt="success editing student" width="1100" height="716">
-                            <p class="image-caption">Success editing student, test-poc to test-poc-change</p>
-                        </div>
-
-                        <div class="highlight-box">
-                            <p><strong>Confirmed:</strong> This wasn't just visibility — Broken Access Control allowed full CRUD functionality.</p>
-                        </div>
-
-                        <h2>SQL Injection</h2>
-                        <p>After taking a break, I was about to shut down my laptop. But then I thought "Why not go just a bit further?"</p>
-
-                        <p>So I revisited the request used to edit the student data:</p>
-
-                        <div class="code-block">
-                            <code>
-                                nama=test-poc-change&kelamin=Laki-Laki&kelas=9B&sekolah=SMP+TEST&update=Simpan+Perubahan
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/12.webp"
-                                alt="request edit student" width="1100" height="645">
-                            <p class="image-caption">Request edit student</p>
-                        </div>
-
-                        <p>Normally, a success message like "Data berhasil diperbarui" appears.</p>
-
-                        <p>I added a single quote:</p>
-
-                        <div class="code-block">
-                            <code>
-                                nama=test-poc-change'&kelamin=Laki-Laki&kelas=9B&sekolah=SMP+TEST&update=Simpan+Perubahan
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/13.webp"
-                                alt="add single quote" width="1100" height="645">
-                            <p class="image-caption">Add single quote</p>
-                        </div>
-
-                        <p>The message disappeared.</p>
-
-                        <p>Then I added another quote:</p>
-
-                        <div class="code-block">
-                            <code>
-                                nama=test-poc-change''&kelamin=Laki-Laki&kelas=9B&sekolah=SMP+TEST&update=Simpan+Perubahan
-                            </code>
-                        </div>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/14.webp"
-                                alt="add another quote" width="1100" height="645">
-                            <p class="image-caption">Add another quote</p>
-                        </div>
-
-                        <p>The success message came back. That looked suspiciously like a classic SQL injection indicator. I copied the full request and saved it as <code>inject.txt</code>.</p>
-
-                        <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/15.webp"
-                                alt="save request" width="797" height="245">
-                            <p class="image-caption">Save request</p>
-                        </div>
-                        
-                        <h3>SQLMap Exploitation</h3>
-                        <p>Start sqlmap with this command:</p>
-
-                        <div class="code-block">
-                            <code>
-                                sqlmap -r inject.txt -p nama --level 3 --risk 3 --random-agent --batch --ignore-redirect --dbs
-                            </code>
-                        </div>
-
-                        <h3>What each option does</h3>
-                        <ul>
-                            <li><strong>-r</strong> : read the raw request file.</li>
-                            <li><strong>-p</strong> : test only the nama parameter</li>
-                            <li><strong>--level 3</strong> : deeper and more extensive tests</li>
-                            <li><strong>--risk 3</strong> : includes higher-risk payloads</li>
-                            <li><strong>--random-agent</strong> : rotates user-agent strings</li>
-                            <li><strong>--batch</strong> : no prompts, just run</li>
-                            <li><strong>--ignore-redirect</strong> : super important here; avoids 302 redirection that would otherwise break injection</li>
-                            <li><strong>--dbs</strong> : dumps database names if vulnerable</li>
+                            <li><code>GET /.gitignore</code> returned <code>200</code> — and it <strong>explicitly listed <code>auth.json</code></strong> as a file that should never be committed or exposed. The project itself considered it secret.</li>
+                            <li><code>GET /.env</code> correctly returned <code>403 Forbidden</code> — so the server <em>did</em> have protection for sensitive files. It just didn't cover <code>auth.json</code>.</li>
                         </ul>
 
                         <div class="highlight-box">
-                            <p><strong>Important:</strong> The most critical command in this case is <code>--ignore-redirect</code> because otherwise sqlmap will follow the redirect and the injection process will not succeed.</p>
+                            <p><strong>Why this matters:</strong> the exposed file hands an unauthenticated attacker a valid Composer username and password for EC-Council's October CMS deployment. If that credential was still live, it could be used to authenticate to the gateway account and pull whatever licensed packages or account data it had access to — and if the same password was reused anywhere else in their infrastructure, the blast radius grows. I did not authenticate with it; verifying that would mean logging into a third-party service, which is out of scope. The finding stands on the disclosure alone.</p>
+                        </div>
+
+                        <p>I scored it <strong>CVSS 4.0</strong>:</p>
+                        <div class="code-block">
+                            <code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N</code>
+                        </div>
+                        <p>Network-reachable, no privileges, no user interaction, high confidentiality impact. The fix is equally simple: pull <code>auth.json</code> out of the web root, deny direct access to deployment files (<code>.env</code>, <code>.gitignore</code>, <code>composer.json/lock</code>), serve the app from October CMS's recommended <code>public/</code> document root, and rotate the leaked credential.</p>
+
+                        <h2>Finding #2 — An Entire ownCloud Data Directory, Public</h2>
+                        <p>The second target was <code>fileshare.eccouncil.org</code>, an <strong>ownCloud</strong> instance. First I fingerprinted the version through the unauthenticated status endpoint:</p>
+
+                        <div class="code-block">
+                            <code>GET https://[redacted]/status.php</code>
                         </div>
 
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/blog/abusing-broken-access-control-and-sql-injection/16.webp"
-                                alt="sqlmap output" width="804" height="532">
-                            <p class="image-caption">Sqlmap output</p>
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/eccouncil-hall-of-fame/2-owncloud-status.webp"
+                                alt="ownCloud status.php confirming version 10.15.0.2 Community edition in production" width="984" height="851">
+                            <p class="image-caption"><code>status.php</code> — ownCloud Community 10.15.0.2, installed, not in maintenance mode. A live production instance.</p>
                         </div>
 
-                        <h2>Conclusion</h2>
-                        <p>Writing this story reminds me how much I enjoy documenting things like this. Even though this was just a small finding, it felt good to dive back into the habit of writing again. Hopefully, I can keep it up and share more in the future.</p>
+                        <p>In a correct ownCloud deployment, the <code>data/</code> directory — where every user's files, the app log, and internal state live — sits <em>outside</em> the web root, or is blocked by bundled <code>.htaccess</code> rules so that ownCloud's own access control is the only way in. Here, Apache was serving <code>data/</code> directly, before ownCloud ever got a chance to check who you were.</p>
 
-                        <p>Interestingly, this kind of vulnerability is something I often come across during bug bounty hunting — especially in private programs. It shows how even simple misconfigurations can have a big impact, and how important it is to test and secure applications thoroughly.</p>
+                        <p>So a request to the admin user's data folder returned a plain Apache directory listing:</p>
 
-                        <p>Maybe that's all from me, hopefully it won't take me another year to post again. I'm RyuuKhagetsu, see you in next article.</p>
+                        <div class="code-block">
+                            <code>GET https://[redacted]/data/admin/  &rarr;  Index of /data/admin</code>
+                        </div>
+
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/eccouncil-hall-of-fame/3-data-directory-listing.webp"
+                                alt="Apache directory listing of /data/admin exposing ownCloud internal folders cache, files, files_trashbin, thumbnails" width="1146" height="826">
+                            <p class="image-caption">Directory indexing on <code>/data/admin/</code> — ownCloud's internal <code>cache</code>, <code>files</code>, <code>files_trashbin</code>, and <code>thumbnails</code> folders, all reachable without a login.</p>
+                        </div>
+
+                        <p>Because the data directory bypasses ownCloud entirely, everything under it was fetchable with ordinary HTTP requests — no authentication, no headers, no user interaction. That included the application log, <code>data/owncloud.log</code>, which is a goldmine for reconnaissance. Without pasting the sensitive contents, the log alone leaked:</p>
+
+                        <ul>
+                            <li>Source and <strong>internal private IP addresses</strong></li>
+                            <li>Account identifiers and <strong>database account names</strong></li>
+                            <li>Internal filesystem paths</li>
+                            <li>Request metadata — URLs, methods, timestamps</li>
+                            <li>Authentication-failure events</li>
+                            <li>PHP, MySQL, and OpenSSL error messages</li>
+                        </ul>
+
+                        <p>I re-tested on <strong>05 August 2026</strong> and it was still reproducible. Same CVSS 4.0 shape as the first finding — unauthenticated, network-reachable, high confidentiality impact:</p>
+
+                        <div class="code-block">
+                            <code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N</code>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>The pattern across both findings:</strong> a file or directory that the application itself treats as private, being served directly by the web server <em>before</em> the application's access control ever runs. <code>auth.json</code> was in <code>.gitignore</code>; the ownCloud <code>data/</code> dir ships with bundled protection rules. In both cases the app "knew" these were secret — the web server just never got the memo.</p>
+                        </div>
+
+                        <h2>Responsible Disclosure &amp; Recognition</h2>
+                        <p>Both issues went through EC-Council's bug bounty program with full reports — summary, reproduction steps, impact, and mitigation for each. The recommended fixes were the un-glamorous but effective kind: move sensitive files and directories out of the web root, enforce deny rules for deployment/config files, disable directory indexing, and rotate anything that may have been exposed.</p>
+
+                        <p>A while later, EC-Council added me to their public Bug Bounty Hall of Fame and sent over a Certificate of Appreciation signed by their President:</p>
+
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/certification-achievment/cert-achievment-36.webp"
+                                alt="EC-Council Certificate of Appreciation awarded to Septio Noerdiansyah for identifying qualifying vulnerabilities" width="1200" height="944">
+                            <p class="image-caption">EC-Council Certificate of Appreciation — for identifying qualifying vulnerabilities in their web assets and services. You can also find my name under the 2026 section of their <a href="https://www.eccouncil.org/bug-bounty/hall-of-fame/" target="_blank" rel="noopener noreferrer">Hall of Fame</a>.</p>
+                        </div>
+
+                        <h2>Takeaways</h2>
+                        <p>Neither of these was a clever bug. That's exactly why they're worth writing about:</p>
+
+                        <ul>
+                            <li><strong>The web root is a trust boundary.</strong> Anything sitting in it is public until proven otherwise. Deployment artifacts — <code>auth.json</code>, <code>.env</code>, <code>.git/</code>, backups, logs — belong outside it.</li>
+                            <li><strong>Framework "bundled protection" is not automatic.</strong> ownCloud ships <code>.htaccess</code> rules to guard <code>data/</code>, but they only work if the web server actually honors them. Verify, don't assume.</li>
+                            <li><strong>Check for intent before you report.</strong> The <code>.gitignore</code> listing <code>auth.json</code> and the <code>.env</code> returning 403 turned "maybe this is on purpose" into a provable accidental exposure. That context makes a report much stronger.</li>
+                            <li><strong>Simple, high-impact findings count.</strong> You don't need an RCE to make a Hall of Fame. Confidentiality exposures with a clean, reproducible PoC are real, reportable bugs.</li>
+                        </ul>
+
+                        <p>Sometimes the best recon is just asking the server for the one file it really shouldn't give you — and paying attention when it says <code>200 OK</code>.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Key Takeaway:</strong> access control that lives only inside your application is worthless if the web server hands out the files first. Keep secrets and data directories out of the web root, and treat every deployment file in it as already public.</p>
+                        </div>
+
+                        <p>Maybe that's all from me. I'm RyuuKhagetsu, see you in next article.</p>
 
                         <!-- Tags Section -->
                         <div class="article-tags">
                             <h4>Tags:</h4>
                             <div class="tags-list">
-                                <span class="tag">#BrokenAccessControl</span>
-                                <span class="tag">#SQLInjection</span>
-                                <span class="tag">#WebSecurity</span>
+                                <span class="tag">#EC-Council</span>
+                                <span class="tag">#HallOfFame</span>
+                                <span class="tag">#InformationDisclosure</span>
                                 <span class="tag">#BugBounty</span>
-                                <span class="tag">#PenetrationTesting</span>
-                                <span class="tag">#SQLMap</span>
-                                <span class="tag">#BurpSuite</span>
-                                <span class="tag">#Cybersecurity</span>
+                                <span class="tag">#ownCloud</span>
+                                <span class="tag">#OctoberCMS</span>
+                                <span class="tag">#ResponsibleDisclosure</span>
+                                <span class="tag">#Recon</span>
                             </div>
                         </div>
                     </div>
+        </div>
     </section>
 
     <!-- Related Articles -->
@@ -520,22 +423,21 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/content/5.webp" width="1024" height="1024">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/malakabooks-subscription-bypass/1-membership-plans.webp" width="1079" height="1135">
                             <div class="article-overlay">
-                                <a href="../access-server-from-sql/" class="article-link">read article</a>
+                                <a href="../malakabooks-subscription-bypass/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
                             <div class="article-tags">
-                                <span class="article-tag">SQL Injection</span>
-                                <span class="article-tag">Database Security</span>
+                                <span class="article-tag">API Vulnerability</span>
+                                <span class="article-tag">Payment Bypass</span>
                             </div>
                             <h3 class="related-title">
-                                <a href="../access-server-from-sql/">Got Access To Server through SQL Injection</a>
+                                <a href="../malakabooks-subscription-bypass/">Subscription Bypass in MalakaBooks: Zero Validation Edition</a>
                             </h3>
                             <p class="article-excerpt">
-                                Hi, how are you guys? I hope you are fine. This is my first article of the
-                                month, I hope you enjoy it...
+                                A leftover /mock-activate endpoint let any free user activate a premium book subscription without paying...
                             </p>
                         </div>
                     </div>
@@ -543,22 +445,21 @@
                 <div class="col-md-6 mb-4">
                     <div class="article-card-horizontal">
                         <div class="article-image">
-                            <img loading="lazy" decoding="async" src="../../assets/img/content/13.webp" width="915" height="917">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/postman-docker-rce/1-docker-version-reachable.webp" width="1091" height="966">
                             <div class="article-overlay">
-                                <a href="../bypass-sqli/" class="article-link">read article</a>
+                                <a href="../postman-docker-rce/" class="article-link">read article</a>
                             </div>
                         </div>
                         <div class="related-content">
                             <div class="article-tags">
-                                <span class="article-tag">Bug Bounty</span>
-                                <span class="article-tag">SQL Injection</span>
+                                <span class="article-tag">SSRF</span>
+                                <span class="article-tag">Docker</span>
                             </div>
                             <h3 class="related-title">
-                                <a href="../bypass-sqli/">[Bug Bounty] SQL Injection and Bypass SQL Login</a>
+                                <a href="../postman-docker-rce/">The Postman Always Rings Twice: SSRF to Root via a Docker Socket</a>
                             </h3>
                             <p class="article-excerpt">
-                                Hi Semuanya bagaimana kabarnya? Semoga dalam keadaan baik baik saja. Kali
-                                ini saya ingin membagikan tulisan saya mengenai bug bounty...
+                                A dead SSRF guard inside Postman's own request library lets an imported Collection reach the Docker Engine API and become root...
                             </p>
                         </div>
                     </div>

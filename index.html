@@ -599,6 +599,8 @@
                     <div class="hall-of-fame-wrapper">
                         <div class="hall-of-fame-logos" id="logo-slider">
                             <!-- first set -->
+                            <div class="hof-logo"><a href="https://www.eccouncil.org/bug-bounty/hall-of-fame/" target="_blank" rel="noopener noreferrer" aria-label="EC-Council Bug Bounty Hall of Fame"><img loading="lazy" decoding="async" src="assets/img/hof/eccouncil.svg" alt="EC-Council HoF" class="img-fluid" width="300" height="56"></a>
+                            </div>
                             <div class="hof-logo"><img loading="lazy" decoding="async" src="assets/img/hof/nasa.webp" alt="Nasa HoF" class="img-fluid" width="1600" height="1330">
                             </div>
                             <div class="hof-logo"><img loading="lazy" decoding="async" src="assets/img/hof/lenovo.png" alt="Lenovo HoF"
@@ -1531,6 +1533,20 @@
                 <div class="achievement-gallery-item professional-cert" data-category="professional-cert">
                     <div class="achievement-card-wrapper">
                         <div class="achievement-image-container">
+                            <img loading="lazy" decoding="async" src="assets/img/certification-achievment/cert-achievment-36.webp"
+                                alt="EC-Council Certificate of Appreciation — Septio Noerdiansyah" class="achievement-main-image" width="1200" height="944">
+                        </div>
+                        <div class="achievement-content-section">
+                            <span class="achievement-category-tag">Hall of Fame</span>
+                            <h3 class="achievement-title-text">EC-Council Certificate of Appreciation</h3>
+                            <p class="achievement-issuer-name">EC-Council</p>
+                            <p class="achievement-date-info">Issued: September 2026 &middot; Bug Bounty Hall of Fame</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="achievement-gallery-item professional-cert" data-category="professional-cert">
+                    <div class="achievement-card-wrapper">
+                        <div class="achievement-image-container">
                             <img loading="lazy" decoding="async" src="assets/img/certification-achievment/cert-achievment-35.webp"
                                 alt="Web Application Penetration Tester eXtreme (eWPTX) — INE Security" class="achievement-main-image" width="1200" height="927">
                         </div>
@@ -2231,7 +2247,26 @@
                 <p class="section-subtitle">Sharing knowledge through detailed write-ups and tutorials</p>
             </div>
             <div class="row">
-                <!-- Blog Post 1 - NEW: MalakaBooks Subscription Bypass -->
+                <!-- Blog Post 1 - NEW: EC-Council Hall of Fame -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img loading="lazy" decoding="async" src="assets/img/certification-achievment/cert-achievment-36.webp" alt="EC-Council Hall of Fame — two unauthenticated exposures" class="img-fluid" width="1200" height="944">
+                            <time datetime="2026-09-06" class="blog-date" aria-label="Sep 6, 2026"><span class="day">06</span><span class="month">Sep</span></time>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-tags">
+                                <span class="blog-tag">Info Disclosure</span>
+                                <span class="blog-tag">EC-Council</span>
+                            </div>
+                            <h3 class="blog-title">How I Landed in EC-Council's Hall of Fame: Two Unauthenticated Exposures</h3>
+                            <p class="blog-excerpt">A leaked Composer credential file and a publicly served ownCloud data directory on EC-Council assets — two simple exposures that made their Hall of Fame.</p>
+                            <a href="blog/eccouncil-hall-of-fame-two-exposures/" class="blog-read-more">Read
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 2 - MalakaBooks Subscription Bypass -->
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="blog-card">
                         <div class="blog-image">
@@ -2250,7 +2285,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Blog Post 2 - Postman SSRF to Docker RCE -->
+                <!-- Blog Post 3 - Postman SSRF to Docker RCE -->
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="blog-card">
                         <div class="blog-image">
@@ -2265,25 +2300,6 @@
                             <h3 class="blog-title">The Postman Always Rings Twice: SSRF to Root via a Docker Socket</h3>
                             <p class="blog-excerpt">A dead SSRF guard inside Postman's own request library lets an imported Collection reach the Docker Engine API and become root on the host.</p>
                             <a href="blog/postman-docker-rce/" class="blog-read-more">Read
-                                More</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Blog Post 3 - Time-Based SQL Injection (Coffee App) -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img loading="lazy" decoding="async" src="assets/img/blog/coffee-order-database-sleep/preview-card.jpg" alt="Time-Based SQL Injection in Coffee Ordering App" class="img-fluid" width="800" height="600">
-                            <time datetime="2026-03-11" class="blog-date" aria-label="Mar 11, 2026"><span class="day">11</span><span class="month">Mar</span></time>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-tags">
-                                <span class="blog-tag">Time-Based SQLi</span>
-                                <span class="blog-tag">Mobile API</span>
-                            </div>
-                            <h3 class="blog-title">The Coffee Order That Made the Database Sleep</h3>
-                            <p class="blog-excerpt">What started as a casual coffee order turned into a Time-Based SQL Injection discovery in a mobile ordering API.</p>
-                            <a href="blog/coffee-order-database-sleep/" class="blog-read-more">Read
                                 More</a>
                         </div>
                     </div>
@@ -2347,6 +2363,7 @@
     <!-- Custom JavaScript -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/cyber-animations.js"></script>
+    <script src="assets/js/view-counter.js" defer></script>
 </body>
 
 </html>

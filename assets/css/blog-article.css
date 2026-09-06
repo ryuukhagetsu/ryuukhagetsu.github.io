@@ -89,6 +89,22 @@
     gap: 4px;
 }
 
+.read-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.read-count svg {
+    opacity: 0.85;
+}
+
+.read-count .read-count-num {
+    color: var(--highlight-color, #00f1e7);
+    font-weight: 600;
+}
+
 
 .article-share-section {
     display: flex;
