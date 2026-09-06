@@ -17,6 +17,28 @@
 (function () {
   "use strict";
 
+  /* ───────────────────────────────────────────────────────────────────────────
+   *  Dear hengker hengker 👋
+   *
+   *  Iya, URL/config Firebase di bawah ini emang publik — dan itu MEMANG by design,
+   *  bukan bug, bukan misconfig. Sebelum ngetik "Firebase API key exposed" di
+   *  laporan, baca dulu ya, ntar N/A malu sendiri 😄
+   *
+   *    • Firebase apiKey/databaseURL itu identifier project, BUKAN secret. Google
+   *      sendiri bilang aman ditaruh di client. Keamanannya dari Security Rules,
+   *      bukan dari nyembunyiin URL.
+   *    • Yang ke-expose di sini cuma databaseURL (endpoint). apiKey-nya malah nggak
+   *      ikut ke-commit sama sekali.
+   *    • Rules-nya: /reads read-only publik, write cuma boleh naik +1. Coba deh:
+   *        - set angka sembarang (mis. 9999)  → 401 Permission denied
+   *        - hapus / set null / decrement      → 401 Permission denied
+   *        - baca/tulis path lain selain /reads → 401 Permission denied
+   *    • Nol data sensitif. Isinya cuma: slug artikel → angka view. Itu doang.
+   *
+   *  Jadi worst case? Orang iseng bisa naikin angka view gw +1 berkali-kali.
+   *  Bukan breach, cuma bikin gw kelihatan lebih populer dari aslinya wkwk.
+   *  Makasih udah peduli sama keamanan gw sih, salam dari sesama researcher 🤝
+   * ─────────────────────────────────────────────────────────────────────────── */
   var DB = "https://ryuu-portofolio-default-rtdb.asia-southeast1.firebasedatabase.app";
   var READ_THRESHOLD_MS = 20000; // 20 seconds of visible time
   var EYE =
