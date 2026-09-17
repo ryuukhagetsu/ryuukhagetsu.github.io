@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Behind the Scenes: Two RCEs in a Single OBS Scene Collection Import | RyuuKhagetsu</title>
+    <meta name="title" content="Behind the Scenes: Two RCEs in a Single OBS Scene Collection Import | RyuuKhagetsu">
+    <meta name="description" content="Importing a shared OBS 'streaming kit' can silently execute arbitrary code — two independent, unpatched RCE vectors in Scene Collection import, still present as of OBS 32.2.2.">
+    <meta name="keywords" content="OBS Studio, RCE, Scene Collection, VST plugin_path, os_dlopen, scripts-tool, Lua RCE, CWE-94, CWE-427, Vulnerability Research, Responsible Disclosure, RyuuKhagetsu, Septio Noerdiansyah">
+    <meta name="author" content="RyuuKhagetsu">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ryuukhagetsu.github.io/blog/obs-scene-collection-rce/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ryuukhagetsu.github.io/blog/obs-scene-collection-rce/">
+    <meta property="og:title" content="Behind the Scenes: Two RCEs in a Single OBS Scene Collection Import">
+    <meta property="og:description" content="Importing a shared OBS 'streaming kit' can silently execute arbitrary code — two independent, unpatched RCE vectors in Scene Collection import, still present as of OBS 32.2.2.">
+    <meta property="og:image" content="https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="500">
+    <meta property="og:site_name" content="RyuuKhagetsu Blog">
+    <meta property="article:published_time" content="2026-08-27">
+    <meta property="article:author" content="RyuuKhagetsu">
+    <meta property="article:section" content="Cybersecurity">
+    <meta property="article:tag" content="RCE">
+    <meta property="article:tag" content="OBS Studio">
+    <meta property="article:tag" content="Vulnerability Research">
+    <meta property="article:tag" content="Responsible Disclosure">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ryuukhagetsu.github.io/blog/obs-scene-collection-rce/">
+    <meta property="twitter:title" content="Behind the Scenes: Two RCEs in a Single OBS Scene Collection Import">
+    <meta property="twitter:description" content="Importing a shared OBS 'streaming kit' can silently execute arbitrary code — two independent, unpatched RCE vectors in Scene Collection import, still present as of OBS 32.2.2.">
+    <meta property="twitter:image" content="https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Behind the Scenes: Two RCEs in a Single OBS Scene Collection Import",
+        "description": "Importing a shared OBS 'streaming kit' can silently execute arbitrary code — two independent, unpatched RCE vectors in Scene Collection import, still present as of OBS 32.2.2.",
+        "image": "https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png",
+        "author": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "url": "https://ryuukhagetsu.github.io"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "RyuuKhagetsu",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ryuukhagetsu.github.io/assets/img/logo/1692533172462_prev_ui.png"
+            }
+        },
+        "datePublished": "2026-08-27",
+        "dateModified": "2026-08-27",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ryuukhagetsu.github.io/blog/obs-scene-collection-rce/"
+        },
+        "keywords": ["RCE", "OBS Studio", "Scene Collection", "VST", "Lua", "Vulnerability Research", "Responsible Disclosure"]
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://ryuukhagetsu.github.io/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://ryuukhagetsu.github.io/blog/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Behind the Scenes: Two RCEs in a Single OBS Scene Collection Import",
+                "item": "https://ryuukhagetsu.github.io/blog/obs-scene-collection-rce/"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/cyber-animations.css">
+    <link rel="stylesheet" href="../../assets/css/blog-article.css">
+    <!-- Blog enhancements (copy buttons, reading progress) -->
+    <link rel="stylesheet" href="../../assets/css/blog-enhancements.css">
+    <!-- Favicons (Google-indexable: 48x48+ PNG required) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0a0a0a">
+
+</head>
+
+<body>
+    <div class="reading-progress" aria-hidden="true"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu Logo" class="navbar-logo" width="500" height="500">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#cve">CVE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html#halloffame">Hall of Fame</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Back to Articles Button -->
+                    <a href="../" class="back-to-articles">
+                        <svg class="back-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Back to Articles
+                    </a>
+                    <!-- Article Title -->
+                    <h1 class="article-title">Behind the Scenes: Two RCEs in a <span class="highlight">Single OBS Scene Collection Import</span></h1>
+
+                    <!-- Author Section - Single Row -->
+                    <div class="article-author-section">
+                        <div class="author-avatar">
+                            <img loading="lazy" decoding="async" src="../../assets/img/logo/1692533172462_prev_ui.png" alt="ryuukhagetsu" width="500" height="500">
+                        </div>
+                        <div class="author-details">
+                            <h4>RyuuKhagetsu</h4>
+                            <div class="author-meta">
+                                <div class="publish-date">
+                                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
+                                    </svg>
+                                    <time datetime="2026-08-27">Aug 27, 2026</time>
+                                </div>
+                                <div class="read-time">
+                                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                    8 min read
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="article-share-section">
+                        <div class="share-left">
+                            <span class="view-on-medium" style="opacity:.6;cursor:default;">
+                                <svg class="medium-icon" fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
+                                </svg>
+                                Original research — not cross-posted
+                            </span>
+                        </div>
+                        <div class="share-right">
+                            <span class="share-label">Share:</span>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn share-twitter" data-share="twitter"
+                                    title="Share on Twitter">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="share-btn share-linkedin" data-share="linkedin"
+                                    title="Share on LinkedIn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="share-btn share-copy" data-share="copy" title="Copy Link">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                                        <path
+                                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Formatted Article Content -->
+                    <div class="article-body">
+                        <div class="highlight-box">
+                            <p><strong>Disclaimer:</strong> This article documents research conducted in an isolated
+                                lab environment against a build of OBS Studio I own, for the explicit purpose of
+                                responsible disclosure. Do not point any of this at systems you don't own or don't
+                                have explicit permission to test. Code snippets below are illustrative — placeholders
+                                stand in for real payload values.</p>
+                        </div>
+
+                        <p>Hi everyone! Hope you're all doing well.</p>
+
+                        <p>This one's a bit different from my usual writeups, and honestly a bit heavier. I've been prepping research for an upcoming NCSC 2026 talk, and one of the pieces of software I decided to point a flashlight at was <strong>OBS Studio</strong> — the free, open-source broadcasting software that half the streaming and screen-recording world runs, including, ironically, a lot of security researchers recording their own PoC videos.</p>
+
+                        <p>It's open source, it's genuinely everywhere, and its own <code>SECURITY.md</code> explicitly lists RCE as in-scope for responsible disclosure. That combination made it worth a weekend.</p>
+
+                        <p>What I found were <strong>two independent Remote Code Execution vectors</strong>, both triggered by the exact same, completely ordinary action every OBS user has done at least once: <strong>File → Import Scene Collection</strong>.</p>
+
+                        <h2>Scene Collections Are Just JSON</h2>
+                        <p>If you've never dug into it, an OBS "Scene Collection" — everything about your sources, filters, scenes, and layout — is stored as a plain JSON file. That's exactly why the streaming community shares them so freely: "streaming kits," "starter presets," "stream deck bundles," all commonly distributed as a JSON file (sometimes zipped with a couple of companion assets) on Discord, Reddit, or GitHub.</p>
+
+                        <p>You import someone's preset the same way you'd install a font or a wallpaper pack — double-click, browse, select, Import. Nobody reads the JSON first.</p>
+
+                        <figure class="article-figure">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/obs-scene-collection-rce/intro_ui.png" alt="OBS Studio 32.2.1 in its pristine default state inside the lab VM — one empty scene, no sources, before any import" width="1920" height="1080">
+                            <figcaption>The starting point: OBS Studio 32.2.1 in the lab VM — completely pristine, one empty scene, no sources. The netcat listener (`rlwrap nc -Lvnp 4444`) is already armed on the attacker host.</figcaption>
+                        </figure>
+
+                        <p>That trust is exactly what both of these vectors exploit.</p>
+
+                        <h2>Vector 1 — A VST Filter That Isn't a VST Filter</h2>
+                        <p>OBS lets you attach a VST audio filter to any audio source — noise suppression, EQ, that sort of thing. When you add one, OBS reads a <code>plugin_path</code> field telling it exactly which plugin binary to load.</p>
+
+                        <p>Scene Collection JSON can contain that same filter definition, <code>plugin_path</code> and all. And the load path doesn't care whether the JSON came from your own <code>~/.config/obs-studio</code> or from a stranger's ZIP file:</p>
+
+                        <div class="code-block">
+                            <code>
+                                obs-vst.cpp:104&nbsp;&nbsp;const char *pluginPath = obs_data_get_string(settings, "plugin_path");<br>
+                                VSTPlugin.cpp:136&nbsp;&nbsp;soHandle = os_dlopen(pluginPath.c_str());&nbsp;&nbsp;// zero validation before this call
+                            </code>
+                        </div>
+
+                        <p>No whitelist of trusted VST directories. No path canonicalization. No check that the binary is actually a VST plugin before it's loaded. <code>os_dlopen()</code> is just <code>dlopen()</code> under a different name — it loads the shared object and runs its constructor functions immediately, before OBS ever gets around to asking "is this actually a VST plugin?"</p>
+
+                        <p>Point <code>plugin_path</code> at an attacker-controlled <code>.so</code> (Linux) or <code>.dll</code> (Windows) with a constructor that spawns a shell, and the moment the Scene Collection loads, code executes with OBS's own process privileges. No dialog, no warning, no "this file is from the internet" prompt — the field isn't even shown anywhere in the normal UI.</p>
+
+                        <figure class="article-figure">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/obs-scene-collection-rce/payload_execution_1.png" alt="Import Scene Collection file browser hovering over the poc-obs-studio payload while the netcat listener waits idle on the attacker host" width="1920" height="1080">
+                            <figcaption>The trigger moment: the victim browses to the imported <code>poc-obs-studio</code> payload inside Downloads via <strong>File → Import Scene Collection</strong>. On the left, the attacker's listener is still idle — <code>listening on [any] 4444 ...</code> — one click away from receiving a shell.</figcaption>
+                        </figure>
+
+                        <div class="highlight-box">
+                            <p><strong>Why this isn't "DLL planting":</strong> OBS's own <code>SECURITY.md</code> carves out DLL-planting attacks as out-of-scope — the classic scenario where a victim's own insecure search-path ordering gets exploited. This isn't that. The attacker controls <em>both</em> the malicious binary <em>and</em> the config field pointing straight at it, bundled together in one delivery. The victim isn't relying on Windows library search order for anything; they're just importing a file.</p>
+                        </div>
+
+                        <h2>Vector 2 — The Script Nobody Approved</h2>
+                        <p>The second vector doesn't even need a compiled binary.</p>
+
+                        <p>OBS ships a <code>frontend-tools</code> plugin that supports Lua and Python scripting, and it registers a <strong>preload callback</strong> — code that runs automatically, every single time a Scene Collection is loaded, no exceptions:</p>
+
+                        <div class="code-block">
+                            <code>
+                                scripts.cpp:690&nbsp;&nbsp;obs_frontend_add_preload_callback(load_script_data, nullptr);<br>
+                                
+                                scripts.cpp:582&nbsp;&nbsp;static void load_script_data(obs_data_t *load_data, bool, void *) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;// reads modules.scripts-tool[] from the Scene Collection JSON<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;const char *path = obs_data_get_string(obj, "path");<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;obs_script_create(path, settings);&nbsp;&nbsp;// loaded AND executed here<br>
+                                }
+                            </code>
+                        </div>
+
+                        <p>A Scene Collection's <code>modules.scripts-tool</code> section is just an array of script paths — put there so OBS remembers which scripts you had loaded last time. Point one of those paths at an attacker-supplied <code>.lua</code> file, and <code>obs_script_create()</code> loads and runs it immediately, calling the script's <code>script_load()</code> function with zero confirmation from the user:</p>
+
+                        <div class="code-block">
+                            <code>
+                                {<br>
+                                &nbsp;&nbsp;"modules": {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"scripts-tool": [<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "path": "./payload.lua", "settings": {} }<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                                &nbsp;&nbsp;},<br>
+                                &nbsp;&nbsp;"name": "Professional Streaming Kit 2026",<br>
+                                &nbsp;&nbsp;"sources": [ ... ]<br>
+                                }
+                            </code>
+                        </div>
+
+                        <p>And OBS's Lua environment has <strong>no sandbox whatsoever</strong>. <code>os.execute()</code>, <code>io.open()</code>, <code>io.popen()</code>, <code>os.getenv()</code> — all available, all unrestricted, the moment <code>script_load()</code> fires:</p>
+
+                        <div class="code-block">
+                            <code>
+                                function script_load(settings)<br>
+                                &nbsp;&nbsp;-- runs the instant the Scene Collection loads, no prompt<br>
+                                &nbsp;&nbsp;os.execute("id > /tmp/proof.txt 2&gt;&amp;1")<br>
+                                &nbsp;&nbsp;local f = io.open(os.getenv("HOME") .. "/.config/obs-studio/global.ini")<br>
+                                &nbsp;&nbsp;-- read stream keys, exfiltrate, whatever the attacker wants<br>
+                                end
+                            </code>
+                        </div>
+
+                        <p>Compared to the VST vector, this one is arguably worse to defend against: it's a plain-text <code>.lua</code> file (no compiling, no per-platform binaries), it triggers zero VST-loader magic-byte checks, and it has direct access to OBS's own configuration — including, on a real streamer's machine, saved stream keys.</p>
+
+                        <h2>Two Vectors, One File</h2>
+                        <p>Both fields can live in the exact same Scene Collection JSON, which is exactly what a real delivery would look like — belt and suspenders, so if one vector gets hardened before the other, the payload still fires:</p>
+
+                        <div class="code-block">
+                            <code>
+                                {<br>
+                                &nbsp;&nbsp;"modules": { "scripts-tool": [{ "path": "./payload.lua", "settings": {} }] },<br>
+                                &nbsp;&nbsp;"AuxAudioDevice1": {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"filters": [{ "id": "vst_filter", "settings": { "plugin_path": "./payload.so" } }]<br>
+                                &nbsp;&nbsp;}<br>
+                                }
+                            </code>
+                        </div>
+
+                        <p>Bundle that JSON with a small companion payload in a ZIP labeled something like <code>Professional_Streaming_Kit_2026.zip</code>, drop it in a streaming Discord or a "free OBS presets" post, and the delivery looks exactly like every other community preset anyone has ever downloaded. Import, and within a second or two, both vectors have already fired — no dialog ever appeared to say otherwise.</p>
+
+                        <figure class="article-figure">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/obs-scene-collection-rce/final_state.png" alt="Terminal showing calc command executed while VM displays OBS in frozen state" width="1920" height="1080">
+                            <figcaption>Post-import compromise: the attacker's terminal shows <code>calc</code> was successfully issued as proof of arbitrary command execution — though the Calculator window doesn't visibly render in this capture (likely hidden behind OBS or constrained by the non-interactive reverse shell). The OBS window itself is frozen ("Not Responding"), a telltale sign that its process has been hijacked by the malicious script running under the hood.</figcaption>
+                        </figure>
+
+                        <!-- Full-screen view showing calculator actually executing -->
+                        <figure class="article-figure mt-4">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/obs-scene-collection-rce/calc_window_executed.png" alt="Complete demonstration showing Calculator window successfully opened via remote command execution" width="1920" height="1080">
+                            <figcaption>The full frame showing the successful result: after issuing <code>calc</code> from the attacker's terminal, the Calculator application opens on the victim's desktop — clear visual evidence that arbitrary GUI commands can be executed remotely through the exploited OBS instance.</figcaption>
+                        </figure>
+
+                        <!-- Zero-Day Verification -->
+                        <div class="highlight-box mt-4 mb-4">
+                            <h5>Verified as Independent Zero-Day Vulnerabilities</h5>
+                            <ul class="mb-0">
+                                <li><strong>Vector 1 (VST RCE):</strong> No publicly disclosed CVE or prior advisory exists for an unvalidated <code>plugin_path</code> field leading to arbitrary native code execution via <code>os_dlopen()</code>. This is not a DLL/planting issue — it's a config-driven RCE path that loads attacker-controlled binaries on import.</li>
+                                <li><strong>Vector 2 (Lua Script RCE):</strong> The preload callback in <code>scripts-tool</code> that executes Lua scripts with zero sandbox and no user confirmation has never been reported as exploitable. The ability to point at arbitrary scripts that run instantly on Scene Collection load is a distinct and previously undocumented attack surface.</li>
+                                <li><strong>Independently discovered:</strong> These vulnerabilities were not disclosed by OBS Project, do not appear in any public vulnerability database (NVD, GHSA, OSV), and had no patch available before August 11, 2026 when first discovered.</li>
+                            </ul>
+                        </div>
+
+                        <h2>Checking If Anyone Else Had Found This</h2>
+                        <p>Before reporting anything, I went looking for prior art — CVE/GHSA/OSV databases, OBS's own GitHub issues and PRs, forum archives, the works. The closest hit was <a href="https://github.com/advisories/GHSA-6396-m98j-2qhj" target="_blank" rel="noopener noreferrer">CVE-2024-13524</a>, a DLL-planting issue in the OBS <em>updater</em> — a completely different component, a different code path, and one the vendor itself scoped as low-risk since it needs local access. Nothing in any database or issue tracker matched a Scene-Collection-driven <code>plugin_path</code> or <code>scripts-tool</code> vector. As far as I could tell, both of these were 0-days.</p>
+
+                        <h2>Reporting It</h2>
+                        <p>OBS Project doesn't run a paid bug bounty — it's a volunteer-maintained open-source project, and their own security policy says as much. But their <code>SECURITY.md</code> is explicit about the rest: RCE is listed in-scope, they commit to acknowledging reports within <strong>72 hours</strong>, they offer a 120-day disclosure embargo, and they extend safe harbor to good-faith researchers.</p>
+
+                        <p>So I did it by the book:</p>
+
+                        <ul>
+                            <li><strong>August 11, 2026</strong> — both vectors discovered and live-validated (Linux native package, Windows cross-compiled cross-check)</li>
+                            <li><strong>August 12, 2026</strong> — full disclosure report sent to <code>security@obsproject.com</code>, including root cause, code citations, PoC video, and PoC payload</li>
+                        </ul>
+
+                        <p>I scored it, using their own CVSS 4.0 framework, as:</p>
+                        <div class="code-block">
+                            <code>AV:N/AC:L/AT:N/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code>
+                        </div>
+                        <p>In plain terms: reachable over the network, low attack complexity, no special access conditions, no privileges required, requiring the victim to actively do something (import a file — more than a passive click, less than nothing), and complete loss of confidentiality, integrity, and availability within the scope of the OBS process itself.</p>
+
+                        <!-- Simple Timeline Format -->
+                        <div class="highlight-box mt-5 mb-5">
+                            <h5>Vulnerability Report Timeline & Follow-up History</h5>
+                            
+                            <p><strong>Day 0 – August 11, 2026:</strong> Both vectors discovered and live-validated across Linux native build and Windows cross-compiled binaries in isolated lab environment. Proof-of-concept payloads created and tested successfully.</p>
+                            
+                            <p><strong>Day 1 – August 12, 2026:</strong> Comprehensive disclosure report submitted to <code>security@obsproject.com</code> including root cause analysis with code citations, PoC video recording, working Lua and VST payloads, CVSS 4.0 scoring. Acknowledgment requested within stated 72-hour SLA per SECURITY.md policy.</p>
+                            
+                            <p><strong>Day 2 – August 13, 2026:</strong> First follow-up email sent requesting acknowledgment of initial report receipt. No response received after exceeding the stated 72-hour SLA window.</p>
+                            
+                            <p><strong>Day 13 – August 24, 2026:</strong> Second follow-up email sent following OBS Studio 32.2.2 release (originally shipped August 14), noting that reported vulnerabilities remained unaddressed. Immediate re-validation performed on both vectors against new binary out of due diligence.</p>
+                            
+                            <p><strong>Day 13+ – Post-Update Validation:</strong> CRITICAL FINDING — Both vectors remain fully exploitable in OBS Studio 32.2.2. The reported root causes were not addressed:</p>
+                            <ul class="mb-0">
+                                <li><code>plugin_path</code> still flows directly into <code>os_dlopen()</code> without validation</li>
+                                <li><code>scripts-tool</code> preload callback still executes unconditionally with zero sandboxing</li>
+                                <li>No patch, mitigations, or acknowledgments for the August 12 submission</li>
+                            </ul>
+                            
+                            <p style="color: #ffffff; font-size: 0.95em; margin-top: 1rem !important;" class="mb-0"><strong>Note:</strong> This demonstrates responsible disclosure practices followed explicitly: discovery → independent validation → comprehensive report → patience through SLA → follow-ups → post-release verification. Despite full compliance, no response was received and vulnerabilities remain unpatched as of this writing.</p>
+                        </div>
+
+                        <h2>Radio Silence</h2>
+                        <p>The 72-hour acknowledgment window came and went. No reply.</p>
+
+                        <p>I followed up. Still nothing.</p>
+
+                        <figure class="article-figure">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/obs-scene-collection-rce/proof_file_created.png" alt="Cross-verified code execution — OBS-SHELL whoami output matches the cmd.exe whoami inside the victim VM" width="1920" height="1080">
+                            <figcaption>Command execution, cross-verified: the <code>OBS-SHELL&gt; whoami</code> output (<code>desktop-1leosvd\wind10-labs</code>) matches exactly with the <code>whoami</code> run inside the victim VM's own <code>cmd.exe</code> — proof the shell session is genuinely executing inside that machine, not a local artifact.</figcaption>
+                        </figure>
+
+                        <p>Then, on <strong>August 14, 2026</strong>, OBS Studio <strong>32.2.2</strong> shipped. I re-tested both vectors against the new release out of due diligence before writing any of this down.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Both vectors are still live in 32.2.2.</strong> <code>plugin_path</code> still flows straight into <code>os_dlopen()</code> with no validation. The <code>scripts-tool</code> preload callback still fires unconditionally on every Scene Collection import, into a Lua environment with zero sandboxing. Whatever changed in this release, the root cause I reported on August 12 wasn't part of it.</p>
+                        </div>
+
+                        <p>I want to be fair here: OBS Project is a volunteer effort, not a company with a dedicated security team on payroll, and I have no visibility into what's actually happening on their end — triage backlog, a report that fell through the cracks, prioritization against everything else on their plate. That's a real, sympathetic possibility, not a hypothetical I'm dismissing.</p>
+
+                        <p>But from where I'm sitting, the facts are what they are: a critical, in-scope, pre-requisite-free RCE was reported through the exact channel their own policy names, their own 72-hour SLA passed unmet, a follow-up went unanswered, and a subsequent release shipped with the reported root cause fully intact. That's the state of things as of this writing.</p>
+
+                        <h2>What This Means If You Use OBS</h2>
+                        <p>You don't need to be a streaming celebrity for this to matter — you just need to have ever imported a preset someone else made, which describes most OBS users at some point.</p>
+
+                        <ul>
+                            <li><strong>Treat a shared Scene Collection like an executable, not a config file.</strong> It's JSON on the surface, but it can carry a plugin path or a script reference that runs the instant you import it.</li>
+                            <li><strong>Be especially wary of "kits" or "bundles"</strong> — a ZIP containing a JSON plus one or two other small files is precisely the shape both of these vectors need to travel.</li>
+                            <li><strong>If you don't use OBS scripting, there's no reason to have it enabled</strong> — it's one whole vector removed, for free.</li>
+                            <li><strong>Only import presets from people and sources you'd trust with a shell on your machine</strong> — because, right now, that's functionally what importing one is worth.</li>
+                        </ul>
+
+                        <h2>Conclusion</h2>
+                        <p>I didn't go looking for a "gotcha." I went looking because a tool this widely trusted, this widely used, and this explicitly open about being in-scope for security research deserved an actual look under the hood before I stood on a stage and talked about supply-chain trust in creator tooling.</p>
+
+                        <p>What I found were two clean, independent, zero-prerequisite RCE paths hiding behind one of the most mundane actions in the entire application — and, as far as I can tell right now, they're still there.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Key Takeaway:</strong> responsible disclosure only works as a two-way street. I've done my half — found it, verified it wasn't already known, reported it properly, waited, followed up. The rest is out of my hands, and until it changes, the honest, responsible thing is to document it precisely, keep the working payloads out of public reach, and say plainly: as of OBS Studio 32.2.2, this is still exploitable.</p>
+                        </div>
+
+                        <p>Maybe that's all from me. I'm RyuuKhagetsu, see you in next article.</p>
+
+                        <h2>Watch It Happen</h2>
+                        <p>If you'd rather see both vectors fire end-to-end instead of reading them — import the Scene Collection, watch the payload land — here's the full proof-of-concept recording:
+                            <a href="https://drive.google.com/file/d/1yVZlV9EgRlGw2OeSapvHSaxIpQwWtdFC/view" target="_blank" rel="noopener noreferrer">Watch the PoC video</a>.</p>
+
+                        <!-- Tags Section -->
+                        <div class="article-tags">
+                            <h4>Tags:</h4>
+                            <div class="tags-list">
+                                <span class="tag">#RCE</span>
+                                <span class="tag">#OBSStudio</span>
+                                <span class="tag">#SceneCollection</span>
+                                <span class="tag">#CodeExecution</span>
+                                <span class="tag">#VulnerabilityResearch</span>
+                                <span class="tag">#ResponsibleDisclosure</span>
+                                <span class="tag">#0day</span>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2>Related <span class="highlight">Articles</span></h2>
+                    <p class="mt-3 opacity-75">Explore more cybersecurity insights and techniques</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="article-card-horizontal">
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/postman-docker-rce/1-docker-version-reachable.webp" width="1091" height="966">
+                            <div class="article-overlay">
+                                <a href="../postman-docker-rce/" class="article-link">read article</a>
+                            </div>
+                        </div>
+                        <div class="related-content">
+                            <div class="article-tags">
+                                <span class="article-tag">SSRF</span>
+                                <span class="article-tag">Docker</span>
+                            </div>
+                            <h3 class="related-title">
+                                <a href="../postman-docker-rce/">The Postman Always Rings Twice: SSRF to Root via a Docker Socket</a>
+                            </h3>
+                            <p class="article-excerpt">
+                                A dead SSRF guard inside Postman's own request library lets an imported Collection reach the Docker Engine API and become root on the host...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="article-card-horizontal">
+                        <div class="article-image">
+                            <img loading="lazy" decoding="async" src="../../assets/img/blog/coffee-order-database-sleep/preview-card.jpg" width="800" height="600">
+                            <div class="article-overlay">
+                                <a href="../coffee-order-database-sleep/" class="article-link">read article</a>
+                            </div>
+                        </div>
+                        <div class="related-content">
+                            <div class="article-tags">
+                                <span class="article-tag">Time-Based SQLi</span>
+                                <span class="article-tag">Mobile API</span>
+                            </div>
+                            <h3 class="related-title">
+                                <a href="../coffee-order-database-sleep/">The Coffee Order That Made the Database Sleep</a>
+                            </h3>
+                            <p class="article-excerpt">
+                                What started as a casual coffee order turned into a Time-Based SQL Injection discovery in a mobile ordering API...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+
+
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ryuukhagetsu<span class="highlight">@smileforyou</span></h3>
+                    <p class="footer-tagline">Ethical Hacker | Security Researcher | Bug Hunter | Mahasiswa Biasa
+                    </p>
+                    <p class="section-subtitle">Have a project or security concern? Let's work together</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8zm4.95 0c0 2.34-1.01 4.236-2.256 4.236-1.246 0-2.256-1.897-2.256-4.236 0-2.34 1.01-4.236 2.256-4.236 1.246 0 2.256 1.897 2.256 4.236zM16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="footer-text">
+                    <p class="security-note">Made With <span class="heart-icon">&hearts;</span> by RyuuKhagetsu</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Blog enhancements (copy buttons, reading progress) -->
+    <script src="../../assets/js/blog-enhancements.js" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/cyber-animations.js"></script>
+
+    <script src="../../assets/js/view-counter.js" defer></script>
+</body>
+
+</html>
