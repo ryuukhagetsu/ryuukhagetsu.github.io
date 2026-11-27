@@ -1546,6 +1546,8 @@ body.navbar-mobile-open .experience-section {
     border-radius: 10px;
     overflow: hidden;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     transition: transform 0.3s;
 }
 
@@ -1555,6 +1557,14 @@ body.navbar-mobile-open .experience-section {
 
 .blog-image {
     position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .blog-date {
@@ -1584,6 +1594,9 @@ body.navbar-mobile-open .experience-section {
 
 .blog-content {
     padding: 30px 25px 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-tags {
@@ -1609,6 +1622,7 @@ body.navbar-mobile-open .experience-section {
 .blog-excerpt {
     opacity: 0.8;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 .blog-read-more {
@@ -1617,6 +1631,7 @@ body.navbar-mobile-open .experience-section {
     font-weight: 500;
     display: inline-block;
     position: relative;
+    margin-top: auto;
 }
 
 .blog-read-more::after {
